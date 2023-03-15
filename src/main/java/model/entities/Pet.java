@@ -1,8 +1,7 @@
 package model.entities;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
+import java.util.Objects;
 
 public class Pet {
     private String name;
@@ -10,7 +9,7 @@ public class Pet {
     private List<Attack> attackSet= new ArrayList<>();
     private int life,power,defense,speed;
     private Levels levels;
-    private Person person;
+    private boolean isDead;
 
 
     public Pet(String name, Type type, int life, int power, int defense, int speed, Levels levels) {
@@ -21,27 +20,36 @@ public class Pet {
         this.defense = defense;
         this.speed = speed;
         this.levels = levels;
+        this.isDead=false;
 
         if(type == Type.BIRD){
-            this.attackSet.add(Attack.ALATA);
-            this.attackSet.add(Attack.BECCATA);
-            this.attackSet.add(Attack.PERFORBECCO);
-            this.attackSet.add(Attack.VOLO);
+            attackSet.add(Attack.beccata);
+            attackSet.add(Attack.volo);
+            attackSet.add(Attack.alaProtettrice);
         }else if(type == Type.CAT){
-            this.attackSet.add(Attack.SFURIATE);
-            this.attackSet.add(Attack.GRAFFIO);
-            this.attackSet.add(Attack.ZAMPATA);
-            this.attackSet.add(Attack.COLPOCODA);
+            attackSet.add(Attack.graffio);
+            attackSet.add(Attack.zampata);
+            attackSet.add(Attack.Arruffarsi);
         }else{
-            this.attackSet.add(Attack.GELODENTI);
-            this.attackSet.add(Attack.ROGODENTI);
-            this.attackSet.add(Attack.MORSO);
-            this.attackSet.add(Attack.IPERMORSO);
+            attackSet.add(Attack.gelodenti);
+            attackSet.add(Attack.morso);
+            attackSet.add(Attack.colpoCoda);
         }
     }
 
     public String getName() {
         return name;
+    }
+
+    public boolean isDead() {
+        if(getLife()<0){
+            return true;
+        }
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
     }
 
     public void setName(String name) {
@@ -69,7 +77,7 @@ public class Pet {
     }
 
     public void setLife(int life) {
-        this.life = life;
+        this.life -= life;
     }
 
     public int getPower() {
@@ -111,7 +119,7 @@ public class Pet {
     }
 
     public void setDefense(int defense) {
-        this.defense = defense;
+        this.defense += defense;
     }
 
     public int getSpeed() {
@@ -136,7 +144,6 @@ public class Pet {
     }
 
     public Levels getLevels() {
-        this.setLevels(person.getLevels());
         return levels;
     }
 

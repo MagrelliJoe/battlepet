@@ -1,10 +1,12 @@
 package model.entities;
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.persistence.Entity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Person {
     private String name;
-    List<Pet> petList = new ArrayList<>();
+    Map<Integer,Pet> petList = new HashMap<>();
     int victory;
     Levels levels;
 
@@ -21,12 +23,12 @@ public class Person {
         this.name = name;
     }
 
-    public List<Pet> getPetList() {
+    public Map<Integer, Pet> getPetList() {
         return petList;
     }
 
-    public void setPetList(List<Pet> petList) {
-        this.petList = petList;
+    public void addPet(Integer key ,Pet pet) {
+        this.petList.put(key,pet);
     }
 
     public int getVictory() {
