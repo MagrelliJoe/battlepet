@@ -8,8 +8,6 @@ public class Fight {
         while(!repo.isDead(pet_)) {
             repo.viewLifeRemain(pet);
             repo.viewLifeRemain(pet_);
-            System.out.println(pet.getLife());
-            System.out.println(pet_.getLife());
             Pet petMostSpeed = repo.whoAttackFirst(pet,pet_);
             if(petMostSpeed.equals(pet)) {
                 repo.turnMy(pet,pet_);
@@ -20,6 +18,7 @@ public class Fight {
             }
 
         }
+
 
     }
 }

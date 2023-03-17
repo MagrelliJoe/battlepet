@@ -3,6 +3,7 @@ import model.data.abstracted.Repository;
 import model.entities.*;
 import java.util.Random;
 import java.util.Scanner;
+import model.entities.Attack;
 
 public class RepositotyP implements Repository {
     Scanner scanner = new Scanner(System.in);
@@ -52,14 +53,39 @@ public class RepositotyP implements Repository {
         }
         return false;
     }
-
+    @Override
+    public void addNewAttack(Pet pet,Attack attack) {
+        System.out.println(attack.getName() + ":" + attack.getDescription() + "," +
+                "possibile danno inflitto->" + attack.getDamage() + ",possibile " +
+                "aumento difensivo->" + attack.getShelter());
+        System.out.println("Il tuo Pet può imparare un nuovo attacco,scegli quale attacco rimuovere!");
+        seeAttack(pet);
+        System.out.println("Inserire NO se si vuole mantenere questi attacchi!");
+        boolean done = true;
+        String choose = scanner.nextLine();
+        while(done){
+            String finalChoose = choose;
+            if (pet.getAttackSet().stream().anyMatch(d -> d.getName().equalsIgnoreCase(finalChoose)) == true) {
+                pet.getAttackSet().remove(pet.getAttackSet().stream().anyMatch(d -> d.getName().equalsIgnoreCase(finalChoose)));
+                pet.setAttack(attack);
+                System.out.println("Il tuo Pet ha imparato:" + attack.getName());
+                done = false;
+            }else{
+                if (choose.equalsIgnoreCase("NO")) {
+                    System.out.println("Il tuo Pet ha mantenuto le sue mosse correnti!");
+                    break;
+                }
+                System.out.println("Errore nella scelta");
+                choose = scanner.nextLine();
+            }
+        }
+    }
     @Override
     public String chooseAttack(Pet petMy) {
 
         showYourAttack(petMy);
         String choose = scanner.nextLine();
         return choose;
-
     }
 
     @Override
@@ -108,12 +134,7 @@ public class RepositotyP implements Repository {
     @Override
     public void showYourAttack(Pet pet) {
         System.out.println("Attacchi disponibili:");
-        for (Attack attack : pet.getAttackSet()) {
-            System.out.println(attack.getName() + ":" + attack.getDescription() + "," +
-                    "possibile danno inflitto->" + attack.getDamage() + ",possibile " +
-                    "aumento difensivo->" + attack.getShelter());
-            System.out.println("Scegli il tuo attacco:");
-        }
+        seeAttack(pet);
     }
 
     private void isDamageOrShelter(int damage, int shelter, Pet pet, Pet petEnemy) {
@@ -130,6 +151,15 @@ public class RepositotyP implements Repository {
         private int seeShelter(Pet pet,String choose){
             int shelter = pet.getAttackSet().stream().filter(d -> d.getName().equalsIgnoreCase(choose)).findAny().get().getShelter();
             return shelter;
+        }
+
+        private void seeAttack(Pet pet){
+            for(Attack attack : pet.getAttackSet()) {
+                System.out.println(attack.getName() + ":" + attack.getDescription() + "," +
+                        "possibile danno inflitto->" + attack.getDamage() + ",possibile " +
+                        "aumento difensivo->" + attack.getShelter());
+            }
+            System.out.println("Scegli il tuo attacco:");
         }
 
 }

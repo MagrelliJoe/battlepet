@@ -1,6 +1,4 @@
 package model.entities;
-import jakarta.persistence.Entity;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,7 +34,7 @@ public class Person {
     }
 
     public void setVictory(int victory) {
-        this.victory = victory;
+        this.victory += victory;
     }
 
     public Levels getLevels() {

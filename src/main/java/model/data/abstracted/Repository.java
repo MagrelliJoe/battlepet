@@ -14,5 +14,6 @@ public interface Repository {
     void turnMy(Pet petMy,Pet petEnemy);
     boolean isDead(Pet pet);
     boolean numOfAvailabilityIsFinish(Attack attack);
+    void addNewAttack(Pet pet,Attack attack);
 
 }

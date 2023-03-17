@@ -1,7 +1,6 @@
 package model.entities;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Pet {
     private String name;
@@ -37,6 +36,10 @@ public class Pet {
         }
     }
 
+    public void setAttack(Attack attack){
+        attackSet.add(attack);
+    }
+
     public String getName() {
         return name;
     }
@@ -68,8 +71,19 @@ public class Pet {
         return attackSet;
     }
 
-    public void setAttackSet(List<Attack> attackSet) {
-        this.attackSet = attackSet;
+
+    public void setAttackSet(Attack attack) {
+        switch(this.getLevels()){
+            case BASE : this.power+=10;
+                break;
+            case MEDIUM: this.power+=15;
+                break;
+            case GREAT: this.power += 20;
+                break;
+            case ADVANCE: this.power += 25;
+                break;
+            case PERFECT: this.power += 30;
+        }
     }
 
     public int getLife() {
