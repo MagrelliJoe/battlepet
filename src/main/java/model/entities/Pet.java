@@ -10,7 +10,6 @@ public class Pet {
     private Levels levels;
     private boolean isDead;
 
-
     public Pet(String name, Type type, int life, int power, int defense, int speed, Levels levels) {
         this.name = name;
         this.type = type;
@@ -163,5 +162,10 @@ public class Pet {
 
     public void setLevels(Levels levels) {
         this.levels = levels;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

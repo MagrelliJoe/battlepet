@@ -11,9 +11,11 @@ public interface Repository {
     void viewLifeRemain(Pet pet);
     void turnEnemy(Pet pet,Pet pet_);
     void showYourAttack(Pet pet);
-    void turnMy(Pet petMy,Pet petEnemy);
+    void turnMy(Pet petMy,Pet petEnemy,String choose);
     boolean isDead(Pet pet);
     boolean numOfAvailabilityIsFinish(Attack attack);
     void addNewAttack(Pet pet,Attack attack);
+    Object create (Object object);
+    String waiting(String s);
 
 }

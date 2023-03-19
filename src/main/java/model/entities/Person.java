@@ -1,16 +1,20 @@
 package model.entities;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Person {
     private String name;
-    Map<Integer,Pet> petList = new HashMap<>();
-    int victory;
-    Levels levels;
+    private Map<Integer,Pet> petList = new HashMap<>();
+    private int victory;
+    private Levels levels;
+    List<Pet> petList1 = new ArrayList<>();
 
     public Person(String name,Levels levels) {
         this.name = name;
         this.levels = levels;
+        petList1.forEach(d->d.setLevels(this.getLevels()));
     }
 
     public String getName() {
@@ -26,6 +30,7 @@ public class Person {
     }
 
     public void addPet(Integer key ,Pet pet) {
+        pet.setLevels(this.getLevels());
         this.petList.put(key,pet);
     }
 

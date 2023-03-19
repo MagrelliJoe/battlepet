@@ -20,7 +20,7 @@ public class Attack {
     }
 
     public void setNumOfAvailability(int numOfAvailability) {
-        this.numOfAvailability = numOfAvailability;
+        this.numOfAvailability -= numOfAvailability;
     }
 
     public String getName() {
@@ -55,8 +55,8 @@ public class Attack {
         this.shelter = shelter;
     }
 
-    static Attack beccata = new Attack("Beccata",10,0,"Attacco diretto",1);
-    static Attack volo = new Attack("Volo",15,0,"Attacco diretto",1);
+    public static Attack beccata = new Attack("Beccata",10,0,"Attacco diretto",4);
+    static Attack volo = new Attack("Volo",15,0,"Attacco diretto",4);
     static Attack alata = new Attack("Alata",20,0,"Attacco diretto",3);
     static Attack morso = new Attack("Morso",10,0,"Attacco diretto",10);
     static Attack ipermorso = new Attack("IperMorso",20,0,"Attacco diretto",3);
@@ -64,7 +64,7 @@ public class Attack {
     static Attack graffio = new Attack("Graffio",10,0,"Attacco diretto",10);
     static Attack sfuriate = new Attack("Sfuriate",20,0,"Attacco diretto",3);
     static Attack zampata = new Attack("Zampata",15,0,"Attacco diretto",5);
-    static Attack alaProtettrice = new Attack("Ala Protettrice",0,5,"Il pet si protegge con la sua ala",0);
+    static Attack alaProtettrice = new Attack("Ala Protettrice",0,5,"Il pet si protegge con la sua ala",4);
     static Attack colpoCoda = new Attack("ColpoCoda",0,5,"Il pet si protegge con la sua coda",5);
     static Attack Arruffarsi = new Attack("Arruffarsi",0,5,"Il pet si protegge arruffando il pelo",5);
 }

@@ -1,12 +1,17 @@
 package model.data.implementation;
 import model.data.abstracted.Repository;
 import model.entities.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import model.entities.Attack;
 
-public class RepositotyP implements Repository {
+public class RepositotyPet implements Repository {
     Scanner scanner = new Scanner(System.in);
+    protected static List<Person> trainers = new ArrayList<>();
+    protected static List<Pet> pets = new ArrayList<>();
 
     @Override
     public void viewCommentAttack(Pet pet,String choose,int damage, int shelter) {
@@ -19,8 +24,7 @@ public class RepositotyP implements Repository {
         }
     }
     @Override
-    public void turnMy(Pet petMy,Pet petEnemy){
-        String choose = chooseAttack(petMy);
+    public void turnMy(Pet petMy,Pet petEnemy,String choose){
         boolean done = true;
         while(done) {
             String finalChoose = choose;
@@ -28,6 +32,11 @@ public class RepositotyP implements Repository {
                 if(numOfAvailabilityIsFinish(petMy.getAttackSet().stream().filter(e -> e.getName().equalsIgnoreCase(finalChoose)).findAny().get()) == false) {
                     isDamageOrShelter(seeDamage(petMy, choose), seeShelter(petMy, choose), petMy, petEnemy);
                     viewCommentAttack(petMy, choose, seeDamage(petMy, choose), seeShelter(petMy, choose));
+                    for(Attack attack : petMy.getAttackSet()){
+                        if(attack.getName().equalsIgnoreCase(finalChoose)){
+                            attack.setNumOfAvailability(1);
+                        }
+                    }
                     done = false;
                 }else{
                     System.out.println("Non puoi più usare questa mossa per questa lotta!");
@@ -42,7 +51,9 @@ public class RepositotyP implements Repository {
 
     @Override
     public boolean isDead(Pet pet) {
-        if(pet.getLife() < 0) return true;
+        if(pet.getLife() < 0) {
+            return true;
+        }
         return false;
     }
 
@@ -80,9 +91,25 @@ public class RepositotyP implements Repository {
             }
         }
     }
+
+    @Override
+    public Object create(Object object) {
+        if(object instanceof Person){
+            trainers.add((Person)object);
+        }else{
+            pets.add((Pet) object);
+        }
+        return  object;
+    }
+
+    @Override
+    public String waiting(String s) {
+        scanner.nextLine();
+        return  s;
+    }
+
     @Override
     public String chooseAttack(Pet petMy) {
-
         showYourAttack(petMy);
         String choose = scanner.nextLine();
         return choose;
@@ -137,9 +164,11 @@ public class RepositotyP implements Repository {
         seeAttack(pet);
     }
 
+
     private void isDamageOrShelter(int damage, int shelter, Pet pet, Pet petEnemy) {
         if (damage > 0) {
-                petEnemy.setLife((damage + pet.getPower()) - (pet.getDefense()/2) );
+                petEnemy.setLife((damage + pet.getPower()));
+
             } else {
                 pet.setDefense(shelter);
             }
@@ -157,7 +186,8 @@ public class RepositotyP implements Repository {
             for(Attack attack : pet.getAttackSet()) {
                 System.out.println(attack.getName() + ":" + attack.getDescription() + "," +
                         "possibile danno inflitto->" + attack.getDamage() + ",possibile " +
-                        "aumento difensivo->" + attack.getShelter());
+                        "aumento difensivo->" + attack.getShelter() + " " + "numero di utilizzi a disposizione:" +
+                        " " + attack.getNumOfAvailability());
             }
             System.out.println("Scegli il tuo attacco:");
         }
