@@ -71,7 +71,8 @@ public class RepositotyPet implements Repository {
         System.out.println(attack.getName() + ":" + attack.getDescription() + "," +
                 "possibile danno inflitto->" + attack.getDamage() + ",possibile " +
                 "aumento difensivo->" + attack.getShelter());
-        waiting("Scegli quale attacco rimuovere!Inserire NO se si vuole mantenere questi attacchi!");
+        waiting("Scegli quale attacco rimuovere!Inserire NO se si vuole mantenere questi attacchi!"
+        +" "+"Premi invio per Continuare");
         seeAttack(pet);
         boolean done = true;
         String choose = scanner.nextLine();
@@ -193,7 +194,7 @@ public class RepositotyPet implements Repository {
 
     @Override
     public String waiting(String s) {
-        System.out.print(s + " " + "PREMI INVIO PER CONTINUARE");
+        System.out.print(s);
         return scanner.nextLine();
     }
 
@@ -282,7 +283,6 @@ public class RepositotyPet implements Repository {
                         "aumento difensivo->" + attack.getShelter() + " " + "numero di utilizzi a disposizione:" +
                         " " + attack.getNumOfAvailability());
             }
-            System.out.println("Scegli il tuo attacco:");
         }
 
 }

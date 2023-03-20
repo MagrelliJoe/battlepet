@@ -22,15 +22,15 @@ public class Service {
             Pet petMostSpeed = repo.whoAttackFirst(pet,pet_);
             if(petMostSpeed.equals(pet)) {
                 repo.turnMy(pet,pet_,repo.chooseAttack(pet));
-                System.out.println(repo.waiting("Clicca per continuare!"));
+                repo.waiting("Clicca per continuare!");
                 repo.turnEnemy(pet_, pet);
-                System.out.println(repo.waiting("Clicca per continuare!"));
+                repo.waiting("Clicca per continuare!");
             }else{
                 String choose = repo.chooseAttack(pet);
                 repo.turnEnemy(pet_, pet);
-                System.out.println(repo.waiting("Clicca per continuare!"));
+                repo.waiting("Clicca per continuare!");
                 repo.turnMy(pet,pet_,choose);
-                System.out.println(repo.waiting("Clicca per continuare!"));
+                repo.waiting("Clicca per continuare!");
             }
             if(repo.isDead(pet) || repo.isDead(pet_)){
                 if(repo.isDead(pet)){
@@ -39,7 +39,7 @@ public class Service {
                     if(trainer1.getPetList().get(numOfMyPet) != null) {
                         pet = trainer1.getPetList().get(numOfMyPet);
                         System.out.println("Mandi in campo un'altro Pet->" + pet.getName());
-                        System.out.println(repo.waiting("Clicca per continuare!"));
+                        repo.waiting("Clicca per continuare!");
                     }else{
                         System.out.println("Hai perso la sfida!");
                         done = false;
@@ -50,7 +50,7 @@ public class Service {
                     if(trainer2.getPetList().get(numOfPetEnemy) != null) {
                         pet_ = trainer2.getPetList().get(numOfPetEnemy);
                         System.out.println(trainer2.getName() + " "+ "Manda in campo un'altro Pet->" + pet_.getName());
-                        System.out.println(repo.waiting("Clicca per continuare!"));
+                        repo.waiting("Clicca per continuare!");
                     }else{
                         System.out.println("Hai vinto lo scontro!");
                         trainer1.setVictory(1);
