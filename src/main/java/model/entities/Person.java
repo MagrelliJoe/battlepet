@@ -1,7 +1,5 @@
 package model.entities;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Person {
@@ -9,12 +7,13 @@ public class Person {
     private Map<Integer,Pet> petList = new HashMap<>();
     private int victory;
     private Levels levels;
-    List<Pet> petList1 = new ArrayList<>();
 
     public Person(String name,Levels levels) {
         this.name = name;
         this.levels = levels;
-        petList1.forEach(d->d.setLevels(this.getLevels()));
+        for(Pet pet : getPetList().values()){
+            pet.setLevels(this.levels);
+        }
     }
 
     public String getName() {

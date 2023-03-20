@@ -13,6 +13,7 @@ public class Service {
         boolean done = true;
         int numOfMyPet = 0;
         int numOfPetEnemy = 0;
+        Levels actuallyLevel = trainer1.getLevels();
         Pet pet = trainer1.getPetList().get(numOfMyPet);
         Pet pet_ = trainer2.getPetList().get(numOfPetEnemy);
         while(done) {
@@ -34,7 +35,6 @@ public class Service {
             if(repo.isDead(pet) || repo.isDead(pet_)){
                 if(repo.isDead(pet)){
                     System.out.println("Il tuo Pet è stato sconfitto!");
-                    System.out.println(repo.waiting("Clicca per continuare!"));
                     numOfMyPet++;
                     if(trainer1.getPetList().get(numOfMyPet) != null) {
                         pet = trainer1.getPetList().get(numOfMyPet);
@@ -46,27 +46,23 @@ public class Service {
                     }
                 }else{
                     System.out.println("Il Pet nemico è stato sconfitto!");
-                    System.out.println(repo.waiting("Clicca per continuare!"));
                     numOfPetEnemy++;
                     if(trainer2.getPetList().get(numOfPetEnemy) != null) {
                         pet_ = trainer2.getPetList().get(numOfPetEnemy);
-                        System.out.println("Manda in campo un'altro Pet->" + pet_.getName());
+                        System.out.println(trainer2.getName() + " "+ "Manda in campo un'altro Pet->" + pet_.getName());
                         System.out.println(repo.waiting("Clicca per continuare!"));
                     }else{
                         System.out.println("Hai vinto lo scontro!");
+                        trainer1.setVictory(1);
+                        if(trainer1.getLevels() != actuallyLevel){
+                            repo.addNewAttack(pet,repo.newAttackByType(pet));
+                        }
                         done = false;
                     }
                 }
             }
         }
     }
-    public Person createTeam(int numOfPets, Person person, List<Pet> petList){
-      int numRandom=0;
-      for(int i = 0; i < numOfPets ; i++){
-         numRandom = random.nextInt(petList.size());
-         person.addPet(i,petList.get(numRandom));
-      }
-        return person;
-    }
+
 
 }

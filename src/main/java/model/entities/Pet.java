@@ -20,18 +20,32 @@ public class Pet {
         this.levels = levels;
         this.isDead=false;
 
-        if(type == Type.BIRD){
-            attackSet.add(Attack.beccata);
-            attackSet.add(Attack.volo);
-            attackSet.add(Attack.alaProtettrice);
-        }else if(type == Type.CAT){
-            attackSet.add(Attack.graffio);
-            attackSet.add(Attack.zampata);
-            attackSet.add(Attack.Arruffarsi);
-        }else{
-            attackSet.add(Attack.gelodenti);
-            attackSet.add(Attack.morso);
-            attackSet.add(Attack.colpoCoda);
+        switch(this.getType()){
+            case BIRD:
+               attackSet.add(Attack.beccata);
+               attackSet.add(Attack.volo);
+               attackSet.add(Attack.alaProtettrice);
+               break;
+            case CAT:
+               attackSet.add(Attack.graffio);
+               attackSet.add(Attack.sfuriate);
+               attackSet.add(Attack.Arruffarsi);
+               break;
+            case DOG:
+               attackSet.add(Attack.gelodenti);
+               attackSet.add(Attack.morso);
+               attackSet.add(Attack.colpoCoda);
+               break;
+            case RABBIT:
+                attackSet.add(Attack.rosicchiamento);
+                attackSet.add(Attack.posizioneDiDifesa);
+                attackSet.add(Attack.fossa);
+                break;
+            case TURTLE:
+                attackSet.add(Attack.sgusciata);
+                attackSet.add(Attack.reparo);
+                attackSet.add(Attack.colpoDiGuscio);
+                break;
         }
     }
 

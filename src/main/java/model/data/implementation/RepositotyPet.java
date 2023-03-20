@@ -1,7 +1,6 @@
 package model.data.implementation;
 import model.data.abstracted.Repository;
 import model.entities.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,6 +9,7 @@ import model.entities.Attack;
 
 public class RepositotyPet implements Repository {
     Scanner scanner = new Scanner(System.in);
+    Random random = new Random();
     protected static List<Person> trainers = new ArrayList<>();
     protected static List<Pet> pets = new ArrayList<>();
 
@@ -66,12 +66,13 @@ public class RepositotyPet implements Repository {
     }
     @Override
     public void addNewAttack(Pet pet,Attack attack) {
+        waiting("Il tuo Pet può imparare un nuovo attacco");
         System.out.println(attack.getName() + ":" + attack.getDescription() + "," +
                 "possibile danno inflitto->" + attack.getDamage() + ",possibile " +
                 "aumento difensivo->" + attack.getShelter());
-        System.out.println("Il tuo Pet può imparare un nuovo attacco,scegli quale attacco rimuovere!");
+        waiting("Scegli quale attacco rimuovere!");
         seeAttack(pet);
-        System.out.println("Inserire NO se si vuole mantenere questi attacchi!");
+        waiting("Inserire NO se si vuole mantenere questi attacchi!");
         boolean done = true;
         String choose = scanner.nextLine();
         while(done){
@@ -90,6 +91,94 @@ public class RepositotyPet implements Repository {
                 choose = scanner.nextLine();
             }
         }
+    }
+
+    @Override
+    public Attack newAttackByType(Pet pet) {
+        Attack attack = null;
+        Levels levels = pet.getLevels();
+        switch(pet.getType()){
+           case CAT:
+               switch (levels){
+                   case START:attack = Attack.zampata;
+                   break;
+                   case MEDIUM:attack = Attack.lacerazione;
+                   break;
+                   case ADVANCE:attack = Attack.arruffarsiGraffiando;
+                   break;
+                   case GREAT:attack = Attack.pallaDiPelo;
+                   break;
+                   case PERFECT:attack = Attack.rogodenti;
+                   break;
+               }
+               break;
+            case BIRD:
+                switch (levels){
+                    case START:attack = Attack.alata;
+                    break;
+                    case MEDIUM:attack = Attack.raffica;
+                    break;
+                    case ADVANCE:attack = Attack.alataProtettrice;
+                    break;
+                    case GREAT:attack = Attack.perforbecco;
+                    break;
+                    case PERFECT:attack = Attack.doppiaAlata;
+                    break;
+                }
+                break;
+            case DOG:
+                switch (levels){
+                    case START:attack = Attack.supermorso;
+                    break;
+                    case MEDIUM:attack = Attack.elettrodenti;
+                    break;
+                    case ADVANCE:attack = Attack.colpoCodaVigoroso;
+                    break;
+                    case GREAT:attack = Attack.ipermorso;
+                    break;
+                    case PERFECT:attack = Attack.elettroGeloDenti;
+                    break;
+                }
+                break;
+            case RABBIT:
+                switch (levels){
+                    case START:attack = Attack.doppioGraffio;
+                    break;
+                    case MEDIUM:attack = Attack.sgranocchio;
+                    break;
+                    case ADVANCE:attack = Attack.corsaSpietata;
+                    break;
+                    case GREAT:attack = Attack.triploGraffio;
+                    break;
+                    case PERFECT:attack = Attack.iperSgranocchio;
+                    break;
+                }
+                break;
+            case TURTLE:
+                switch (levels){
+                    case START:attack = Attack.rotolamento;
+                    break;
+                    case MEDIUM:attack = Attack.doppioRotolamento;
+                    break;
+                    case ADVANCE:attack = Attack.sgusciataReparo;
+                    break;
+                    case GREAT:attack = Attack.doppioColpoDiGuscio;
+                    break;
+                    case PERFECT:attack = Attack.triploRotolamento;
+                    break;
+                }
+                break;
+        }
+        return attack;
+       }
+    @Override
+    public Person createTeam(int numOfPets, Person person, List<Pet> petList){
+        int numRandom=0;
+        for(int i = 0; i < numOfPets ; i++){
+            numRandom = random.nextInt(petList.size());
+            person.addPet(i,petList.get(numRandom));
+        }
+        return person;
     }
 
     @Override
@@ -166,10 +255,15 @@ public class RepositotyPet implements Repository {
 
 
     private void isDamageOrShelter(int damage, int shelter, Pet pet, Pet petEnemy) {
-        if (damage > 0) {
-                petEnemy.setLife((damage + pet.getPower()));
-
-            } else {
+        if (damage >= 0) {
+                int finalDamage = (damage + pet.getPower()) - petEnemy.getDefense();
+                if(finalDamage >= 0){
+                    petEnemy.setLife(finalDamage);
+                }else{
+                    finalDamage=0;
+                    petEnemy.setLife(finalDamage);
+                }
+            }else {
                 pet.setDefense(shelter);
             }
         }

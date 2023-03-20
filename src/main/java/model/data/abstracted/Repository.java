@@ -3,6 +3,8 @@ import model.entities.Attack;
 import model.entities.Person;
 import model.entities.Pet;
 
+import java.util.List;
+
 public interface Repository {
 
     void viewCommentAttack(Pet pet,String choose,int damage, int shelter);
@@ -15,6 +17,10 @@ public interface Repository {
     boolean isDead(Pet pet);
     boolean numOfAvailabilityIsFinish(Attack attack);
     void addNewAttack(Pet pet,Attack attack);
+    Attack newAttackByType(Pet pet);
+
+    Person createTeam(int numOfPets, Person person, List<Pet> petList);
+
     Object create (Object object);
     String waiting(String s);
 

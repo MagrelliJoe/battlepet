@@ -1,5 +1,5 @@
 package model.entities;
 
 public enum Type {
-    DOG,CAT,BIRD
+    DOG,CAT,BIRD,RABBIT,TURTLE
 }
