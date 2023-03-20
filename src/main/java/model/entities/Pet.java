@@ -53,6 +53,10 @@ public class Pet {
         attackSet.add(attack);
     }
 
+    public void removeAttack(Attack attack){
+        attackSet.remove(attack);
+    }
+
     public String getName() {
         return name;
     }
@@ -82,21 +86,6 @@ public class Pet {
 
     public List<Attack> getAttackSet() {
         return attackSet;
-    }
-
-
-    public void setAttackSet(Attack attack) {
-        switch(this.getLevels()){
-            case BASE : this.power+=10;
-                break;
-            case MEDIUM: this.power+=15;
-                break;
-            case GREAT: this.power += 20;
-                break;
-            case ADVANCE: this.power += 25;
-                break;
-            case PERFECT: this.power += 30;
-        }
     }
 
     public int getLife() {

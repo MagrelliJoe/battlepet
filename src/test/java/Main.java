@@ -1,3 +1,4 @@
+import jdk.swing.interop.SwingInterOpUtils;
 import model.data.implementation.RepositotyPet;
 import model.entities.*;
 import model.services.Service;
@@ -23,9 +24,11 @@ public class Main {
 
         Person per = new Person("io",Levels.START);
         Person per2 = new Person("ciccio",Levels.START);
-        per.setVictory(5);
+        per.setVictory(25);
+        System.out.println(per.getLevels());
         per.addPet(0,p);
         per.addPet(1,p3);
+        System.out.println(per.getPetList().get(0).getLevels());
 
         RepositotyPet repo = new RepositotyPet();
         repo.create(p);
@@ -34,6 +37,7 @@ public class Main {
         //service.createTeam(4,per2,petList);
         per2.addPet(0,p3);
         per2.addPet(1,p2);
+        //repo.addNewAttack(p,repo.newAttackByType(p));
         service.fight(per,per2);
         //service.createTeam(4,per2,petList);
         //service.fightTrainer(per,per2);

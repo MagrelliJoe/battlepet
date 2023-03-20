@@ -1,4 +1,5 @@
 package model.data.implementation;
+import jdk.swing.interop.SwingInterOpUtils;
 import model.data.abstracted.Repository;
 import model.entities.*;
 import java.util.ArrayList;
@@ -70,15 +71,14 @@ public class RepositotyPet implements Repository {
         System.out.println(attack.getName() + ":" + attack.getDescription() + "," +
                 "possibile danno inflitto->" + attack.getDamage() + ",possibile " +
                 "aumento difensivo->" + attack.getShelter());
-        waiting("Scegli quale attacco rimuovere!");
+        waiting("Scegli quale attacco rimuovere!Inserire NO se si vuole mantenere questi attacchi!");
         seeAttack(pet);
-        waiting("Inserire NO se si vuole mantenere questi attacchi!");
         boolean done = true;
         String choose = scanner.nextLine();
         while(done){
             String finalChoose = choose;
-            if (pet.getAttackSet().stream().anyMatch(d -> d.getName().equalsIgnoreCase(finalChoose)) == true) {
-                pet.getAttackSet().remove(pet.getAttackSet().stream().anyMatch(d -> d.getName().equalsIgnoreCase(finalChoose)));
+            if(pet.getAttackSet().stream().anyMatch(d -> d.getName().equalsIgnoreCase(finalChoose)) == true) {
+                pet.removeAttack(pet.getAttackSet().stream().filter(d->d.getName().equalsIgnoreCase(finalChoose)).findAny().get());
                 pet.setAttack(attack);
                 System.out.println("Il tuo Pet ha imparato:" + attack.getName());
                 done = false;
@@ -193,8 +193,8 @@ public class RepositotyPet implements Repository {
 
     @Override
     public String waiting(String s) {
-        scanner.nextLine();
-        return  s;
+        System.out.print(s + " " + "PREMI INVIO PER CONTINUARE");
+        return scanner.nextLine();
     }
 
     @Override
@@ -253,14 +253,13 @@ public class RepositotyPet implements Repository {
         seeAttack(pet);
     }
 
-
     private void isDamageOrShelter(int damage, int shelter, Pet pet, Pet petEnemy) {
-        if (damage >= 0) {
+        if (damage > 0) {
                 int finalDamage = (damage + pet.getPower()) - petEnemy.getDefense();
                 if(finalDamage >= 0){
                     petEnemy.setLife(finalDamage);
                 }else{
-                    finalDamage=0;
+                    finalDamage=1;
                     petEnemy.setLife(finalDamage);
                 }
             }else {
