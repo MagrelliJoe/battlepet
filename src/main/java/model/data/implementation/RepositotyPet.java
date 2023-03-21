@@ -16,12 +16,32 @@ public class RepositotyPet implements Repository {
 
     @Override
     public void viewCommentAttack(Pet pet,String choose,int damage, int shelter) {
-        if(damage > 0) {
-            System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge");
-            System.out.println("un danno di" + " " + damage + " " + "ps!");
-        }else{
+        if(damage > 0 && shelter > 0){
+            if(damage > 0 && damage < 50){
+                System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un buon danno!");
+                System.out.println(pet.getName() + " " + "inoltre" + " " + "aumenta");
+                System.out.println("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
+            }else if(damage > 50 && damage < 100){
+                System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un ottimo danno!");
+                System.out.println(pet.getName() + " " + "inoltre" + " " + "aumenta");
+                System.out.println("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
+            }else{
+                System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un danno importante!");
+                System.out.println(pet.getName() + " " + "inoltre" + " " + "aumenta");
+                System.out.println("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
+            }
+        }
+        else if(damage > 0 && shelter == 0) {
+            if(damage > 0 && damage < 50){
+                System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un buon danno!");
+            }else if(damage > 50 && damage < 100){
+                System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un ottimo danno!");
+            }else{
+                System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un danno importante!");
+            }
+        }else if(damage == 0 && shelter > 0){
             System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "aumenta");
-            System.out.println("la sua difesa di " + " " + shelter);
+            System.out.println("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
         }
     }
     @Override
