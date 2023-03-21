@@ -13,6 +13,9 @@ public class Main {
         Pet p3 = new Pet("Pepita", Type.DOG,150,20,40,20,Levels.START);
         Pet p4 = new Pet("Gomitolo", Type.CAT,150,20,40,10, Levels.PERFECT);
         Pet p5 = new Pet("Baffo", Type.CAT,150,20,40,14,Levels.PERFECT);
+        Pet p6 = new Pet("Pulce",Type.RABBIT,100,30,40,20,Levels.BASE);
+        Pet p7 = new Pet("Raffa",Type.TURTLE,180,10,10,10,Levels.BASE);
+
 
        List<Pet> petList = new ArrayList<>();
        petList.add(p);
@@ -23,20 +26,15 @@ public class Main {
         Person per = new Person("io",Levels.ADVANCE);
         Person per2 = new Person("ciccio",Levels.START);
         per.setVictory(69);
-        per.addPet(0,p);
-        per.addPet(1,p3);
+        per.addPet(0,p6);
+        per.addPet(1,p7);
         RepositotyPet repo = new RepositotyPet();
-        repo.create(p);
         Service service = new Service();
-        //service.createTeam(2,per,petList);
-        //service.createTeam(4,per2,petList);
-        per2.addPet(0,p3);
-        per2.addPet(1,p2);
         //repo.addNewAttack(p,repo.newAttackByType(p));
-        System.out.println(p3.getSpeed());
-        System.out.println(p.getSpeed());
-        service.fight(per,per2);
-        //service.createTeam(4,per2,petList);
+        service.fight(per,repo.createTeam(2,per2,petList));
+        //service.fight(per,repo.createTeam(2,per,petList));
+        //service.fight(per,repo.createTeam(2,per,petList));
+
         //service.fightTrainer(per,per2);
 
     }

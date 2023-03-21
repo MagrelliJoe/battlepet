@@ -16,6 +16,8 @@ public class Service {
         Levels actuallyLevel = trainer1.getLevels();
         Pet pet = trainer1.getPetList().get(numOfMyPet);
         Pet pet_ = trainer2.getPetList().get(numOfPetEnemy);
+        repo.setAttackDefenseByLevels(pet);
+        repo.setAttackDefenseByLevels(pet_);
         while(done) {
             repo.viewLifeRemain(pet);
             repo.viewLifeRemain(pet_);
@@ -38,6 +40,7 @@ public class Service {
                     numOfMyPet++;
                     if(trainer1.getPetList().get(numOfMyPet) != null) {
                         pet = trainer1.getPetList().get(numOfMyPet);
+                        repo.setAttackDefenseByLevels(pet);
                         System.out.println("Mandi in campo un'altro Pet->" + pet.getName());
                         repo.waiting("Clicca per continuare!");
                     }else{
@@ -49,6 +52,7 @@ public class Service {
                     numOfPetEnemy++;
                     if(trainer2.getPetList().get(numOfPetEnemy) != null) {
                         pet_ = trainer2.getPetList().get(numOfPetEnemy);
+                        repo.setAttackDefenseByLevels(pet_);
                         System.out.println(trainer2.getName() + " "+ "Manda in campo un'altro Pet->" + pet_.getName());
                         repo.waiting("Clicca per continuare!");
                     }else{
@@ -64,5 +68,8 @@ public class Service {
         }
     }
 
+    public Person createTeam(int numOfPets, Person person, List<Pet> petList){
+        return repo.createTeam(numOfPets,person,petList);
+    }
 
 }

@@ -16,8 +16,8 @@ public class RepositotyPet implements Repository {
 
     @Override
     public void viewCommentAttack(Pet pet,String choose,int damage, int shelter) {
-        if(damage > 0 && shelter > 0){
-            if(damage > 0 && damage < 50){
+        if(damage > 1 && shelter > 0){
+            if(damage > 1 && damage < 50){
                 System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un buon danno!");
                 System.out.println(pet.getName() + " " + "inoltre" + " " + "aumenta");
                 System.out.println("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
@@ -32,7 +32,7 @@ public class RepositotyPet implements Repository {
             }
         }
         else if(damage > 0 && shelter == 0) {
-            if(damage > 0 && damage < 50){
+            if(damage < 50){
                 System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un buon danno!");
             }else if(damage > 50 && damage < 100){
                 System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un ottimo danno!");
@@ -51,8 +51,8 @@ public class RepositotyPet implements Repository {
             String finalChoose = choose;
             if (petMy.getAttackSet().stream().anyMatch(d -> d.getName().equalsIgnoreCase(finalChoose)) == true) {
                 if(numOfAvailabilityIsFinish(petMy.getAttackSet().stream().filter(e -> e.getName().equalsIgnoreCase(finalChoose)).findAny().get()) == false) {
-                    isDamageOrShelter(seeDamage(petMy, choose), seeShelter(petMy, choose), petMy, petEnemy);
-                    viewCommentAttack(petMy, choose, seeDamage(petMy, choose), seeShelter(petMy, choose));
+                    //isDamageOrShelter(seeDamage(petMy, choose), seeShelter(petMy, choose), petMy, petEnemy);
+                    viewCommentAttack(petMy, choose, isDamageOrShelter(seeDamage(petMy,choose),seeShelter(petMy,choose),petMy,petEnemy), seeShelter(petMy, choose));
                     for(Attack attack : petMy.getAttackSet()){
                         if(attack.getName().equalsIgnoreCase(finalChoose)){
                             attack.setNumOfAvailability(1);
@@ -219,6 +219,12 @@ public class RepositotyPet implements Repository {
     }
 
     @Override
+    public void setAttackDefenseByLevels(Pet pet) {
+        pet.setDefense();
+        pet.setPower();
+    }
+
+    @Override
     public String chooseAttack(Pet petMy) {
         showYourAttack(petMy);
         String choose = scanner.nextLine();
@@ -227,6 +233,8 @@ public class RepositotyPet implements Repository {
 
     @Override
     public Pet whoAttackFirst(Pet pet_att, Pet pet_def) {
+        pet_att.setSpeed();
+        pet_att.setSpeed();
         if(pet_att.getSpeed() > pet_def.getSpeed()){
             return pet_att;
         }else{
@@ -259,8 +267,8 @@ public class RepositotyPet implements Repository {
             }
             String finalChoose = choose;
             if (numOfAvailabilityIsFinish(pet.getAttackSet().stream().filter(e -> e.getName().equalsIgnoreCase(finalChoose)).findAny().get()) == false) {
-                isDamageOrShelter(seeDamage(pet, choose), seeShelter(pet, choose), pet, petEnemy);
-                viewCommentAttack(pet, choose, seeDamage(pet, choose), seeShelter(pet, choose));
+                //isDamageOrShelter(seeDamage(pet, choose), seeShelter(pet, choose), pet, petEnemy);
+                viewCommentAttack(pet, choose, isDamageOrShelter(seeDamage(pet,choose),seeShelter(pet,choose),pet,petEnemy),seeShelter(pet, choose));
                 done = false;
             } else {
                 n = random.nextInt(3);
@@ -274,17 +282,20 @@ public class RepositotyPet implements Repository {
         seeAttack(pet);
     }
 
-    private void isDamageOrShelter(int damage, int shelter, Pet pet, Pet petEnemy) {
+    private int isDamageOrShelter(int damage, int shelter, Pet pet, Pet petEnemy) {
         if (damage > 0) {
                 int finalDamage = (damage + pet.getPower()) - petEnemy.getDefense();
                 if(finalDamage >= 0){
                     petEnemy.setLife(finalDamage);
+                    return finalDamage;
                 }else{
                     finalDamage=1;
                     petEnemy.setLife(finalDamage);
+                    return finalDamage;
                 }
             }else {
-                pet.setDefense(shelter);
+                pet.maxDefense(shelter);
+                return shelter;
             }
         }
         private int seeDamage(Pet pet,String choose){

@@ -97,27 +97,33 @@ public class Pet {
     }
 
     public int getPower() {
-        switch(this.getLevels()){
-            case BASE : this.power = this.power + 10;
-            break;
-            case START: this.power = this.power + 5;
-            break;
-            case MEDIUM: this.power = this.power + 15;
-            break;
-            case GREAT: this.power = this.power + 20;
-            break;
-            case ADVANCE: this.power = this.power + 25;
-            break;
-            case PERFECT: this.power = this.power + 30;
-        }
         return power;
     }
 
-    public void setPower(int power) {
-        this.power = power;
+    public void setPower() {
+        switch(this.getLevels()){
+            case BASE : this.power = this.power + 10;
+                break;
+            case START: this.power = this.power + 5;
+                break;
+            case MEDIUM: this.power = this.power + 15;
+                break;
+            case GREAT: this.power = this.power + 20;
+                break;
+            case ADVANCE: this.power = this.power + 25;
+                break;
+            case PERFECT: this.power = this.power + 30;
+        }
     }
 
     public int getDefense() {
+       return defense;
+    }
+    public int maxDefense(int shelter){
+        this.defense += shelter;
+        return this.defense;
+    }
+    public void setDefense() {
         switch(this.getLevels()){
             case BASE : this.defense = this.getDefense() + 10;
                 break;
@@ -131,33 +137,27 @@ public class Pet {
                 break;
             case PERFECT: this.defense = this.getDefense() + 30;
         }
-        return defense;
-    }
-
-    public void setDefense(int defense) {
-        this.defense += defense;
     }
 
     public int getSpeed() {
-        switch(this.getLevels()){
-            case BASE : this.speed = this.getSpeed() + 10;
-                break;
-            case START: this.speed = this.getSpeed() + 5;
-                break;
-            case MEDIUM: this.speed = this.getSpeed() + 15;
-                break;
-            case GREAT: this.speed = this.getSpeed() + 20;
-                break;
-            case ADVANCE: this.speed = this.getSpeed() + 25;
-                break;
-            case PERFECT: this.speed = this.getSpeed() + 30;
-                break;
-        }
         return speed;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setSpeed() {
+        switch(this.getLevels()){
+            case BASE : this.speed = this.speed + 10;
+                break;
+            case START: this.speed = this.speed + 5;
+                break;
+            case MEDIUM: this.speed = this.speed + 15;
+                break;
+            case GREAT: this.speed = this.speed + 20;
+                break;
+            case ADVANCE: this.speed = this.speed + 25;
+                break;
+            case PERFECT: this.speed = this.speed + 30;
+                break;
+        }
     }
 
     public Levels getLevels() {

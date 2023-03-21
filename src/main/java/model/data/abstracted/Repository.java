@@ -18,10 +18,9 @@ public interface Repository {
     boolean numOfAvailabilityIsFinish(Attack attack);
     void addNewAttack(Pet pet,Attack attack);
     Attack newAttackByType(Pet pet);
-
     Person createTeam(int numOfPets, Person person, List<Pet> petList);
-
     Object create (Object object);
     String waiting(String s);
+    void setAttackDefenseByLevels(Pet pet);
 
 }
