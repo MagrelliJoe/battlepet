@@ -1,18 +1,14 @@
 package model.data.implementation;
-import jdk.swing.interop.SwingInterOpUtils;
-import model.data.abstracted.Repository;
+import model.data.abstracted.RepositoryBattle;
 import model.entities.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import model.entities.Attack;
 
-public class RepositotyPet implements Repository {
+public class RepositotyBattleInMemory implements RepositoryBattle {
     Scanner scanner = new Scanner(System.in);
     Random random = new Random();
-    protected static List<Person> trainers = new ArrayList<>();
-    protected static List<Pet> pets = new ArrayList<>();
 
     @Override
     public void viewCommentAttack(Pet pet,String choose,int damage, int shelter) {
@@ -203,16 +199,6 @@ public class RepositotyPet implements Repository {
     }
 
     @Override
-    public Object create(Object object) {
-        if(object instanceof Person){
-            trainers.add((Person)object);
-        }else{
-            pets.add((Pet) object);
-        }
-        return  object;
-    }
-
-    @Override
     public String waiting(String s) {
         System.out.print(s);
         return scanner.nextLine();
@@ -243,8 +229,9 @@ public class RepositotyPet implements Repository {
     }
 
     @Override
-    public void viewLifeRemain(Pet pet) {
-        System.out.println(pet.getName() + ":" + pet.getLife());
+    public String viewLifeRemain(Pet pet) {
+        String view = pet.getName() + " " +  pet.getLife();
+        return view;
     }
 
     @Override
