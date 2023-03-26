@@ -2,50 +2,41 @@ package model.services;
 
 import model.data.abstracted.Repository;
 import model.data.abstracted.RepositoryBattle;
-import model.entities.BattleWindows;
-import model.entities.Levels;
-import model.entities.Person;
-import model.entities.Pet;
+import model.entities.*;
+import org.w3c.dom.ls.LSOutput;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Random;
 
 public class ServiceWithJFrame {
     private RepositoryBattle repositoryBattle;
-    private Repository repository;
     private Random random;
-    private  BattleWindows battle;
-
-
-
-    public ServiceWithJFrame(RepositoryBattle repo , Repository repository) {
+    private  BattleWindows battle = new BattleWindows();
+    public ServiceWithJFrame(RepositoryBattle repo) {
 
         this.repositoryBattle = repo;
-        this.repository = repository;
         this.random = new Random();
     }
     public void fight(Person trainer1,Person trainer2){
-
+             battle.createBattleWindows();
              boolean done = true;
              int numOfMyPet = 0;
              int numOfPetEnemy = 0;
              Levels actuallyLevel = trainer1.getLevels();
              Pet pet = trainer1.getPetList().get(numOfMyPet);
              Pet pet_ = trainer2.getPetList().get(numOfPetEnemy);
-             battle = new BattleWindows();
              setAttacktoChoose(pet);
              repositoryBattle.setAttackDefenseByLevels(pet);
              repositoryBattle.setAttackDefenseByLevels(pet_);
              while(done) {
-                 battle.getShowLife().setText(repositoryBattle.viewLifeRemain(pet));
-                 battle.getShowLifeEnemy().setText(repositoryBattle.viewLifeRemain(pet_));
+                 battle.getShowLife().setText(repositoryBattle.viewLifeRemain(pet) + "\n" + repositoryBattle.viewLevelPet(pet));
+                 battle.getShowLifeEnemy().setText(repositoryBattle.viewLifeRemain(pet_) + "\n" + repositoryBattle.viewLevelPet(pet_));
                  Pet petMostSpeed = repositoryBattle.whoAttackFirst(pet,pet_);
                  if(petMostSpeed.equals(pet)) {
-                     repositoryBattle.turnMy(pet,pet_,repositoryBattle.chooseAttack(pet));
-                     repositoryBattle.waiting("Clicca per continuare!");
-                     repositoryBattle.turnEnemy(pet_, pet);
-                     repositoryBattle.waiting("Clicca per continuare!");
+                     chooseAttack(pet,pet_);
                  }else{
                      String choose = repositoryBattle.chooseAttack(pet);
                      repositoryBattle.turnEnemy(pet_, pet);
@@ -87,10 +78,10 @@ public class ServiceWithJFrame {
              }
          }
          private void setAttacktoChoose(Pet pet){
-
-
-             for(int i=0; i<battle.getOpzioni().length; i++) {
+             for(int i=0; i<battle.getOpzioni().length-1; i++) {
+               battle.getOpzioni()[i].setForeground(Color.black);
                battle.getOpzioni()[i].setText(pet.getAttackSet().get(i).getName());
              }
          }
+
     }

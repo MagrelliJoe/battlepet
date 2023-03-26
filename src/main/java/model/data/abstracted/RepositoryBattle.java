@@ -1,15 +1,17 @@
 package model.data.abstracted;
 import model.entities.Attack;
+import model.entities.Levels;
 import model.entities.Person;
 import model.entities.Pet;
 
 import java.util.List;
 
 public interface RepositoryBattle {
-    void viewCommentAttack(Pet pet,String choose,int damage, int shelter);
+    void viewCommentAttack(Pet pet,int damage, int shelter);
     String chooseAttack(Pet pet);
     Pet whoAttackFirst(Pet pet_att, Pet pet_def);
     String viewLifeRemain(Pet pet);
+    String viewLevelPet(Pet pet);
     void turnEnemy(Pet pet,Pet pet_);
     void showYourAttack(Pet pet);
     void turnMy(Pet petMy,Pet petEnemy,String choose);

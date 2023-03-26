@@ -1,9 +1,7 @@
+import model.data.implementation.RepositoryBattleJFrame;
 import model.data.implementation.RepositoryInMemory;
 import model.data.implementation.RepositotyBattleInMemory;
-import model.entities.Levels;
-import model.entities.Person;
-import model.entities.Pet;
-import model.entities.Type;
+import model.entities.*;
 import model.services.ServiceWithJFrame;
 
 public class StartJFrame {
@@ -28,8 +26,15 @@ public class StartJFrame {
         per2.addPet(0,p6);
         per2.addPet(1,p7);
 
-        ServiceWithJFrame service = new ServiceWithJFrame(new RepositotyBattleInMemory(),new RepositoryInMemory());
-        service.fight(per,per2);
+
+        ServiceWithJFrame service = new ServiceWithJFrame(new RepositoryBattleJFrame());
+        //service.fight(per,per2);
+        RepositoryBattleJFrame frame = new RepositoryBattleJFrame();
+        frame.addNewAttack(p,Attack.triploRotolamento);
+        //System.out.println(frame.getOpzioni().length);
+        BattleWindows battleWindows = new BattleWindows();
+
+        //battleWindows.createBattleWindows();
 
 
     }

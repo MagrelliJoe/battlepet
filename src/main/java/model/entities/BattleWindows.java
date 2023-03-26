@@ -6,14 +6,14 @@ public class BattleWindows {
     private static final int eight = 440;
     private  ImageIcon icon = new ImageIcon("C:\\Users\\magre_a244ufq\\Desktop\\MyJava\\\\src\\game\\immagini/sfondo_lotta_livello_1.png");
     private JLabel sfondo= new JLabel(icon);
-    private JTextArea tx = new JTextArea();
-    private JButton showLife,showLifeEnemy,myTrainer,enemyTrainer,myPet,enemyPet;
-    private JCheckBoxMenuItem[] opzioni= new JCheckBoxMenuItem[3];
+    protected JTextArea tx = new JTextArea();
+    private JButton myTrainer,enemyTrainer,myPet,enemyPet;
+    private JCheckBoxMenuItem[] opzioni= new JCheckBoxMenuItem[4];
     private ButtonGroup bg = new ButtonGroup();
-    private JFrame frame;
+    protected JFrame frame;
+    protected JTextArea showLife,showLifeEnemy;
 
-
-    public BattleWindows(){
+    public void createBattleWindows(){
         frame = new JFrame("its time to fight!");
         Dimension dimension = new Dimension(width,eight);
         frame.setVisible(true);
@@ -22,23 +22,30 @@ public class BattleWindows {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         sfondo.setSize(dimension);
 
-        frame.setBackground(Color.BLUE);
-
-        tx.setLocation(92,280);
+        tx.setLocation(92,300);
         tx.setSize(500,110);
-        tx.setBackground(Color.black);
-        tx.setForeground(Color.yellow);
+        tx.setBackground(Color.cyan);
         tx.setEditable(false);
+        tx.setFont(Font.getFont(Font.SANS_SERIF));
+        tx.setOpaque(false);
+        tx.setForeground(Color.BLACK);
+        tx.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 
-        showLife = new JButton();
-        showLife.setSize(120,30);
-        showLife.setBackground(Color.black);
-        showLife.setForeground(Color.yellow);
+        showLife = new JTextArea();
+        showLife.setSize(120,60);
+        showLife.setBackground(Color.cyan);
+        showLife.setEditable(false);
+        showLife.setOpaque(false);
+        showLife.setForeground(Color.BLACK);
+        showLife.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 
-        showLifeEnemy = new JButton();
-        showLifeEnemy.setSize(120,30);
-        showLifeEnemy.setBackground(Color.black);
-        showLifeEnemy.setForeground(Color.yellow);
+        showLifeEnemy = new JTextArea();
+        showLifeEnemy.setSize(80,60);
+        showLifeEnemy.setOpaque(false);
+        showLifeEnemy.setEditable(false);
+        showLifeEnemy.setBackground(Color.cyan);
+        showLifeEnemy.setForeground(Color.BLACK);
+        showLifeEnemy.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 
         myPet = new JButton();
         myPet.setSize(50,50);
@@ -53,22 +60,26 @@ public class BattleWindows {
         enemyTrainer.setSize(80,100);
 
         showLife.setLocation(60,10);
-        showLifeEnemy.setLocation(510,10);
-        myPet.setLocation(10,10);
+        showLifeEnemy.setLocation(550,10);
+        myPet.setLocation(5,10);
         enemyPet.setLocation(630,10);
         myTrainer.setLocation(5, 290);
         enemyTrainer.setLocation(600, 290);
 
-        for(int i=0; i< opzioni.length; i++) {
+        for(int i=0; i < opzioni.length; i++) {
             opzioni[i]= new JCheckBoxMenuItem();
             bg.add(opzioni[i]);
             frame.add(opzioni[i]);
-            opzioni[i].setLocation(120+(i*120), 180+i);
-            opzioni[i].setSize(120, 30);
+            opzioni[i].setLocation(50+(i*150), 240);
+            opzioni[i].setSize(150, 30);
+            opzioni[i].setOpaque(false);
             opzioni[i].setBackground(Color.black);
-            opzioni[i].setForeground(Color.yellow);
+            opzioni[i].setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+            if(i==3){
+                opzioni[i].setText("No Use So Far");
+                opzioni[i].setEnabled(false);
+            }
         }
-
         frame.add(tx);
         frame.add(showLife);
         frame.add(showLifeEnemy);
@@ -77,7 +88,6 @@ public class BattleWindows {
         frame.add(myTrainer);
         frame.add(enemyTrainer);
         frame.add(sfondo);
-
     }
 
     public JFrame getFrame() {
@@ -128,19 +138,19 @@ public class BattleWindows {
         this.tx = tx;
     }
 
-    public JButton getShowLife() {
+    public JTextArea getShowLife() {
         return showLife;
     }
 
-    public void setShowLife(JButton showLife) {
+    public void setShowLife(JTextArea showLife) {
         this.showLife = showLife;
     }
 
-    public JButton getShowLifeEnemy() {
+    public JTextArea getShowLifeEnemy() {
         return showLifeEnemy;
     }
 
-    public void setShowLifeEnemy(JButton showLifeEnemy) {
+    public void setShowLifeEnemy(JTextArea showLifeEnemy) {
         this.showLifeEnemy = showLifeEnemy;
     }
 

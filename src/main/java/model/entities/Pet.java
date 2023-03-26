@@ -164,6 +164,10 @@ public class Pet {
         return levels;
     }
 
+    public String viewLevels(){
+        return "Level:" + " " + this.getLevels().toString();
+    }
+
     public void setLevels(Levels levels) {
         this.levels = levels;
     }
@@ -172,4 +176,6 @@ public class Pet {
     public String toString() {
         return name;
     }
+
+
 }

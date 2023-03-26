@@ -11,32 +11,32 @@ public class RepositotyBattleInMemory implements RepositoryBattle {
     Random random = new Random();
 
     @Override
-    public void viewCommentAttack(Pet pet,String choose,int damage, int shelter) {
+    public void viewCommentAttack(Pet pet,int damage, int shelter) {
         if(damage > 1 && shelter > 0){
             if(damage > 1 && damage < 50){
-                System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un buon danno!");
+                System.out.println(pet.getName() + " " + "infligge un buon danno!");
                 System.out.println(pet.getName() + " " + "inoltre" + " " + "aumenta");
                 System.out.println("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
             }else if(damage > 50 && damage < 100){
-                System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un ottimo danno!");
+                System.out.println(pet.getName() + " " + "infligge un ottimo danno!");
                 System.out.println(pet.getName() + " " + "inoltre" + " " + "aumenta");
                 System.out.println("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
             }else{
-                System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un danno importante!");
+                System.out.println(pet.getName() + " " + "infligge un danno importante!");
                 System.out.println(pet.getName() + " " + "inoltre" + " " + "aumenta");
                 System.out.println("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
             }
         }
         else if(damage > 0 && shelter == 0) {
             if(damage < 50){
-                System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un buon danno!");
+                System.out.println(pet.getName() + " " + "usa"+ "infligge un buon danno!");
             }else if(damage > 50 && damage < 100){
-                System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un ottimo danno!");
+                System.out.println(pet.getName() + " "+ "infligge un ottimo danno!");
             }else{
-                System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "ed infligge un danno importante!");
+                System.out.println(pet.getName() + " "+ "infligge un danno importante!");
             }
         }else if(damage == 0 && shelter > 0){
-            System.out.println(pet.getName() + " " + "usa" + " " + choose + " " + "aumenta");
+            System.out.println(pet.getName() + " " + "aumenta");
             System.out.println("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
         }
     }
@@ -48,7 +48,7 @@ public class RepositotyBattleInMemory implements RepositoryBattle {
             if (petMy.getAttackSet().stream().anyMatch(d -> d.getName().equalsIgnoreCase(finalChoose)) == true) {
                 if(numOfAvailabilityIsFinish(petMy.getAttackSet().stream().filter(e -> e.getName().equalsIgnoreCase(finalChoose)).findAny().get()) == false) {
                     //isDamageOrShelter(seeDamage(petMy, choose), seeShelter(petMy, choose), petMy, petEnemy);
-                    viewCommentAttack(petMy, choose, isDamageOrShelter(seeDamage(petMy,choose),seeShelter(petMy,choose),petMy,petEnemy), seeShelter(petMy, choose));
+                    viewCommentAttack(petMy,isDamageOrShelter(seeDamage(petMy,choose),seeShelter(petMy,choose),petMy,petEnemy), seeShelter(petMy, choose));
                     for(Attack attack : petMy.getAttackSet()){
                         if(attack.getName().equalsIgnoreCase(finalChoose)){
                             attack.setNumOfAvailability(1);
@@ -235,6 +235,11 @@ public class RepositotyBattleInMemory implements RepositoryBattle {
     }
 
     @Override
+    public String viewLevelPet(Pet pet) {
+        return pet.viewLevels();
+    }
+
+    @Override
     public void turnEnemy(Pet pet, Pet petEnemy) {
         Random random = new Random();
         int n = random.nextInt(3);
@@ -255,7 +260,7 @@ public class RepositotyBattleInMemory implements RepositoryBattle {
             String finalChoose = choose;
             if (numOfAvailabilityIsFinish(pet.getAttackSet().stream().filter(e -> e.getName().equalsIgnoreCase(finalChoose)).findAny().get()) == false) {
                 //isDamageOrShelter(seeDamage(pet, choose), seeShelter(pet, choose), pet, petEnemy);
-                viewCommentAttack(pet, choose, isDamageOrShelter(seeDamage(pet,choose),seeShelter(pet,choose),pet,petEnemy),seeShelter(pet, choose));
+                viewCommentAttack(pet,isDamageOrShelter(seeDamage(pet,choose),seeShelter(pet,choose),pet,petEnemy),seeShelter(pet, choose));
                 done = false;
             } else {
                 n = random.nextInt(3);
