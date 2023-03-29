@@ -1,12 +1,12 @@
 package model.data.implementation;
-import model.data.abstracted.RepositoryBattle;
+import model.data.abstracted.Battle;
 import model.entities.*;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import model.entities.Attack;
 
-public class RepositotyBattleInMemory implements RepositoryBattle {
+public class BattleInMemory implements Battle {
     Scanner scanner = new Scanner(System.in);
     Random random = new Random();
 

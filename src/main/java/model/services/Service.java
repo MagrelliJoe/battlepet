@@ -1,18 +1,20 @@
 package model.services;
 import model.data.abstracted.Repository;
-import model.data.abstracted.RepositoryBattle;
+import model.data.abstracted.Battle;
 import model.entities.*;
 import java.util.List;
 import java.util.Random;
 
 public class Service {
-    RepositoryBattle repositoryBattle;
+    Battle battle;
     Repository repository;
+    GameOutput output;
     Random random;
-    public Service(RepositoryBattle repo , Repository repository){
-        this.repositoryBattle = repo;
+    public Service(Battle repo , Repository repository, GameOutput output){
+        this.battle = repo;
         this.repository = repository;
         this.random = new Random();
+        this.output = output;
     }
 
     public void fight(Person trainer1,Person trainer2){
@@ -22,33 +24,34 @@ public class Service {
         Levels actuallyLevel = trainer1.getLevels();
         Pet pet = trainer1.getPetList().get(numOfMyPet);
         Pet pet_ = trainer2.getPetList().get(numOfPetEnemy);
-        repositoryBattle.setAttackDefenseByLevels(pet);
-        repositoryBattle.setAttackDefenseByLevels(pet_);
+        battle.setAttackDefenseByLevels(pet);
+        battle.setAttackDefenseByLevels(pet_);
         while(done) {
-            System.out.println(repositoryBattle.viewLifeRemain(pet));
-            System.out.println(repositoryBattle.viewLifeRemain(pet_));
-            Pet petMostSpeed = repositoryBattle.whoAttackFirst(pet,pet_);
+            output.sendMessage(battle.viewLifeRemain(pet));
+            System.out.println(battle.viewLifeRemain(pet));
+            System.out.println(battle.viewLifeRemain(pet_));
+            Pet petMostSpeed = battle.whoAttackFirst(pet,pet_);
             if(petMostSpeed.equals(pet)) {
-                repositoryBattle.turnMy(pet,pet_,repositoryBattle.chooseAttack(pet));
-                repositoryBattle.waiting("Clicca per continuare!");
-                repositoryBattle.turnEnemy(pet_, pet);
-                repositoryBattle.waiting("Clicca per continuare!");
+                battle.turnMy(pet,pet_, battle.chooseAttack(pet));
+                battle.waiting("Clicca per continuare!");
+                battle.turnEnemy(pet_, pet);
+                battle.waiting("Clicca per continuare!");
             }else{
-                String choose = repositoryBattle.chooseAttack(pet);
-                repositoryBattle.turnEnemy(pet_, pet);
-                repositoryBattle.waiting("Clicca per continuare!");
-                repositoryBattle.turnMy(pet,pet_,choose);
-                repositoryBattle.waiting("Clicca per continuare!");
+                String choose = battle.chooseAttack(pet);
+                battle.turnEnemy(pet_, pet);
+                battle.waiting("Clicca per continuare!");
+                battle.turnMy(pet,pet_,choose);
+                battle.waiting("Clicca per continuare!");
             }
-            if(repositoryBattle.isDead(pet) || repositoryBattle.isDead(pet_)){
-                if(repositoryBattle.isDead(pet)){
+            if(battle.isDead(pet) || battle.isDead(pet_)){
+                if(battle.isDead(pet)){
                     System.out.println("Il tuo Pet è stato sconfitto!");
                     numOfMyPet++;
                     if(trainer1.getPetList().get(numOfMyPet) != null) {
                         pet = trainer1.getPetList().get(numOfMyPet);
-                        repositoryBattle.setAttackDefenseByLevels(pet);
+                        battle.setAttackDefenseByLevels(pet);
                         System.out.println("Mandi in campo un'altro Pet->" + pet.getName());
-                        repositoryBattle.waiting("Clicca per continuare!");
+                        battle.waiting("Clicca per continuare!");
                     }else{
                         System.out.println("Hai perso la sfida!");
                         done = false;
@@ -58,14 +61,14 @@ public class Service {
                     numOfPetEnemy++;
                     if(trainer2.getPetList().get(numOfPetEnemy) != null) {
                         pet_ = trainer2.getPetList().get(numOfPetEnemy);
-                        repositoryBattle.setAttackDefenseByLevels(pet_);
+                        battle.setAttackDefenseByLevels(pet_);
                         System.out.println(trainer2.getName() + " "+ "Manda in campo un'altro Pet->" + pet_.getName());
-                        repositoryBattle.waiting("Clicca per continuare!");
+                        battle.waiting("Clicca per continuare!");
                     }else{
                         System.out.println("Hai vinto lo scontro!");
                         trainer1.setVictory(1);
                         if(trainer1.getLevels() != actuallyLevel){
-                            repositoryBattle.addNewAttack(pet,repositoryBattle.newAttackByType(pet));
+                            battle.addNewAttack(pet, battle.newAttackByType(pet));
                         }
                         done = false;
                     }
@@ -75,7 +78,7 @@ public class Service {
     }
 
     public Person createTeam(int numOfPets, Person person, List<Pet> petList){
-        return repositoryBattle.createTeam(numOfPets,person,petList);
+        return battle.createTeam(numOfPets,person,petList);
     }
 
 }

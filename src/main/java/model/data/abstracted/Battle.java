@@ -1,12 +1,11 @@
 package model.data.abstracted;
 import model.entities.Attack;
-import model.entities.Levels;
 import model.entities.Person;
 import model.entities.Pet;
 
 import java.util.List;
 
-public interface RepositoryBattle {
+public interface Battle {
     void viewCommentAttack(Pet pet,int damage, int shelter);
     String chooseAttack(Pet pet);
     Pet whoAttackFirst(Pet pet_att, Pet pet_def);

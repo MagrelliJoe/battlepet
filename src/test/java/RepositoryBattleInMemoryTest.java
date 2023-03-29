@@ -1,5 +1,5 @@
 import model.data.implementation.RepositoryInMemory;
-import model.data.implementation.RepositotyBattleInMemory;
+import model.data.implementation.BattleInMemory;
 import model.entities.*;
 import model.services.Service;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class RepositoryBattleInMemoryTest {
         per.setVictory(69);
         per.addPet(0,p6);
         per.addPet(1,p7);
-        Service service = new Service(new RepositotyBattleInMemory(),new RepositoryInMemory());
+        Service service = new Service(new BattleInMemory(),new RepositoryInMemory());
         //repo.addNewAttack(p,repo.newAttackByType(p));
         //service.fight(per,service.createTeam(2,per2,petList));
         //service.fight(per,repo.createTeam(2,per,petList));

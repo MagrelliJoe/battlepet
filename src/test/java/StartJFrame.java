@@ -1,8 +1,9 @@
-import model.data.implementation.RepositoryBattleJFrame;
-import model.data.implementation.RepositoryInMemory;
-import model.data.implementation.RepositotyBattleInMemory;
+
+import model.data.implementation.BattleJFrame;
 import model.entities.*;
-import model.services.ServiceWithJFrame;
+import model.services.ServiceForBattle;
+
+import java.awt.*;
 
 public class StartJFrame {
 
@@ -23,16 +24,16 @@ public class StartJFrame {
         per.addPet(0,p6);
         per.addPet(1,p7);
 
-        per2.addPet(0,p6);
-        per2.addPet(1,p7);
+        per2.addPet(0,p);
+        per2.addPet(1,p5);
 
-
-        ServiceWithJFrame service = new ServiceWithJFrame(new RepositoryBattleJFrame());
+        BattleJFrame frame = new BattleJFrame(new BattleWindows());
+        ServiceForBattle service = new ServiceForBattle(frame,per,per2);
         //service.fight(per,per2);
-        RepositoryBattleJFrame frame = new RepositoryBattleJFrame();
-        frame.addNewAttack(p,Attack.triploRotolamento);
+        //RepositoryBattleJFrame frame = new RepositoryBattleJFrame();
+        //frame.addNewAttack(p,Attack.triploRotolamento);
         //System.out.println(frame.getOpzioni().length);
-        BattleWindows battleWindows = new BattleWindows();
+        //BattleWindows battleWindows = new BattleWindows();
 
         //battleWindows.createBattleWindows();
 

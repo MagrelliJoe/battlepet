@@ -1,42 +1,42 @@
 package model.data.implementation;
-
-import model.data.abstracted.RepositoryBattle;
+import model.data.abstracted.Battle;
 import model.entities.*;
-
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.List;
 import java.util.Random;
+public class BattleJFrame implements Battle {
+    private BattleWindows battle;
 
-public class RepositoryBattleJFrame extends BattleWindows implements RepositoryBattle  {
+    public BattleJFrame(BattleWindows battle) {
+        this.battle = battle;
+    }
+
     @Override
     public void viewCommentAttack(Pet pet,int damage, int shelter) {
-        tx.setText("");
         if (damage > 1 && shelter > 0) {
             if (damage > 1 && damage < 50) {
-                tx.setText(pet.getName() + " "+ "infligge un buon danno!" + "\n");
-                tx.append(pet.getName() + " " + "inoltre" + " " + "aumenta" + "\n");
-                tx.append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
+                battle.getTx().setText(pet.getName() + " "+ "infligge un buon danno!" + "\n");
+                battle.getTx().append(pet.getName() + " " + "inoltre" + " " + "aumenta" + "\n");
+                battle.getTx().append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
             }else if (damage > 50 && damage < 100) {
-                tx.setText(pet.getName() + " "+ "infligge un ottimo danno!" + "\n");
-                tx.append(pet.getName() + " " + "inoltre" + " " + "aumenta" + "\n");
-                tx.append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
+                battle.getTx().setText(pet.getName() + " "+ "infligge un ottimo danno!" + "\n");
+                battle.getTx().append(pet.getName() + " " + "inoltre" + " " + "aumenta" + "\n");
+                battle.getTx().append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
             }else{
-                tx.setText(pet.getName() + " " + "infligge un danno importante!" + "\n");
-                tx.append(pet.getName() + " " + "inoltre" + " " + "aumenta" + "\n");
-                tx.append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
+                battle.getTx().setText(pet.getName() + " " + "infligge un danno importante!" + "\n");
+                battle.getTx().append(pet.getName() + " " + "inoltre" + " " + "aumenta" + "\n");
+                battle.getTx().append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
             }
         }else if (damage > 0 && shelter == 0) {
                 if (damage < 50) {
-                   tx.setText(pet.getName() + " "+ "infligge un buon danno!");
+                    battle.getTx().setText(pet.getName() + " "+ "infligge un buon danno!");
                 } else if (damage > 50 && damage < 100) {
-                    tx.setText(pet.getName() + " "+ "infligge un ottimo danno!");
+                    battle.getTx().setText(pet.getName() + " "+ "infligge un ottimo danno!");
                 } else {
-                    tx.setText(pet.getName() + " "+ "infligge un danno importante!");
+                    battle.getTx().setText(pet.getName() + " "+ "infligge un danno importante!");
                 }
             }else if (damage == 0 && shelter > 0) {
-                tx.setText(pet.getName() + " "+ "aumenta" + "\n");
-                tx.append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
+               battle.getTx().setText(pet.getName() + " "+ "aumenta" + "\n");
+               battle.getTx().append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
             }
         }
 
@@ -95,35 +95,9 @@ public class RepositoryBattleJFrame extends BattleWindows implements RepositoryB
 
     @Override
     public void turnMy(Pet petMy, Pet petEnemy, String choose) {
-        getOpzioni()[0].addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    isDamageOrShelter(seeDamage(petMy,0),seeDamage(petMy,0),petMy,petEnemy);
-                    viewCommentAttack(petMy,seeDamage(petMy,0),seeDamage(petMy,0));
-                }
-            }
-        });
-        getOpzioni()[1].addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    isDamageOrShelter(seeDamage(petMy,1),seeDamage(petMy,1),petMy,petEnemy);
-                    viewCommentAttack(petMy,seeDamage(petMy,1),seeDamage(petMy,1));
-                }
-            }
-        });
-        getOpzioni()[2].addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    isDamageOrShelter(seeDamage(petMy,2),seeDamage(petMy,2),petMy,petEnemy);
-                    viewCommentAttack(petMy,seeDamage(petMy,2),seeDamage(petMy,2));
-                }
-            }
-        });
 
     }
+
     @Override
     public boolean isDead(Pet pet) {
         if(pet.getLife() < 0) {
@@ -140,6 +114,7 @@ public class RepositoryBattleJFrame extends BattleWindows implements RepositoryB
     }
     @Override
     public void addNewAttack(Pet pet, Attack attack) {
+        /*
         getOpzioni()[3].setText("NO");
         getOpzioni()[3].setEnabled(true);
         tx.setText("Il tuo Pet può imparare un nuovo attacco");
@@ -196,6 +171,8 @@ public class RepositoryBattleJFrame extends BattleWindows implements RepositoryB
                 getOpzioni()[3].setEnabled(false);
             }
         });
+
+         */
     }
 
     @Override
@@ -290,6 +267,15 @@ public class RepositoryBattleJFrame extends BattleWindows implements RepositoryB
         pet.setDefense();
         pet.setPower();
     }
+    public void setLifeForFrame(Pet pet,String trainer){
+        if(trainer.equalsIgnoreCase("Enemy")){
+            battle.getShowLifeEnemy().setText(pet.getName().toUpperCase() + "\n"
+            + pet.getLife());
+        }else{
+            battle.getShowLife().setText(pet.getName().toUpperCase() + "\n"
+                    + pet.getLife());
+        }
+    }
     private int seeDamage(Pet pet,String choose){
         int damage = pet.getAttackSet().stream().filter(d -> d.getName().equalsIgnoreCase(choose)).findAny().get().getDamage();
         return damage;
@@ -298,15 +284,23 @@ public class RepositoryBattleJFrame extends BattleWindows implements RepositoryB
         int shelter = pet.getAttackSet().stream().filter(d -> d.getName().equalsIgnoreCase(choose)).findAny().get().getShelter();
         return shelter;
     }
-    private int seeDamage(Pet pet,int index){
+    public int seeDamage(Pet pet,int index){
         int damage = pet.getAttackSet().get(index).getDamage();
         return damage;
     }
 
-    private int isDamageOrShelter(int damage, int shelter, Pet pet, Pet petEnemy) {
+    public BattleWindows getBattle() {
+        return battle;
+    }
+
+    public void setBattle(BattleWindows battle) {
+        this.battle = battle;
+    }
+
+    public int isDamageOrShelter(int damage, int shelter, Pet pet, Pet petEnemy) {
         if (damage > 0) {
             int finalDamage = (damage + pet.getPower()) - petEnemy.getDefense();
-            if(finalDamage >= 0){
+            if(finalDamage > 1){
                 petEnemy.setLife(finalDamage);
                 return finalDamage;
             }else{
@@ -318,5 +312,9 @@ public class RepositoryBattleJFrame extends BattleWindows implements RepositoryB
             pet.maxDefense(shelter);
             return shelter;
         }
+
+
+
     }
+
 }
