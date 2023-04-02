@@ -1,7 +1,6 @@
 package model.services;
 import model.data.implementation.BattleJFrame;
 import model.entities.*;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
@@ -9,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Random;
-
 import static model.entities.Constant.*;
 
 public class ServiceForBattle implements ActionListener {
@@ -17,19 +15,21 @@ public class ServiceForBattle implements ActionListener {
     private Random random;
     private Person trainer1,trainer2;
 
-    public ServiceForBattle(BattleJFrame battle, Person trainer1, Person trainer2) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+    public ServiceForBattle(BattleJFrame battle, Person trainer1, Person trainer2)
+            throws LineUnavailableException, IOException, UnsupportedAudioFileException{
+
         this.random = new Random();
         this.battle = battle;
         this.trainer1 = trainer1;
         this.trainer2 = trainer2;
-        battle.getBattle().createBattleWindows(sfondo,musica1);
+        battle.getBattle().createBattleWindows(sfondo,allenatoreMy,allenatore1Lotta,null,null,musicalotta1,messaggio);
         setAttacktoChoose(trainer1.getPetList().get(0));
     }
     @Override
     public void actionPerformed(ActionEvent e) {
         Levels actuallyLevel = trainer1.getLevels();
         Pet pet = trainer1.getPetList().get(battle.getBattle().getNextPet());
-        Pet pet_ = trainer2.getPetList().get(battle.getBattle().getNextPetenemy());
+        Pet pet_ = trainer2.getPetList().get(battle.getBattle().getNextPetEnemy());
         battle.setAttackDefenseByLevels(pet);
         battle.setAttackDefenseByLevels(pet_);
         if("option3".equals(e.getActionCommand())){
@@ -95,7 +95,7 @@ public class ServiceForBattle implements ActionListener {
                 JOptionPane.showMessageDialog(null, "HAI VINTO LO SCONTRO!");
                 battle.getBattle().getFrame().dispose();
             }else{
-                battle.getBattle().setNextPetenemy(+1);
+                battle.getBattle().setNextPetEnemy(+1);
                 pet_ = trainer2.getPetList().get(battle.getBattle().getNextPet());
                 JOptionPane.showMessageDialog(null, "IL PET NEMICO è STATO SCONFITTO!");
                 JOptionPane.showMessageDialog(null, "MANDA IN CAMPO UN'ALTRO PET!");
