@@ -102,7 +102,7 @@ public class Pet {
 
     public void setPower() {
         switch(this.getLevels()){
-            case BASE : this.power = this.power + 10;
+            case BASE : this.power += 10;
                 break;
             case START: this.power = this.power + 5;
                 break;

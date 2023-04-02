@@ -34,11 +34,29 @@ public class BattleJFrame implements Battle {
                 } else {
                     battle.getTx().setText(pet.getName() + " "+ "infligge un danno importante!");
                 }
-            }else if (damage == 0 && shelter > 0) {
-               battle.getTx().setText(pet.getName() + " "+ "aumenta" + "\n");
-               battle.getTx().append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
-            }
+            }else if(damage == 0 && shelter > 0) {
+            battle.getTx().setText(pet.getName() + " " + "aumenta" + "\n");
+            battle.getTx().append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
         }
+
+        }
+
+    public int isDamageOrShelter(int damage, int shelter, Pet pet, Pet petEnemy) {
+        if (damage > 0) {
+            int finalDamage = (damage + pet.getPower()) - petEnemy.getDefense();
+            if(finalDamage > 1){
+                petEnemy.setLife(finalDamage);
+                return finalDamage;
+            }else{
+                finalDamage=1;
+                petEnemy.setLife(finalDamage);
+                return finalDamage;
+            }
+        }else {
+            pet.maxDefense(shelter);
+            return 0;
+        }
+    }
 
     @Override
     public String chooseAttack(Pet pet) {
@@ -289,32 +307,17 @@ public class BattleJFrame implements Battle {
         return damage;
     }
 
+    public int seeShelter(Pet pet,int index){
+        int shelter = pet.getAttackSet().get(index).getShelter();
+        return shelter;
+    }
+
     public BattleWindows getBattle() {
         return battle;
     }
 
     public void setBattle(BattleWindows battle) {
         this.battle = battle;
-    }
-
-    public int isDamageOrShelter(int damage, int shelter, Pet pet, Pet petEnemy) {
-        if (damage > 0) {
-            int finalDamage = (damage + pet.getPower()) - petEnemy.getDefense();
-            if(finalDamage > 1){
-                petEnemy.setLife(finalDamage);
-                return finalDamage;
-            }else{
-                finalDamage=1;
-                petEnemy.setLife(finalDamage);
-                return finalDamage;
-            }
-        }else {
-            pet.maxDefense(shelter);
-            return shelter;
-        }
-
-
-
     }
 
 }

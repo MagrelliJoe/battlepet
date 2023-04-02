@@ -1,11 +1,15 @@
 package model.entities;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 public class BattleWindows {
     private static final int width = 700;
     private static final int eight = 440;
-    private ImageIcon icon = new ImageIcon("images/sfondo1.jpeg");
+    private ImageIcon icon;
+    private File audio = new File("audio/");
     private JLabel sfondo = new JLabel(icon);
     protected JTextArea tx = new JTextArea();
     private JButton myTrainer, enemyTrainer, myPet, enemyPet;
@@ -13,14 +17,19 @@ public class BattleWindows {
     private ButtonGroup bg = new ButtonGroup();
     protected JFrame frame;
     protected JTextArea showLife, showLifeEnemy;
+    private int nextPet = 0;
+    private int nextPetenemy = 0;
+    private String filePath;
 
-    public BattleWindows(Fil) {
-        this.icon = icon;
-    }
+    private String fileMusicPath;
 
-    public void createBattleWindows() {
+
+    public void createBattleWindows(String filePath,String fileMusicPath) {
+        this.filePath = filePath;
+        this.fileMusicPath = fileMusicPath;
         frame = new JFrame("its time to fight!");
         Dimension dimension = new Dimension(width, eight);
+        this.getSfondo().setIcon(new ImageIcon(filePath));
         frame.setVisible(true);
         frame.setSize(width, eight);
         frame.setLocationRelativeTo(null);
@@ -195,7 +204,31 @@ public class BattleWindows {
         return enemyPet;
     }
 
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
     public void setEnemyPet(JButton enemyPet) {
         enemyPet = enemyPet;
+    }
+
+    public int getNextPet() {
+        return nextPet;
+    }
+
+    public void setNextPet(int nextPet) {
+        this.nextPet = nextPet;
+    }
+
+    public int getNextPetenemy() {
+        return nextPetenemy;
+    }
+
+    public void setNextPetenemy(int nextPetenemy) {
+        this.nextPetenemy = nextPetenemy;
     }
 }

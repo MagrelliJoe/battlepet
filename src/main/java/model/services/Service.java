@@ -10,11 +10,10 @@ public class Service {
     Repository repository;
     GameOutput output;
     Random random;
-    public Service(Battle repo , Repository repository, GameOutput output){
+    public Service(Battle repo , Repository repository){
         this.battle = repo;
         this.repository = repository;
         this.random = new Random();
-        this.output = output;
     }
 
     public void fight(Person trainer1,Person trainer2){

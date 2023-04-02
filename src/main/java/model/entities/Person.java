@@ -29,7 +29,9 @@ public class Person {
     }
 
     public void addPet(Integer key ,Pet pet) {
+        System.out.println("1" +pet.getLevels());
         pet.setLevels(this.getLevels());
+        System.out.println("1" +pet.getLevels());
         this.petList.put(key,pet);
     }
 
