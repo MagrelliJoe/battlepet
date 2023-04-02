@@ -15,14 +15,12 @@ public class ServiceForBattle implements ActionListener {
     private Random random;
     private Person trainer1,trainer2;
 
-    public ServiceForBattle(BattleJFrame battle, Person trainer1, Person trainer2)
+    public ServiceForBattle(Person trainer1, Person trainer2,BattleWindows battle)
             throws LineUnavailableException, IOException, UnsupportedAudioFileException{
-
-        this.random = new Random();
         this.battle = battle;
+        this.random = new Random();
         this.trainer1 = trainer1;
         this.trainer2 = trainer2;
-        battle.getBattle().createBattleWindows(sfondo,allenatoreMy,allenatore1Lotta,null,null,musicalotta1,messaggio);
         setAttacktoChoose(trainer1.getPetList().get(0));
     }
     @Override

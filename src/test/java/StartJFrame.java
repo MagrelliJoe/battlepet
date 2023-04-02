@@ -29,8 +29,7 @@ public class StartJFrame {
         per2.addPet(0,p);
         //per2.addPet(1,p5);
 
-        BattleJFrame frame = new BattleJFrame(new BattleWindows());
-        ServiceForBattle service = new ServiceForBattle(frame,per,per2);
+        ServiceForBattle service = new ServiceForBattle(per,per2);
         //service.fight(per,per2);
         //RepositoryBattleJFrame frame = new RepositoryBattleJFrame();
         //frame.addNewAttack(p,Attack.triploRotolamento);

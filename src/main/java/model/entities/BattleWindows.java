@@ -21,7 +21,10 @@ public class BattleWindows {
     private File audioMusic,audioMusicMessage;
     private AudioInputStream audioInputStreamMusic,audioInputStreamMusicMessage;
     private Clip music,musicMessage = null;
-    public void createBattleWindows(String filePathImage,String filePathMyTrainer,String filePathEnemyTrainer,
+
+
+
+    public BattleWindows(String filePathImage,String filePathMyTrainer,String filePathEnemyTrainer,
             String filePathMyPet,String filePathEnemyPet, String fileMusicPath, String fileMusicPathMessage)
             throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 
