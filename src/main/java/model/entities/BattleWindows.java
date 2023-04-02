@@ -1,15 +1,14 @@
 package model.entities;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 
 public class BattleWindows {
     private static final int width = 700;
     private static final int eight = 440;
-    private ImageIcon icon;
-    private File audio = new File("audio/");
+    private ImageIcon icon,iconMyTrainer,iconEnemyTrainer,iconMyPet,iconEnemyPet;
     private JLabel sfondo = new JLabel(icon);
     protected JTextArea tx = new JTextArea();
     private JButton myTrainer, enemyTrainer, myPet, enemyPet;
@@ -17,19 +16,37 @@ public class BattleWindows {
     private ButtonGroup bg = new ButtonGroup();
     protected JFrame frame;
     protected JTextArea showLife, showLifeEnemy;
-    private int nextPet = 0;
-    private int nextPetenemy = 0;
-    private String filePath;
+    private int nextPet,nextPetEnemy = 0;
+    private String filePathImage,fileMusicPath,fileMusicPathMessage;
+    private File audioMusic,audioMusicMessage;
+    private AudioInputStream audioInputStreamMusic,audioInputStreamMusicMessage;
+    private Clip music,musicMessage = null;
+    public void createBattleWindows(String filePathImage,String filePathMyTrainer,String filePathEnemyTrainer,
+            String filePathMyPet,String filePathEnemyPet, String fileMusicPath, String fileMusicPathMessage)
+            throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 
-    private String fileMusicPath;
+        this.filePathImage = filePathImage;
+        this.iconMyTrainer = new ImageIcon(filePathMyTrainer);
+        this.iconEnemyTrainer = new ImageIcon(filePathEnemyTrainer);
+        this.iconMyPet = new ImageIcon(filePathMyPet);
+        this.iconEnemyPet = new ImageIcon(filePathEnemyPet);
 
-
-    public void createBattleWindows(String filePath,String fileMusicPath) {
-        this.filePath = filePath;
         this.fileMusicPath = fileMusicPath;
+        this.audioMusic = new File(this.fileMusicPath);
+        this.audioInputStreamMusic = AudioSystem.getAudioInputStream(this.audioMusic);
+        this.music = AudioSystem.getClip();
+        this.music.open(this.audioInputStreamMusic);
+        this.music.loop(1);
+
+        this.fileMusicPathMessage = fileMusicPathMessage;
+        this.audioMusicMessage = new File(this.fileMusicPathMessage);
+        this.audioInputStreamMusicMessage = AudioSystem.getAudioInputStream(this.audioMusicMessage);
+        this.musicMessage = AudioSystem.getClip();
+        this.musicMessage.open(this.audioInputStreamMusicMessage);
+
         frame = new JFrame("its time to fight!");
         Dimension dimension = new Dimension(width, eight);
-        this.getSfondo().setIcon(new ImageIcon(filePath));
+        this.getSfondo().setIcon(new ImageIcon(filePathImage));
         frame.setVisible(true);
         frame.setSize(width, eight);
         frame.setLocationRelativeTo(null);
@@ -63,16 +80,16 @@ public class BattleWindows {
         showLifeEnemy.setForeground(Color.BLACK);
         showLifeEnemy.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
-        myPet = new JButton();
+        myPet = new JButton(iconMyPet);
         myPet.setSize(50, 50);
 
-        enemyPet = new JButton();
+        enemyPet = new JButton(iconEnemyPet);
         enemyPet.setSize(50, 50);
 
-        myTrainer = new JButton();
+        myTrainer = new JButton(iconMyTrainer);
         myTrainer.setSize(80, 100);
 
-        enemyTrainer = new JButton();
+        enemyTrainer = new JButton(iconEnemyTrainer);
         enemyTrainer.setSize(80, 100);
 
         showLife.setLocation(60, 10);
@@ -90,7 +107,6 @@ public class BattleWindows {
             opzioni[i].setEnabled(false);
             opzioni[i].setFont(new Font("Serif", Font.BOLD, 17));
             opzioni[i].setOpaque(false);
-            //opzioni[i].setBackground(Color.black);
             opzioni[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
             if(i<2) {
                 opzioni[i].setLocation(30 + (i * 170), 220);
@@ -111,6 +127,8 @@ public class BattleWindows {
         frame.add(enemyTrainer);
         frame.add(sfondo);
     }
+
+
 
     public JFrame getFrame() {
         return frame;
@@ -205,11 +223,11 @@ public class BattleWindows {
     }
 
     public String getFilePath() {
-        return filePath;
+        return filePathImage;
     }
 
     public void setFilePath(String filePath) {
-        this.filePath = filePath;
+        this.filePathImage = filePath;
     }
 
     public void setEnemyPet(JButton enemyPet) {
@@ -224,11 +242,115 @@ public class BattleWindows {
         this.nextPet = nextPet;
     }
 
-    public int getNextPetenemy() {
-        return nextPetenemy;
+    public ImageIcon getIconMyTrainer() {
+        return iconMyTrainer;
     }
 
-    public void setNextPetenemy(int nextPetenemy) {
-        this.nextPetenemy = nextPetenemy;
+    public void setIconMyTrainer(ImageIcon iconMyTrainer) {
+        this.iconMyTrainer = iconMyTrainer;
+    }
+
+    public ImageIcon getIconEnemyTrainer() {
+        return iconEnemyTrainer;
+    }
+
+    public void setIconEnemyTrainer(ImageIcon iconEnemyTrainer) {
+        this.iconEnemyTrainer = iconEnemyTrainer;
+    }
+
+    public ImageIcon getIconMyPet() {
+        return iconMyPet;
+    }
+
+    public void setIconMyPet(ImageIcon iconMyPet) {
+        this.iconMyPet = iconMyPet;
+    }
+
+    public ImageIcon getIconEnemyPet() {
+        return iconEnemyPet;
+    }
+
+    public void setIconEnemyPet(ImageIcon iconEnemyPet) {
+        this.iconEnemyPet = iconEnemyPet;
+    }
+
+    public int getNextPetEnemy() {
+        return nextPetEnemy;
+    }
+
+    public void setNextPetEnemy(int nextPetEnemy) {
+        this.nextPetEnemy = nextPetEnemy;
+    }
+
+    public String getFilePathImage() {
+        return filePathImage;
+    }
+
+    public void setFilePathImage(String filePathImage) {
+        this.filePathImage = filePathImage;
+    }
+
+    public String getFileMusicPath() {
+        return fileMusicPath;
+    }
+
+    public void setFileMusicPath(String fileMusicPath) {
+        this.fileMusicPath = fileMusicPath;
+    }
+
+    public String getFileMusicPathMessage() {
+        return fileMusicPathMessage;
+    }
+
+    public void setFileMusicPathMessage(String fileMusicPathMessage) {
+        this.fileMusicPathMessage = fileMusicPathMessage;
+    }
+
+    public File getAudioMusic() {
+        return audioMusic;
+    }
+
+    public void setAudioMusic(File audioMusic) {
+        this.audioMusic = audioMusic;
+    }
+
+    public File getAudioMusicMessage() {
+        return audioMusicMessage;
+    }
+
+    public void setAudioMusicMessage(File audioMusicMessage) {
+        this.audioMusicMessage = audioMusicMessage;
+    }
+
+    public AudioInputStream getAudioInputStreamMusic() {
+        return audioInputStreamMusic;
+    }
+
+    public void setAudioInputStreamMusic(AudioInputStream audioInputStreamMusic) {
+        this.audioInputStreamMusic = audioInputStreamMusic;
+    }
+
+    public AudioInputStream getAudioInputStreamMusicMessage() {
+        return audioInputStreamMusicMessage;
+    }
+
+    public void setAudioInputStreamMusicMessage(AudioInputStream audioInputStreamMusicMessage) {
+        this.audioInputStreamMusicMessage = audioInputStreamMusicMessage;
+    }
+
+    public Clip getMusic() {
+        return music;
+    }
+
+    public void setMusic(Clip music) {
+        this.music = music;
+    }
+
+    public Clip getMusicMessage() {
+        return musicMessage;
+    }
+
+    public void setMusicMessage(Clip musicMessage) {
+        this.musicMessage = musicMessage;
     }
 }

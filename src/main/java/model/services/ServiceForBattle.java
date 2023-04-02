@@ -2,9 +2,12 @@ package model.services;
 import model.data.implementation.BattleJFrame;
 import model.entities.*;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Random;
 
 import static model.entities.Constant.*;
@@ -14,12 +17,12 @@ public class ServiceForBattle implements ActionListener {
     private Random random;
     private Person trainer1,trainer2;
 
-    public ServiceForBattle(BattleJFrame battle, Person trainer1, Person trainer2) {
+    public ServiceForBattle(BattleJFrame battle, Person trainer1, Person trainer2) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
         this.random = new Random();
         this.battle = battle;
         this.trainer1 = trainer1;
         this.trainer2 = trainer2;
-        battle.getBattle().createBattleWindows(sfondo);
+        battle.getBattle().createBattleWindows(sfondo,musica1);
         setAttacktoChoose(trainer1.getPetList().get(0));
     }
     @Override

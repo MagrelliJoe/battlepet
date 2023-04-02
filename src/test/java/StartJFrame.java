@@ -3,9 +3,13 @@ import model.data.implementation.BattleJFrame;
 import model.entities.*;
 import model.services.ServiceForBattle;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
 public class StartJFrame {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         Person per = new Person("io", Levels.START);
         Person per2 = new Person("ciccio",Levels.START);
