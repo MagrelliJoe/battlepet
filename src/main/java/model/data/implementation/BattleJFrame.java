@@ -5,11 +5,9 @@ import java.util.List;
 import java.util.Random;
 public class BattleJFrame implements Battle {
     private BattleWindows battle;
-
     public BattleJFrame(BattleWindows battle) {
         this.battle = battle;
     }
-
     @Override
     public void viewCommentAttack(Pet pet,int damage, int shelter) {
         if (damage > 1 && shelter > 0) {

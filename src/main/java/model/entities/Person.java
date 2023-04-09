@@ -7,13 +7,28 @@ public class Person {
     private Map<Integer,Pet> petList = new HashMap<>();
     private int victory;
     private Levels levels;
+    private String filePathImage;
 
-    public Person(String name,Levels levels) {
+    public Person(String filePathImage,String name,Levels levels) {
         this.name = name;
         this.levels = levels;
+        this.filePathImage = filePathImage;
         for(Pet pet : getPetList().values()){
             pet.setLevels(this.levels);
         }
+    }
+
+
+    public void setPetList(Map<Integer, Pet> petList) {
+        this.petList = petList;
+    }
+
+    public String getFilePathImage() {
+        return filePathImage;
+    }
+
+    public void setFilePathImage(String filePathImage) {
+        this.filePathImage = filePathImage;
     }
 
     public String getName() {

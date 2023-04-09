@@ -8,16 +8,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Random;
-import static model.entities.Constant.*;
-
 public class ServiceForBattle implements ActionListener {
     private BattleJFrame battle;
     private Random random;
     private Person trainer1,trainer2;
 
-    public ServiceForBattle(Person trainer1, Person trainer2,BattleWindows battle)
+    public ServiceForBattle(Person trainer1, Person trainer2, BattleWindows battleWindows)
             throws LineUnavailableException, IOException, UnsupportedAudioFileException{
-        this.battle = battle;
+        this.battle = new BattleJFrame(battleWindows);
         this.random = new Random();
         this.trainer1 = trainer1;
         this.trainer2 = trainer2;
@@ -28,6 +26,12 @@ public class ServiceForBattle implements ActionListener {
         Levels actuallyLevel = trainer1.getLevels();
         Pet pet = trainer1.getPetList().get(battle.getBattle().getNextPet());
         Pet pet_ = trainer2.getPetList().get(battle.getBattle().getNextPetEnemy());
+        battle.getBattle().getEnemyPet().setIcon(new ImageIcon(trainer2.getPetList()
+                .get(battle.getBattle().getNextPetEnemy()).getFilePathImage()));
+        battle.getBattle().getMyPet().setIcon(new ImageIcon(trainer1.getPetList()
+                .get(battle.getBattle().getNextPet()).getFilePathImage()));
+        battle.getBattle().getEnemyTrainer().setIcon(new ImageIcon(trainer2.getFilePathImage()));
+        battle.getBattle().getMyTrainer().setIcon(new ImageIcon(trainer1.getFilePathImage()));
         battle.setAttackDefenseByLevels(pet);
         battle.setAttackDefenseByLevels(pet_);
         if("option3".equals(e.getActionCommand())){

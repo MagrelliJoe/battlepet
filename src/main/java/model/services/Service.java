@@ -8,7 +8,6 @@ import java.util.Random;
 public class Service {
     Battle battle;
     Repository repository;
-    GameOutput output;
     Random random;
     public Service(Battle repo , Repository repository){
         this.battle = repo;
@@ -26,7 +25,6 @@ public class Service {
         battle.setAttackDefenseByLevels(pet);
         battle.setAttackDefenseByLevels(pet_);
         while(done) {
-            output.sendMessage(battle.viewLifeRemain(pet));
             System.out.println(battle.viewLifeRemain(pet));
             System.out.println(battle.viewLifeRemain(pet_));
             Pet petMostSpeed = battle.whoAttackFirst(pet,pet_);

@@ -2,7 +2,6 @@ package model.data.abstracted;
 import model.entities.Attack;
 import model.entities.Person;
 import model.entities.Pet;
-
 import java.util.List;
 
 public interface Battle {

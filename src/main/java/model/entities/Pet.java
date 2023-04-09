@@ -9,8 +9,9 @@ public class Pet {
     private int life,power,defense,speed;
     private Levels levels;
     private boolean isDead;
+    private String filePathImage;
 
-    public Pet(String name, Type type, int life, int power, int defense, int speed, Levels levels) {
+    public Pet(String filePathImage,String name, Type type, int life, int power, int defense, int speed, Levels levels) {
         this.name = name;
         this.type = type;
         this.life = life;
@@ -19,6 +20,7 @@ public class Pet {
         this.speed = speed;
         this.levels = levels;
         this.isDead=false;
+        this.filePathImage = filePathImage;
 
         switch(this.getType()){
             case BIRD:
@@ -66,6 +68,30 @@ public class Pet {
             return true;
         }
         return isDead;
+    }
+
+    public void setAttackSet(List<Attack> attackSet) {
+        this.attackSet = attackSet;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public String getFilePathImage() {
+        return filePathImage;
+    }
+
+    public void setFilePathImage(String filePathImage) {
+        this.filePathImage = filePathImage;
     }
 
     public void setDead(boolean dead) {
