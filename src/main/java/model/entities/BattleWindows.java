@@ -8,32 +8,32 @@ import java.io.IOException;
 public class BattleWindows {
     private static final int width = 700;
     private static final int eight = 421;
-    private ImageIcon icon, iconMyTrainer, iconEnemyTrainer, iconMyPet, iconEnemyPet,iconGifLotta;
+    private ImageIcon icon, iconMyTrainer, iconEnemyTrainer, iconMyPet, iconEnemyPet;
     private JLabel sfondo = new JLabel(icon);
     protected JTextArea tx = new JTextArea();
-    private JButton myTrainer, enemyTrainer, myPet, enemyPet,gifLotta;
+    private JButton myTrainer, enemyTrainer, myPet, enemyPet;
+    private JButton namePet,life,level,namePetEnemy,lifeEnemy,levelEnemy;
     private JCheckBoxMenuItem[] opzioni = new JCheckBoxMenuItem[4];
     private ButtonGroup bg = new ButtonGroup();
     protected JFrame frame;
-    protected JTextArea showLife, showLifeEnemy;
     private int nextPet, nextPetEnemy = 0;
     private String filePathImage, fileMusicPath, fileMusicPathMessage;
     private File audioMusic, audioMusicMessage;
     private AudioInputStream audioInputStreamMusic, audioInputStreamMusicMessage;
     private Clip music, musicMessage = null;
-
+    private GifFrame gifFrame;
 
     public BattleWindows(String filePathImage, String fileMusicPath, String fileMusicPathMessage)
             throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 
+        this.gifFrame = new GifFrame();
         this.filePathImage = filePathImage;
-
         this.fileMusicPath = fileMusicPath;
         this.audioMusic = new File(this.fileMusicPath);
         this.audioInputStreamMusic = AudioSystem.getAudioInputStream(this.audioMusic);
         this.music = AudioSystem.getClip();
         this.music.open(this.audioInputStreamMusic);
-        //b this.music.loop(1);
+        //this.music.loop(1);
 
         this.fileMusicPathMessage = fileMusicPathMessage;
         this.audioMusicMessage = new File(this.fileMusicPathMessage);
@@ -45,6 +45,7 @@ public class BattleWindows {
         Dimension dimension = new Dimension(width, eight);
         this.getSfondo().setIcon(new ImageIcon(filePathImage));
         frame.setVisible(true);
+        frame.setResizable(false);
         frame.setSize(width, eight);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,61 +57,74 @@ public class BattleWindows {
         tx.setEditable(false);
         tx.setFont(new Font("Serif", Font.BOLD, 15));
         tx.setOpaque(false);
+        tx.setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.DARK_GRAY));
         tx.setForeground(Color.BLACK);
         tx.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
-        showLife = new JTextArea();
-        showLife.setSize(120, 60);
-        showLife.setBackground(Color.cyan);
-        showLife.setEditable(false);
-        showLife.setFont(new Font("Serif", Font.ITALIC, 17));
-        showLife.setOpaque(false);
-        showLife.setForeground(Color.BLACK);
-        showLife.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        life = new JButton();
+        life.setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.DARK_GRAY));
+        life.setSize(100, 30);
 
-        showLifeEnemy = new JTextArea();
-        showLifeEnemy.setSize(80, 60);
-        showLifeEnemy.setOpaque(false);
-        showLifeEnemy.setEditable(false);
-        showLifeEnemy.setFont(new Font("Serif", Font.ITALIC, 17));
-        showLifeEnemy.setBackground(Color.cyan);
-        showLifeEnemy.setForeground(Color.BLACK);
-        showLifeEnemy.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        lifeEnemy= new JButton();
+        lifeEnemy.setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.DARK_GRAY));
+        lifeEnemy.setSize(100, 30);
+
+        namePet = new JButton();
+        namePet.setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.DARK_GRAY));
+        namePet.setSize(100, 30);
+
+        namePetEnemy = new JButton();
+        namePetEnemy.setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.DARK_GRAY));
+        namePetEnemy.setSize(100, 30);
+
+        level = new JButton();
+        level.setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.DARK_GRAY));
+        level.setSize(100, 30);
+
+        levelEnemy = new JButton();
+        levelEnemy.setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.DARK_GRAY));
+        levelEnemy.setSize(100, 30);
 
         myPet = new JButton(iconMyPet);
-        myPet.setSize(45, 45);
-
-        gifLotta = new JButton(iconGifLotta);
-        gifLotta.setSize(200,100);
+        myPet.setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.DARK_GRAY));
+        myPet.setSize(60, 60);
 
         enemyPet = new JButton(iconEnemyPet);
-        enemyPet.setSize(45, 45);
+        enemyPet.setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.DARK_GRAY));
+        enemyPet.setSize(60, 60);
 
         myTrainer = new JButton(iconMyTrainer);
-        myTrainer.setSize(60, 70);
+        myTrainer.setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.DARK_GRAY));
+        myTrainer.setSize(70, 90);
 
         enemyTrainer = new JButton(iconEnemyTrainer);
-        enemyTrainer.setSize(60, 70);
+        enemyTrainer.setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.DARK_GRAY));
+        enemyTrainer.setSize(70, 90);
 
-        showLife.setLocation(60, 10);
-        showLifeEnemy.setLocation(570, 10);
-        myPet.setLocation(1, 15);
-        enemyPet.setLocation(637, 15);
-        gifLotta.setLocation(250,100);
-        myTrainer.setLocation(5, 312);
-        enemyTrainer.setLocation(620, 312);
+        myPet.setLocation(50, 15);
+        enemyPet.setLocation(560, 15);
+        namePet.setLocation(50,80);
+        life.setLocation(70,112);
+        level.setLocation(90,144);
+        namePetEnemy.setLocation(520,80);
+        lifeEnemy.setLocation(500,112);
+        levelEnemy.setLocation(480,144);
+        myTrainer.setLocation(5, 290);
+        enemyTrainer.setLocation(611, 290);
 
         for (int i = 0; i < opzioni.length; i++) {
             opzioni[i] = new JCheckBoxMenuItem();
             bg.add(opzioni[i]);
             frame.add(opzioni[i]);
             opzioni[i].setSize(155, 30);
+            opzioni[i].setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+            opzioni[i].setContentAreaFilled(false);
+            opzioni[i].setFocusPainted(false);
+            opzioni[i].setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.DARK_GRAY));
             opzioni[i].setEnabled(false);
             opzioni[i].setFont(new Font("Serif", Font.ITALIC, 15));
             opzioni[i].setBackground(Color.gray);
             opzioni[i].setForeground(Color.BLACK);
-
-            //opzioni[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
             if (i < 2) {
                 opzioni[i].setLocation(30 + (i * 170), 220);
             } else {
@@ -122,14 +136,57 @@ public class BattleWindows {
             }
         }
         frame.add(tx);
-        frame.add(showLife);
-        frame.add(showLifeEnemy);
         frame.add(myPet);
         frame.add(enemyPet);
-        frame.add(gifLotta);
+        frame.add(namePet);
+        frame.add(level);
+        frame.add(levelEnemy);
+        frame.add(namePetEnemy);
+        frame.add(life);
+        frame.add(lifeEnemy);
         frame.add(myTrainer);
         frame.add(enemyTrainer);
         frame.add(sfondo);
+    }
+
+    public GifFrame getGifFrame() {
+        return gifFrame;
+    }
+
+    public void setGifFrame(GifFrame gifFrame) {
+        this.gifFrame = gifFrame;
+    }
+
+    public JButton getLife() {
+        return life;
+    }
+
+    public void setLife(JButton life) {
+        this.life = life;
+    }
+
+    public JButton getLevel() {
+        return level;
+    }
+
+    public void setLevel(JButton level) {
+        this.level = level;
+    }
+
+    public JButton getLifeEnemy() {
+        return lifeEnemy;
+    }
+
+    public void setLifeEnemy(JButton lifeEnemy) {
+        this.lifeEnemy = lifeEnemy;
+    }
+
+    public JButton getLevelEnemy() {
+        return levelEnemy;
+    }
+
+    public void setLevelEnemy(JButton levelEnemy) {
+        this.levelEnemy = levelEnemy;
     }
 
     public ImageIcon getIcon() {
@@ -244,22 +301,6 @@ public class BattleWindows {
         this.frame = frame;
     }
 
-    public JTextArea getShowLife() {
-        return showLife;
-    }
-
-    public void setShowLife(JTextArea showLife) {
-        this.showLife = showLife;
-    }
-
-    public JTextArea getShowLifeEnemy() {
-        return showLifeEnemy;
-    }
-
-    public void setShowLifeEnemy(JTextArea showLifeEnemy) {
-        this.showLifeEnemy = showLifeEnemy;
-    }
-
     public int getNextPet() {
         return nextPet;
     }
@@ -346,5 +387,21 @@ public class BattleWindows {
 
     public void setMusicMessage(Clip musicMessage) {
         this.musicMessage = musicMessage;
+    }
+
+    public JButton getNamePet() {
+        return namePet;
+    }
+
+    public void setNamePet(JButton namePet) {
+        this.namePet = namePet;
+    }
+
+    public JButton getNamePetEnemy() {
+        return namePetEnemy;
+    }
+
+    public void setNamePetEnemy(JButton namePetEnemy) {
+        this.namePetEnemy = namePetEnemy;
     }
 }

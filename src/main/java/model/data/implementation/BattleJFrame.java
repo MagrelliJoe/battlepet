@@ -1,7 +1,10 @@
 package model.data.implementation;
 import model.data.abstracted.Battle;
 import model.entities.*;
-import java.util.List;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.*;
+import java.io.IOException;
 import java.util.Random;
 public class BattleJFrame implements Battle {
     private BattleWindows battle;
@@ -9,7 +12,8 @@ public class BattleJFrame implements Battle {
         this.battle = battle;
     }
     @Override
-    public void viewCommentAttack(Pet pet,int damage, int shelter) {
+    public void viewCommentAttack(Pet pet,int damage,int shelter,String attackName) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        gif(pet,attackName);
         if (damage > 1 && shelter > 0) {
             if (damage > 1 && damage < 50) {
                 battle.getTx().setText(pet.getName() + " "+ "infligge un buon danno!" + "\n");
@@ -36,9 +40,87 @@ public class BattleJFrame implements Battle {
             battle.getTx().setText(pet.getName() + " " + "aumenta" + "\n");
             battle.getTx().append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
         }
+    }
+    private void gif(Pet pet,String name) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+            battle.getGifFrame().getFrame().setVisible(true);
+                switch (pet.getType()) {
+                    case BIRD:
+                        switch (name.toLowerCase()){
+                            case "beccata":
+                                setGifFrame("images/Gif/beccata.gif","images/AudioAttack/beccata.wav");
+                                break;
+                            case "volo":
+                                setGifFrame("images/Gif/volo.gif","images/AudioAttack/volo.wav");
+                                break;
+                            case "alaprotettrice":
+                                setGifFrame("images/Gif/alaprotettrice.gif","images/AudioAttack/alaprotettrice.wav");
+                                break;
+                            case "alata":
+                                setGifFrame("images/Gif/alata.gif","images/AudioAttack/alata.wav");
+                                break;
+                            case "raffica":
+                                setGifFrame("images/Gif/raffica.gif","images/AudioAttack/raffica.wav");
+                                break;
+                            case "alataprotettrice":
+                                setGifFrame("images/Gif/alataprotettrice.gif","images/AudioAttack/alataprotettrice.wav");
+                                break;
+                            case "perforbecco":
+                                setGifFrame("images/Gif/perforbecco.gif","images/AudioAttack/perforbecco.wav");
+                                break;
+                            case "doppiaalata":
+                                setGifFrame("images/Gif/doppiaalata.gif","images/AudioAttack/doppiaalata.wav");
+                                break;
+                        }
+                        break;
+                    case DOG:
+                        switch(name.toLowerCase()){
+                            case "morso":
+                                setGifFrame("images/Gif/morso.gif","images/AudioAttack/morso.wav");
+                                break;
+                            case "colpocoda":
+                                setGifFrame("images/Gif/colpocoda.gif","images/AudioAttack/colpocoda.wav");
+                                break;
+                            case "gelodenti":
+                                setGifFrame("images/Gif/gelodenti.gif","images/AudioAttack/gelodenti.wav");
+                                break;
+                            case "supermorso":
+                                setGifFrame("images/Gif/supermorso.gif","images/AudioAttack/supermorso.wav");
+                                break;
+                            case "ipermorso":
+                                setGifFrame("images/Gif/ipermorso.gif","images/AudioAttack/ipermorso.wav");
+                                break;
+                            case "elettrodenti":
+                                setGifFrame("images/Gif/elettrodenti.gif","images/AudioAttack/elettrodenti.wav");
+                                break;
+                            case "colpocodavigoroso":
+                                setGifFrame("images/Gif/colpocodavigoroso.gif","images/AudioAttack/colpocodavigoroso.wav");
+                                break;
+                            case "elettrogelodenti":
+                                setGifFrame("images/Gif/elettrogelodenti.gif","images/AudioAttack/elettrogelodenti.wav");
+                                break;
+                        }
+                        break;
+                    case CAT:
+                        switch (name.toLowerCase()){
 
-        }
+                        }
+                        break;
+                }
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        public void run() {
+                            battle.getGifFrame().getFrame().setVisible(false);
+                        }
+                    },
+                    4000
+            );
+    }
+    private void setGifFrame(String fileImagePath,String fileMusicPath) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
+        battle.getGifFrame().getSfondo().setIcon(new ImageIcon(fileImagePath));
+        battle.getGifFrame().createMusicforFrame(fileMusicPath);
+
+    }
     public int isDamageOrShelter(int damage, int shelter, Pet pet, Pet petEnemy) {
         if (damage > 0) {
             int finalDamage = (damage + pet.getPower()) - petEnemy.getDefense();
@@ -51,19 +133,12 @@ public class BattleJFrame implements Battle {
                 return finalDamage;
             }
         }else {
-            pet.maxDefense(shelter);
+            pet.setDefense(shelter);
             return 0;
         }
     }
-
-    @Override
-    public String chooseAttack(Pet pet) {
-        return null;
-    }
     @Override
     public Pet whoAttackFirst(Pet pet_att, Pet pet_def) {
-        pet_att.setSpeed();
-        pet_att.setSpeed();
         if(pet_att.getSpeed() > pet_def.getSpeed()){
             return pet_att;
         }else{
@@ -76,11 +151,7 @@ public class BattleJFrame implements Battle {
         return view;
     }
     @Override
-    public String viewLevelPet(Pet pet) {
-        return pet.viewLevels();
-    }
-    @Override
-    public void turnEnemy(Pet pet, Pet pet_) {
+    public void turnEnemy(Pet pet, Pet pet_) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         Random random = new Random();
         int n = random.nextInt(3);
         boolean done = true;
@@ -99,19 +170,12 @@ public class BattleJFrame implements Battle {
             }
             String finalChoose = choose;
             if (numOfAvailabilityIsFinish(pet.getAttackSet().stream().filter(e -> e.getName().equalsIgnoreCase(finalChoose)).findAny().get()) == false) {
-                viewCommentAttack(pet, isDamageOrShelter(seeDamage(pet, finalChoose), seeShelter(pet, finalChoose), pet, pet_), seeShelter(pet, finalChoose));
+                viewCommentAttack(pet, isDamageOrShelter(seeDamage(pet,finalChoose), seeShelter(pet, finalChoose), pet, pet_), seeShelter(pet,finalChoose) , finalChoose);
                 done = false;
             }else{
                 n = random.nextInt(3);
             }
         }
-    }
-    @Override
-    public void showYourAttack(Pet pet) {}
-
-    @Override
-    public void turnMy(Pet petMy, Pet petEnemy, String choose) {
-
     }
 
     @Override
@@ -130,65 +194,16 @@ public class BattleJFrame implements Battle {
     }
     @Override
     public void addNewAttack(Pet pet, Attack attack) {
-        /*
-        getOpzioni()[3].setText("NO");
-        getOpzioni()[3].setEnabled(true);
-        tx.setText("Il tuo Pet può imparare un nuovo attacco");
-        tx.append(attack.getName() + ":" + attack.getDescription() + "\n" +
+
+        battle.getOpzioni()[3].setText("NO");
+        battle.getOpzioni()[3].setEnabled(true);
+        JOptionPane.showMessageDialog(null, "Il tuo Pet può imparare un nuovo attacco!");
+        battle.getTx().setText(attack.getName() + ":" +
                 "possibile danno inflitto->" + attack.getDamage() + ",possibile " +
                 "aumento difensivo->" + attack.getShelter() + "\n");
-        tx.append("Clicca su un attacco tra quelli presenti per rimuoverlo e far" + "\n"
+        battle.getTx().append("Clicca su un attacco tra quelli presenti per rimuoverlo e far" + "\n"
                 + "spazio a quello nuovo.Clicca NO per mantenere quelli già presenti.");
-        getOpzioni()[0].addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    tx.setText("");
-                    pet.getAttackSet().remove(0);
-                    pet.setAttack(attack);
-                    tx.append("Il tuo Pet ha imparato:" + attack.getName());
-                    getOpzioni()[3].setText("No Use So Far");
-                    getOpzioni()[3].setEnabled(false);
-                }
-            }
-        });
-        getOpzioni()[1].addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    tx.setText("");
-                    pet.getAttackSet().remove(1);
-                    pet.setAttack(attack);
-                    tx.append("Il tuo Pet ha imparato:" + attack.getName());
-                    getOpzioni()[3].setText("No Use So Far");
-                    getOpzioni()[3].setEnabled(false);
-                }
-            }
-        });
-        getOpzioni()[2].addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    tx.setText("");
-                    pet.getAttackSet().remove(2);
-                    pet.setAttack(attack);
-                    tx.append("Il tuo Pet ha imparato:" + attack.getName());
-                    getOpzioni()[3].setText("No Use So Far");
-                    getOpzioni()[3].setEnabled(false);
-                }
-            }
-        });
-        getOpzioni()[3].addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                tx.setText("");
-                tx.append("Il tuo Pet ha mantenuto le sue mosse attuali!");
-                getOpzioni()[3].setText("No Use So Far");
-                getOpzioni()[3].setEnabled(false);
-            }
-        });
-
-         */
+        pet.getAttackSet().add(attack);
     }
 
     @Override
@@ -268,28 +283,16 @@ public class BattleJFrame implements Battle {
             }
             return attack;
         }
-    @Override
-    public Person createTeam(int numOfPets, Person person, List<Pet> petList) {
-        return null;
-    }
 
-    @Override
-    public String waiting(String s) {
-        return null;
-    }
-
-    @Override
-    public void setAttackDefenseByLevels(Pet pet) {
-        pet.setDefense();
-        pet.setPower();
-    }
     public void setLifeForFrame(Pet pet,String trainer){
         if(trainer.equalsIgnoreCase("Enemy")){
-            battle.getShowLifeEnemy().setText(pet.getName().toUpperCase() + "\n"
-            + pet.getLife());
+            battle.getNamePetEnemy().setText(pet.getName().toUpperCase());
+            battle.getLifeEnemy().setText("LIFE->" + pet.getLife());
+            battle.getLevelEnemy().setText(pet.getLevels().toString());
         }else{
-            battle.getShowLife().setText(pet.getName().toUpperCase() + "\n"
-                    + pet.getLife());
+            battle.getNamePet().setText(pet.getName().toUpperCase());
+            battle.getLife().setText("LIFE->" + pet.getLife());
+            battle.getLevel().setText(pet.getLevels().toString());
         }
     }
     private int seeDamage(Pet pet,String choose){

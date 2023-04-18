@@ -27,26 +27,136 @@ public class Pet {
                attackSet.add(Attack.beccata);
                attackSet.add(Attack.volo);
                attackSet.add(Attack.alaProtettrice);
+              switch (this.getLevels()){
+                  case START:
+                      attackSet.remove(0);
+                      attackSet.add(Attack.alata);
+                      break;
+                  case MEDIUM:
+                      attackSet.remove(1);
+                      attackSet.add(Attack.raffica);
+                      break;
+                  case ADVANCE:
+                      attackSet.remove(2);
+                      attackSet.add(Attack.alataProtettrice);
+                      break;
+                  case GREAT:
+                      attackSet.remove(0);
+                      attackSet.add(Attack.perforbecco);
+                      break;
+                  case PERFECT:
+                      attackSet.remove(1);
+                      attackSet.add(Attack.doppiaAlata);
+                      break;
+              }
                break;
             case CAT:
                attackSet.add(Attack.graffio);
                attackSet.add(Attack.sfuriate);
                attackSet.add(Attack.Arruffarsi);
+                switch (this.getLevels()){
+                    case START:
+                        attackSet.remove(0);
+                        attackSet.add(Attack.zampata);
+                        break;
+                    case MEDIUM:
+                        attackSet.remove(1);
+                        attackSet.add(Attack.lacerazione);
+                        break;
+                    case ADVANCE:
+                        attackSet.remove(2);
+                        attackSet.add(Attack.arruffarsiGraffiando);
+                        break;
+                    case GREAT:
+                        attackSet.remove(0);
+                        attackSet.add(Attack.pallaDiPelo);
+                        break;
+                    case PERFECT:
+                        attackSet.remove(1);
+                        attackSet.add(Attack.rogodenti);
+                        break;
+                }
                break;
             case DOG:
                attackSet.add(Attack.gelodenti);
                attackSet.add(Attack.morso);
                attackSet.add(Attack.colpoCoda);
+                switch (this.getLevels()){
+                    case START:
+                        attackSet.remove(0);
+                        attackSet.add(Attack.supermorso);
+                        break;
+                    case MEDIUM:
+                        attackSet.remove(1);
+                        attackSet.add(Attack.elettrodenti);
+                        break;
+                    case ADVANCE:
+                        attackSet.remove(2);
+                        attackSet.add(Attack.colpoCodaVigoroso);
+                        break;
+                    case GREAT:
+                        attackSet.remove(0);
+                        attackSet.add(Attack.ipermorso);
+                        break;
+                    case PERFECT:
+                        attackSet.remove(1);
+                        attackSet.add(Attack.elettroGeloDenti);
+                        break;
+                }
                break;
             case RABBIT:
                 attackSet.add(Attack.rosicchiamento);
                 attackSet.add(Attack.posizioneDiDifesa);
                 attackSet.add(Attack.fossa);
+                switch (this.getLevels()){
+                    case START:
+                        attackSet.remove(0);
+                        attackSet.add(Attack.doppioGraffio);
+                        break;
+                    case MEDIUM:
+                        attackSet.remove(1);
+                        attackSet.add(Attack.sgranocchio);
+                        break;
+                    case ADVANCE:
+                        attackSet.remove(2);
+                        attackSet.add(Attack.corsaSpietata);
+                        break;
+                    case GREAT:
+                        attackSet.remove(0);
+                        attackSet.add(Attack.triploGraffio);
+                        break;
+                    case PERFECT:
+                        attackSet.remove(1);
+                        attackSet.add(Attack.iperSgranocchio);
+                        break;
+                }
                 break;
             case TURTLE:
                 attackSet.add(Attack.sgusciata);
                 attackSet.add(Attack.reparo);
                 attackSet.add(Attack.colpoDiGuscio);
+                switch (this.getLevels()){
+                    case START:
+                        attackSet.remove(0);
+                        attackSet.add(Attack.rotolamento);
+                        break;
+                    case MEDIUM:
+                        attackSet.remove(1);
+                        attackSet.add(Attack.doppioRotolamento);
+                        break;
+                    case ADVANCE:
+                        attackSet.remove(2);
+                        attackSet.add(Attack.sgusciataReparo);
+                        break;
+                    case GREAT:
+                        attackSet.remove(0);
+                        attackSet.add(Attack.doppioColpoDiGuscio);
+                        break;
+                    case PERFECT:
+                        attackSet.remove(1);
+                        attackSet.add(Attack.triploRotolamento);
+                        break;
+                }
                 break;
         }
     }
@@ -75,15 +185,15 @@ public class Pet {
     }
 
     public void setPower(int power) {
-        this.power = power;
+        this.power += power;
     }
 
     public void setDefense(int defense) {
-        this.defense = defense;
+        this.defense += defense;
     }
 
     public void setSpeed(int speed) {
-        this.speed = speed;
+        this.speed += speed;
     }
 
     public String getFilePathImage() {
@@ -121,69 +231,19 @@ public class Pet {
     public void setLife(int life) {
         this.life -= life;
     }
+    public void setLifeForLevel(int life) {
+        this.life += life;
+    }
 
     public int getPower() {
         return power;
     }
-
-    public void setPower() {
-        switch(this.getLevels()){
-            case BASE : this.power += 10;
-                break;
-            case START: this.power = this.power + 5;
-                break;
-            case MEDIUM: this.power = this.power + 15;
-                break;
-            case GREAT: this.power = this.power + 20;
-                break;
-            case ADVANCE: this.power = this.power + 25;
-                break;
-            case PERFECT: this.power = this.power + 30;
-        }
-    }
-
     public int getDefense() {
        return defense;
-    }
-    public int maxDefense(int shelter){
-        this.defense += shelter;
-        return this.defense;
-    }
-    public void setDefense() {
-        switch(this.getLevels()){
-            case BASE : this.defense = this.getDefense() + 10;
-                break;
-            case START: this.defense = this.getDefense() + 5;
-                break;
-            case MEDIUM: this.defense = this.getDefense() + 15;
-                break;
-            case GREAT: this.defense = this.getDefense() + 20;
-                break;
-            case ADVANCE: this.defense = this.getDefense() + 25;
-                break;
-            case PERFECT: this.defense = this.getDefense() + 30;
-        }
     }
 
     public int getSpeed() {
         return speed;
-    }
-
-    public void setSpeed() {
-        switch(this.getLevels()){
-            case BASE : this.speed = this.speed + 10;
-                break;
-            case START: this.speed = this.speed + 5;
-                break;
-            case MEDIUM: this.speed = this.speed + 15;
-                break;
-            case GREAT: this.speed = this.speed + 20;
-                break;
-            case ADVANCE: this.speed = this.speed + 25;
-                break;
-            case PERFECT: this.speed = this.speed + 30;
-                break;
-        }
     }
 
     public Levels getLevels() {
