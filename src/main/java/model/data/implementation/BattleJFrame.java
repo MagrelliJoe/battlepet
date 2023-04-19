@@ -14,31 +14,43 @@ public class BattleJFrame implements Battle {
     @Override
     public void viewCommentAttack(Pet pet,int damage,int shelter,String attackName) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         gif(pet,attackName);
+        pet.getAttackSet().stream().filter(d-> d.getName().equalsIgnoreCase(attackName))
+                .findAny().get().setNumOfAvailability(1);
+        System.out.println(pet.getName() + damage);
+        System.out.println("fine turno");
         if (damage > 1 && shelter > 0) {
+            battle.getTx().setText(pet.getName() + " "+ "usa" + attackName + "!!!");
             if (damage > 1 && damage < 50) {
-                battle.getTx().setText(pet.getName() + " "+ "infligge un buon danno!" + "\n");
+                battle.getTx().append(pet.getName() + " "+ "infligge un buon danno!" + "\n");
                 battle.getTx().append(pet.getName() + " " + "inoltre" + " " + "aumenta" + "\n");
                 battle.getTx().append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
             }else if (damage > 50 && damage < 100) {
-                battle.getTx().setText(pet.getName() + " "+ "infligge un ottimo danno!" + "\n");
+                battle.getTx().append(pet.getName() + " "+ "infligge un ottimo danno!" + "\n");
                 battle.getTx().append(pet.getName() + " " + "inoltre" + " " + "aumenta" + "\n");
                 battle.getTx().append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
             }else{
-                battle.getTx().setText(pet.getName() + " " + "infligge un danno importante!" + "\n");
+                battle.getTx().append(pet.getName() + " " + "infligge un danno importante!" + "\n");
                 battle.getTx().append(pet.getName() + " " + "inoltre" + " " + "aumenta" + "\n");
                 battle.getTx().append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
             }
         }else if (damage > 0 && shelter == 0) {
-                if (damage < 50) {
-                    battle.getTx().setText(pet.getName() + " "+ "infligge un buon danno!");
-                } else if (damage > 50 && damage < 100) {
-                    battle.getTx().setText(pet.getName() + " "+ "infligge un ottimo danno!");
+            battle.getTx().setText(pet.getName() + " "+ "usa" + attackName + "!!!");
+                if(damage < 25){
+                    battle.getTx().append("\n" + pet.getName() + "Infligge poco danno" + "\n"
+                    + "Il pet nemico si protegge bene!");
+                } else if (damage < 25) {
+                    battle.getTx().append("\n" + pet.getName() + "Infligge un buon danno!");
+                } else if (damage > 25 && damage < 50) {
+                    battle.getTx().append("\n" + pet.getName() + "Infligge un discreto danno!");
                 } else {
-                    battle.getTx().setText(pet.getName() + " "+ "infligge un danno importante!");
+                    battle.getTx().append("\n" + pet.getName() + "Infligge un danno importante!" + "\n"
+                    + "Il pet nemico subisce in modo grave l'attacco!");
                 }
             }else if(damage == 0 && shelter > 0) {
-            battle.getTx().setText(pet.getName() + " " + "aumenta" + "\n");
-            battle.getTx().append("la sua difesa di " + " " + shelter + " " + "punti difensivi!");
+            battle.getTx().setText(pet.getName() + " "+ "usa" + attackName + "!!!");
+            battle.getTx().append(pet.getName() + " " + "aumenta" + "\n");
+            battle.getTx().append("la sua difesa di " + " " + shelter + " " + "punti difensivi!" + "\n"
+            + "e si prepara per l'attacco nemico!!!");
         }
     }
     private void gif(Pet pet,String name) throws UnsupportedAudioFileException, LineUnavailableException, IOException {

@@ -1,6 +1,8 @@
 package model.entities;
 
 public class Constant {
+    //ALTRO
+    public final static String ko = "images/Pet/ko.jpeg";
 
     //SFONDO FRAME LOTTA E LIVELLO
     public final static String sfondoInit = "images/Sfondi/init.png";

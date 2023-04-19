@@ -174,7 +174,7 @@ public class Pet {
     }
 
     public boolean isDead() {
-        if(getLife()<0){
+        if(getLife()<=0){
             return true;
         }
         return isDead;

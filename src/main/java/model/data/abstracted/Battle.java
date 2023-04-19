@@ -1,12 +1,9 @@
 package model.data.abstracted;
 import model.entities.Attack;
-import model.entities.Person;
 import model.entities.Pet;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
-import java.util.List;
 
 public interface Battle {
     void viewCommentAttack(Pet pet,int damage, int shelter,String attackName) throws UnsupportedAudioFileException, LineUnavailableException, IOException;

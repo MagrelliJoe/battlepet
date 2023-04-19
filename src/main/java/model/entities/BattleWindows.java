@@ -306,7 +306,7 @@ public class BattleWindows {
     }
 
     public void setNextPet(int nextPet) {
-        this.nextPet = nextPet;
+        this.nextPet += nextPet;
     }
 
     public int getNextPetEnemy() {
@@ -314,7 +314,7 @@ public class BattleWindows {
     }
 
     public void setNextPetEnemy(int nextPetEnemy) {
-        this.nextPetEnemy = nextPetEnemy;
+        this.nextPetEnemy += nextPetEnemy;
     }
 
     public String getFilePathImage() {
