@@ -5,7 +5,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class BattleWindows {
+public class BattleWindow {
     private static final int width = 700;
     private static final int eight = 421;
     private ImageIcon icon, iconMyTrainer, iconEnemyTrainer, iconMyPet, iconEnemyPet;
@@ -23,7 +23,7 @@ public class BattleWindows {
     private Clip music, musicMessage = null;
     private GifFrame gifFrame;
 
-    public BattleWindows(String filePathImage, String fileMusicPath, String fileMusicPathMessage)
+    public BattleWindow(String filePathImage, String fileMusicPath, String fileMusicPathMessage)
             throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 
         this.gifFrame = new GifFrame();
@@ -33,7 +33,7 @@ public class BattleWindows {
         this.audioInputStreamMusic = AudioSystem.getAudioInputStream(this.audioMusic);
         this.music = AudioSystem.getClip();
         this.music.open(this.audioInputStreamMusic);
-        //this.music.loop(1);
+        this.music.loop(1);
 
         this.fileMusicPathMessage = fileMusicPathMessage;
         this.audioMusicMessage = new File(this.fileMusicPathMessage);

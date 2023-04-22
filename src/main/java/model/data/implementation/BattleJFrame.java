@@ -7,8 +7,8 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.Random;
 public class BattleJFrame implements Battle {
-    private BattleWindows battle;
-    public BattleJFrame(BattleWindows battle) {
+    private BattleWindow battle;
+    public BattleJFrame(BattleWindow battle) {
         this.battle = battle;
     }
     @Override
@@ -104,7 +104,7 @@ public class BattleJFrame implements Battle {
                             case "elettrodenti":
                                 setGifFrame("images/Gif/elettrodenti.gif","images/AudioAttack/elettrodenti.wav");
                                 break;
-                            case "colpocodavigoroso":
+                            case "colpo coda vigoroso":
                                 setGifFrame("images/Gif/colpocodavigoroso.gif","images/AudioAttack/colpocodavigoroso.wav");
                                 break;
                             case "elettrogelodenti":
@@ -114,9 +114,89 @@ public class BattleJFrame implements Battle {
                         break;
                     case CAT:
                         switch (name.toLowerCase()){
-
+                            case "graffio":
+                                setGifFrame("images/Gif/graffio.gif","images/AudioAttack/graffio.wav");
+                                break;
+                            case "arruffarsi":
+                                setGifFrame("images/Gif/arruffarsi.gif","images/AudioAttack/arruffarsi.wav");
+                                break;
+                            case "sfuriate":
+                                setGifFrame("images/Gif/sfuriate.gif","images/AudioAttack/sfuriate.wav");
+                                break;
+                            case "zampata":
+                                setGifFrame("images/Gif/zampata.gif","images/AudioAttack/zampata.wav");
+                                break;
+                            case "lacerazione":
+                                setGifFrame("images/Gif/lacerazione.gif","images/AudioAttack/lacerazione.wav");
+                                break;
+                            case "arruffarsigraffiando":
+                                setGifFrame("images/Gif/arruffarsigraffiando.gif","images/AudioAttack/arruffarsigraffiando.wav");
+                                break;
+                            case "palla di pelo":
+                                setGifFrame("images/Gif/palladipelo.gif","images/AudioAttack/palladipelo.wav");
+                                break;
+                            case "rogodenti":
+                                setGifFrame("images/Gif/rogodenti.gif","images/AudioAttack/rogodenti.wav");
+                                break;
                         }
                         break;
+                    case RABBIT:
+                        switch (name.toLowerCase()){
+                            case "rosicchiamento":
+                                setGifFrame("images/Gif/rosicchiamento.gif","images/AudioAttack/rosicchiamento.wav");
+                                break;
+                            case "posizione di difesa":
+                                setGifFrame("images/Gif/posizionedidifesa.gif","images/AudioAttack/posizionedidifesa.wav");
+                                break;
+                            case "fossa":
+                                setGifFrame("images/Gif/fossa.gif","images/AudioAttack/fossa.wav");
+                                break;
+                            case "doppio graffio":
+                                setGifFrame("images/Gif/doppiograffio.gif","images/AudioAttack/doppiograffio.wav");
+                                break;
+                            case "sgranocchio":
+                                setGifFrame("images/Gif/sgranocchio.gif","images/AudioAttack/sgranocchio.wav");
+                                break;
+                            case "corsa spietata":
+                                setGifFrame("images/Gif/corsaspietata.gif","images/AudioAttack/corsaspietata.wav");
+                                break;
+                            case "triplo graffio":
+                                setGifFrame("images/Gif/triplograffio.gif","images/AudioAttack/triplograffio.wav");
+                                break;
+                            case "ipersgranocchio":
+                                setGifFrame("images/Gif/ipersgranocchio.gif","images/AudioAttack/ipersgranocchio.wav");
+                                break;
+                        }
+                        break;
+                    case TURTLE:
+                        switch (name.toLowerCase()){
+                            case "sgusciata":
+                                setGifFrame("images/Gif/sgusciata.gif","images/AudioAttack/sgusciata.wav");
+                                break;
+                            case "reparo":
+                                setGifFrame("images/Gif/reparo.gif","images/AudioAttack/reparo.wav");
+                                break;
+                            case "colpo di guscio":
+                                setGifFrame("images/Gif/colpodiguscio.gif","images/AudioAttack/colpodiguscio.wav");
+                                break;
+                            case "rotolamento":
+                                setGifFrame("images/Gif/rotolamento.gif","images/AudioAttack/rotolamento.wav");
+                                break;
+                            case "doppio rotolamento":
+                                setGifFrame("images/Gif/doppiorotolamento.gif","images/AudioAttack/doppiorotolamento.wav");
+                                break;
+                            case "sgusciatareparo":
+                                setGifFrame("images/Gif/sgusciatareparo.gif","images/AudioAttack/sgusciatareparo.wav");
+                                break;
+                            case "doppio colpo di guscio":
+                                setGifFrame("images/Gif/doppiocolpodiguscio.gif","images/AudioAttack/doppiocolpodiguscio.wav");
+                                break;
+                            case "triplo rotolamento":
+                                setGifFrame("images/Gif/triplorotolamento.gif","images/AudioAttack/triplorotolamento.wav");
+                                break;
+                        }
+                        break;
+
                 }
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
@@ -325,11 +405,11 @@ public class BattleJFrame implements Battle {
         return shelter;
     }
 
-    public BattleWindows getBattle() {
+    public BattleWindow getBattle() {
         return battle;
     }
 
-    public void setBattle(BattleWindows battle) {
+    public void setBattle(BattleWindow battle) {
         this.battle = battle;
     }
 

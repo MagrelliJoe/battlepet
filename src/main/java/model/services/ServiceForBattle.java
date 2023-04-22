@@ -14,8 +14,8 @@ public class ServiceForBattle implements ActionListener {
     private Person trainer1,trainer2;
     private int numberOfChoose;
 
-    public ServiceForBattle(Person trainer1, Person trainer2, BattleWindows battleWindows){
-        this.battle = new BattleJFrame(battleWindows);
+    public ServiceForBattle(Person trainer1, Person trainer2, BattleWindow battleWindow){
+        this.battle = new BattleJFrame(battleWindow);
         this.random = new Random();
         this.trainer1 = trainer1;
         this.trainer2 = trainer2;
@@ -290,11 +290,11 @@ public class ServiceForBattle implements ActionListener {
         }
     }
 
-    public BattleWindows getBattle() {
+    public BattleWindow getBattle() {
         return battle.getBattle();
     }
 
-    public void setBattle(BattleWindows battle) {
+    public void setBattle(BattleWindow battle) {
         this.battle.setBattle(battle);
     }
 

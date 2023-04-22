@@ -23,7 +23,6 @@ public class GifFrame {
         frame.setSize(width, eight);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        sfondo.setSize(dimension);
         frame.setResizable(false);
         frame.setVisible(false);
         frame.add(sfondo);
