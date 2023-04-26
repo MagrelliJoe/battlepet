@@ -1,4 +1,4 @@
-package model.entities;
+package model.data.entities;
 
 public class Constant {
     //ALTRO
@@ -15,6 +15,10 @@ public class Constant {
 
     //ALLENATORI
     public final static String allenatoreMy = "images/Trainer/personaggioG.jpg";
+    public final static String allenatoreMyLotta1 = "images/MyTrainer/pg_lotta1.jpg";
+    public final static String allenatoreMyLotta2= "images/MyTrainer/pg_lotta2.jpg";
+    public final static String allenatore0 = "images/Trainer/allenatore_0.jpg";
+    public final static String allenatore0Lotta = "images/Trainer/allenatore_0C.jpg";
     public final static String allenatore1 = "images/Trainer/allenatore_1.png";
     public final static String allenatore1Lotta = "images/Trainer/allenatore_1C.jpg";
     public final static String allenatore2 = "images/Trainer/allenatore_2.png";

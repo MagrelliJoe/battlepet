@@ -1,6 +1,6 @@
 package model.data.abstracted;
-import model.entities.Attack;
-import model.entities.Pet;
+import model.data.entities.Attack;
+import model.data.entities.Pet;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;

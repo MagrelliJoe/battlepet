@@ -1,4 +1,4 @@
-package model.entities;
+package model.data.entities;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -9,18 +9,16 @@ public class TeamFrame {
     private static final int width = 300;
     private static final int eight = 400;
     private JFrame frame;
-    private String filePathImage;
     private ImageIcon[] icons = new ImageIcon[7];
     private JButton[] buttons = new JButton[7];
     private JLabel[] labels = new JLabel[6];
     private JLabel sfondo;
     private Icon iconSfondo;
 
-    public TeamFrame(String filePathImage) {
-        this.filePathImage = filePathImage;
+    public TeamFrame() {
         Dimension dimension = new Dimension(width, eight);
         this.frame = new JFrame("MY PET'S TEAM");
-        iconSfondo = new ImageIcon(filePathImage);
+        iconSfondo = new ImageIcon("images/sfondoMyTeam.jpg");
         sfondo = new JLabel(iconSfondo);
         sfondo.setSize(dimension);
         frame.setSize(dimension);
@@ -32,7 +30,7 @@ public class TeamFrame {
         for (int i = 0; i < buttons.length-1; i++) {
 
                 buttons[i] = new JButton(icons[i]);
-                buttons[i].setSize(30, 30);
+                buttons[i].setSize(40, 40);
                 buttons[i].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.DARK_GRAY));
                 labels[i] = new JLabel();
                 labels[i].setSize(180, 30);
@@ -44,7 +42,7 @@ public class TeamFrame {
                 labels[i].setLocation(10 + 50, 50 * i);
 
             }
-
+        icons[6] = new ImageIcon("images/trainerMyTeam.jpg");
         buttons[6] = new JButton(icons[6]);
         buttons[6].setSize(70, 70);
         buttons[6].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.DARK_GRAY));
@@ -60,14 +58,6 @@ public class TeamFrame {
 
     public void setFrame(JFrame frame) {
         this.frame = frame;
-    }
-
-    public String getFilePathImage() {
-        return filePathImage;
-    }
-
-    public void setFilePathImage(String filePathImage) {
-        this.filePathImage = filePathImage;
     }
 
     public ImageIcon[] getIcons() {

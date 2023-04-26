@@ -1,4 +1,4 @@
-package model.entities;
+package model.data.entities;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +10,19 @@ public class Pet {
     private Levels levels;
     private boolean isDead;
     private String filePathImage;
+
+    public Pet(Pet pet){
+        this.name = pet.getName();
+        this.type = pet.getType();
+        this.attackSet = pet.getAttackSet();
+        this.levels = pet.getLevels();
+        this.filePathImage = pet.getFilePathImage();
+        this.life = pet.getLife();
+        this.defense = pet.getDefense();
+        this.speed = pet.getSpeed();
+        this.power = pet.getPower();
+        this.isDead = pet.isDead();
+    }
 
     public Pet(String filePathImage,String name, Type type, int life, int power, int defense, int speed, Levels levels) {
         this.name = name;

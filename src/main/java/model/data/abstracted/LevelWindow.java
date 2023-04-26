@@ -1,40 +1,38 @@
 package model.data.abstracted;
-
-import model.entities.Constant;
-import model.entities.Person;
-import model.entities.Pet;
-import model.entities.TeamFrame;
-import org.hibernate.dialect.MyISAMStorageEngine;
-
-import javax.imageio.ImageIO;
+import model.data.entities.*;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 
-import static javax.swing.text.StyleConstants.setBackground;
-
-public abstract class LevelWindow extends JFrame implements KeyListener {
-    private static final int width = 950;
-    private static final int eight = 650;
-    private Icon icon,myTrainerMove;
-    private JLabel sfondo = new JLabel(icon);
+public abstract class LevelWindow {
+    protected static final int width = 1000;
+    protected static final int eight = 333;
+    protected Icon icon,myTrainerMove;
+    protected JLabel sfondo = new JLabel(icon);
     private File audioMusic, audioMusicMessage;
-    private JButton myTrainer,myTeam;
+    protected JButton myTrainer;
     private AudioInputStream audioInputStreamMusic, audioInputStreamMusicMessage;
-    private Clip music, musicMessage = null;
+    protected Clip music, musicMessage = null;
     private String filePathImage, fileMusicPath, fileMusicPathMessage;
-    protected int position_x=300;
-    protected int position_y=200;
-    private TeamFrame teamFrame;
+    protected int position_x=0;
+    protected int position_y=0;
+    protected JFrame frame;
+    protected TeamFrame teamFrame;
+    protected ServiceForBattle battle;
+    protected JLabel[] neons;
 
-    public LevelWindow(String filePathImage, String fileMusicPath, String fileMusicPathMessage) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        teamFrame = new TeamFrame(Constant.sfondoBronze);
+    public LevelWindow(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int numOfNeon)
+            throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+
+        teamFrame = new TeamFrame();
         this.filePathImage = filePathImage;
+        this.neons = new JLabel[numOfNeon];
+
         this.fileMusicPath = fileMusicPath;
         this.fileMusicPathMessage = fileMusicPathMessage;
         this.audioMusic = new File(this.fileMusicPath);
@@ -49,17 +47,28 @@ public abstract class LevelWindow extends JFrame implements KeyListener {
         this.musicMessage = AudioSystem.getClip();
         this.musicMessage.open(this.audioInputStreamMusicMessage);
 
-        Dimension dimension = new Dimension(width, eight);
-        this.getSfondo().setIcon(new ImageIcon(filePathImage));
-        setVisible(true);
-        setResizable(false);
-        setSize(width, eight);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        sfondo.setSize(dimension);
-        addKeyListener(this);
+        for(int i=0;i<numOfNeon;i++){
+            neons[i] = new JLabel(new ImageIcon("images/cerchio.jpg"));
+            neons[i].setSize(80,80);
+        }
 
-        myTrainerMove = new ImageIcon("images/MyTrainer/pg_left_1.png");
+        this.fileMusicPathMessage = fileMusicPathMessage;
+        this.audioMusicMessage = new File(this.fileMusicPathMessage);
+        this.audioInputStreamMusicMessage = AudioSystem.getAudioInputStream(this.audioMusicMessage);
+        this.musicMessage = AudioSystem.getClip();
+        this.musicMessage.open(this.audioInputStreamMusicMessage);
+
+        Dimension dimension = new Dimension(width, eight);
+        this.frame = new JFrame();
+        this.getSfondo().setIcon(new ImageIcon(filePathImage));
+        frame.setVisible(true);
+        frame.setResizable(false);
+        frame.setSize(width, eight);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        sfondo.setSize(dimension);
+
+        myTrainerMove = new ImageIcon("images/MyTrainer/pg_right_1.jpg");
 
         myTrainer = new JButton(myTrainerMove);
         myTrainer.setBackground(new Color(0,0,0,0));
@@ -67,102 +76,69 @@ public abstract class LevelWindow extends JFrame implements KeyListener {
         myTrainer.setLocation(position_x,position_y);
         myTrainer.setSize(40,57);
 
-        myTeam = new JButton("TEAM");
-        myTeam.setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.DARK_GRAY));
-        myTeam.setBackground(Color.blue);
-        myTeam.setBorder(new EmptyBorder(0,0,0,0));
-        myTeam.setForeground(Color.BLACK);
-        myTeam.setLocation(800,570);
-        myTeam.setSize(100, 30);
-
-        add(myTrainer);
-        add(myTeam);
-        add(sfondo);
-
-    }
-    @Override
-    public void keyTyped(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-        }
+        frame.add(myTrainer);
+        frame.add(sfondo);
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            if(position_x%2 == 0){
-                myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_right_2.jpg"));
-                position_x-=5;
-                myTrainer.setLocation(position_x,position_y);
-            }
-            else{
-                myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_right_1.jpg"));
-                position_x-=5;
-                myTrainer.setLocation(position_x,position_y);
+    public abstract void SetFightPosition(int posX, int posY, Person trainer,String comment) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException;
 
-            }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            if(position_y%2 == 0){
-                myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_up_left.jpg"));
-                position_y-=5;
-                myTrainer.setLocation(position_x,position_y);
-            }
-            else{
-                myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_up_right.jpg"));
-                position_y-=5;
-                myTrainer.setLocation(position_x,position_y);
-
-            }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            if(position_y%2 == 0){
-                myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_down_left.jpg"));
-                position_y+=5;
-                myTrainer.setLocation(position_x,position_y);
-            }
-            else{
-                myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_down_right.jpg"));
-                position_y+=5;
-                myTrainer.setLocation(position_x,position_y);
-
-            }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if(position_x%2 == 0){
-                myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_left_2.jpg"));
-                position_x+=5;
-                myTrainer.setLocation(position_x,position_y);
-            }
-            else{
-                myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_left_1.png"));
-                position_x+=5;
-                myTrainer.setLocation(position_x,position_y);
-
-            }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-
-            teamFrame.getFrame().setVisible(true);
+    protected void addPetatTeam(Person trainer,Pet pet){
+        if(trainer.getPetList().size()>1) {
+            trainer.addPet(trainer.getPetList().size() + 1, pet);
+        }else if(trainer.getPetList().size()==1){
+            trainer.addPet(1, pet);
+        }else{
+            trainer.addPet(0, pet);
         }
     }
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-
-        }
-    }
-
     public void updateTeamShow(Person trainer){
         int i=0;
         for(Pet pet:trainer.getPetList().values()){
+            teamFrame.getLabels()[i].setText(pet.getName() + " " +
+                    "Level->" + pet.getLevels());
             switch(pet.getType()){
                 case DOG :
-                    teamFrame.getButtons()[i].setIcon(new ImageIcon(Constant.leo));
-                    teamFrame.getLabels()[i].setText(pet.getName() + " " + pet.getLevels());
+                    teamFrame.getButtons()[i].setIcon(new ImageIcon("images/Gif/canegif.gif"));
+                    break;
+                case CAT:
+                    teamFrame.getButtons()[i].setIcon(new ImageIcon("images/Gif/gattogif.gif"));
+                    break;
+                case RABBIT:
+                    teamFrame.getButtons()[i].setIcon(new ImageIcon("images/Gif/conigliogif.gif"));
+                    break;
+                case BIRD:
+                    teamFrame.getButtons()[i].setIcon(new ImageIcon("images/Gif/uccellogif.gif"));
+                    break;
+                case TURTLE:
+                    teamFrame.getButtons()[i].setIcon(new ImageIcon("images/Gif/tartarugagif.gif"));
                     break;
             }
             i++;
         }
+    }
+
+    public JLabel[] getNeons() {
+        return neons;
+    }
+
+    public void setNeons(JLabel[] neons) {
+        this.neons = neons;
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public void setFrame(JFrame frame) {
+        this.frame = frame;
+    }
+
+    public ServiceForBattle getBattle() {
+        return battle;
+    }
+
+    public void setBattle(ServiceForBattle battle) {
+        this.battle = battle;
     }
 
     public Icon getMyTrainerMove() {
@@ -180,14 +156,6 @@ public abstract class LevelWindow extends JFrame implements KeyListener {
 
     public void setMyTrainer(JButton myTrainer) {
         this.myTrainer = myTrainer;
-    }
-
-    public JButton getMyTeam() {
-        return myTeam;
-    }
-
-    public void setMyTeam(JButton myTeam) {
-        this.myTeam = myTeam;
     }
 
     public int getPosition_x() {

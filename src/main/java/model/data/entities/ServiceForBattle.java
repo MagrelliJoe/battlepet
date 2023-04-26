@@ -1,6 +1,5 @@
-package model.services;
+package model.data.entities;
 import model.data.implementation.BattleJFrame;
-import model.entities.*;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
@@ -12,6 +11,7 @@ public class ServiceForBattle implements ActionListener {
     private BattleJFrame battle;
     private Random random;
     private Person trainer1,trainer2;
+    private Pet pet,pet_;
     private int numberOfChoose;
 
     public ServiceForBattle(Person trainer1, Person trainer2, BattleWindow battleWindow){
@@ -20,23 +20,24 @@ public class ServiceForBattle implements ActionListener {
         this.trainer1 = trainer1;
         this.trainer2 = trainer2;
         setAttacktoChoose(trainer1.getPetList().get(0));
-        assignPointForLevel(trainer1.getPetList().get(0));
-        assignPointForLevel(trainer2.getPetList().get(0));
-    }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Pet pet = trainer1.getPetList().get(battle.getBattle().getNextPet());
-        Pet pet_ = trainer2.getPetList().get(battle.getBattle().getNextPetEnemy());
+        assignPointForLevel(trainer1);
+        assignPointForLevel(trainer2);
         battle.getBattle().getEnemyPet().setIcon(new ImageIcon(trainer2.getPetList()
                 .get(battle.getBattle().getNextPetEnemy()).getFilePathImage()));
         battle.getBattle().getMyPet().setIcon(new ImageIcon(trainer1.getPetList()
                 .get(battle.getBattle().getNextPet()).getFilePathImage()));
         battle.getBattle().getEnemyTrainer().setIcon(new ImageIcon(trainer2.getFilePathImage()));
         battle.getBattle().getMyTrainer().setIcon(new ImageIcon(trainer1.getFilePathImage()));
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
         if("option3".equals(e.getActionCommand())){
             if(battle.getBattle().getOpzioni()[3].getText().
                     equalsIgnoreCase("START FIGHT")){
+                pet = trainer1.getPetList().get(battle.getBattle().getNextPet());
+                setimagefight(Constant.allenatoreMyLotta1);
+                pet_ = trainer2.getPetList().get(battle.getBattle().getNextPetEnemy());
                 battle.setLifeForFrame(pet,"My");
                 battle.getBattle().getOpzioni()[0].setEnabled(true);
                 battle.getBattle().getOpzioni()[1].setEnabled(true);
@@ -46,15 +47,17 @@ public class ServiceForBattle implements ActionListener {
 
             }else if(battle.getBattle().getOpzioni()[3].getText().
                     equalsIgnoreCase("NO")){
-
                 JOptionPane.showMessageDialog(null, "IL TUO PET HA MANTENUTO I SUOI ATTACCHI!");
+                setimagefight(Constant.allenatoreMyLotta1);
                 pet.getAttackSet().remove(3);
                 battle.getBattle().getFrame().dispose();
+                battle.getBattle().getMusic().stop();
 
             }else if(battle.getBattle().getOpzioni()[3].getText().
                     equalsIgnoreCase("YOUR TURN")){
 
                 try {
+                    setimagefight(Constant.allenatoreMyLotta2);
                     battle.viewCommentAttack(pet, battle.isDamageOrShelter(battle.seeDamage(pet, numberOfChoose),
                             battle.seeShelter(pet, numberOfChoose), pet, pet_), battle.seeShelter(pet, numberOfChoose), pet.getAttackSet().get(numberOfChoose).getName().toString());
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
@@ -72,6 +75,7 @@ public class ServiceForBattle implements ActionListener {
 
             }else{
                 try {
+                    setimagefight(Constant.allenatoreMyLotta1);
                     battle.turnEnemy(pet_,pet);
                     battle.setLifeForFrame(pet,"My");
                     battle.getBattle().getOpzioni()[3].setEnabled(false);
@@ -94,15 +98,16 @@ public class ServiceForBattle implements ActionListener {
                 pet.getAttackSet().remove(0);
                 JOptionPane.showMessageDialog(null, "IL TUO PET HA IMPARATO IL NUOVO ATTACCO");
                 battle.getBattle().getFrame().dispose();
+                battle.getBattle().getMusic().stop();
 
             }else{
 
                 try {
                     if(!battle.numOfAvailabilityIsFinish(pet.getAttackSet().get(0))) {
-                        AttackForBattle(pet, pet_, 0);
+                        attackForBattle(pet, pet_, 0);
                     }else{
                         JOptionPane.showInternalConfirmDialog(null, "Non puoi più usare questa mossa!!!");
-                        AttackForBattle(pet, pet_, 1);
+                        attackForBattle(pet, pet_, 1);
                     }
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
                     throw new RuntimeException(ex);
@@ -120,15 +125,16 @@ public class ServiceForBattle implements ActionListener {
                 pet.getAttackSet().remove(1);
                 JOptionPane.showMessageDialog(null, "IL TUO PET HA IMPARATO IL NUOVO ATTACCO");
                 battle.getBattle().getFrame().dispose();
+                battle.getBattle().getMusic().stop();
 
             }else{
 
                 try {
                     if(!battle.numOfAvailabilityIsFinish(pet.getAttackSet().get(1))) {
-                        AttackForBattle(pet, pet_, 1);
+                        attackForBattle(pet, pet_, 1);
                     }else{
                         JOptionPane.showInternalConfirmDialog(null, "Non puoi più usare questa mossa!!!");
-                        AttackForBattle(pet, pet_, 2);
+                        attackForBattle(pet, pet_, 2);
                     }
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
                     throw new RuntimeException(ex);
@@ -146,16 +152,17 @@ public class ServiceForBattle implements ActionListener {
                 pet.getAttackSet().remove(2);
                 JOptionPane.showMessageDialog(null, "IL TUO PET HA IMPARATO IL NUOVO ATTACCO");
                 battle.getBattle().getFrame().dispose();
+                battle.getBattle().getMusic().stop();
 
             }else{
 
                 try {
                     if(!battle.numOfAvailabilityIsFinish(pet.getAttackSet().get(2))) {
-                    AttackForBattle(pet, pet_, 2);
+                    attackForBattle(pet, pet_, 2);
                 }else{
 
                     JOptionPane.showInternalConfirmDialog(null, "Non puoi più usare questa mossa!!!");
-                    AttackForBattle(pet, pet_, 0);
+                    attackForBattle(pet, pet_, 0);
                 }
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
                     throw new RuntimeException(ex);
@@ -166,44 +173,96 @@ public class ServiceForBattle implements ActionListener {
             }
         }
     }
-    private void assignPointForLevel(Pet pet){
-        switch(pet.getLevels()){
-            case BASE :  pet.setPower(10);
-                         pet.setDefense(10);
-                         pet.setLifeForLevel(10);
-                         pet.setSpeed(10);
-                         break;
-            case START:  pet.setPower(5);
-                         pet.setDefense(5);
-                         pet.setLifeForLevel(5);
-                         pet.setSpeed(5);
-                         break;
-            case MEDIUM: pet.setPower(20);
-                         pet.setDefense(20);
-                         pet.setLifeForLevel(20);
-                         pet.setSpeed(20);
-                         break;
-            case GREAT: pet.setPower(30);
-                        pet.setDefense(30);
-                        pet.setLifeForLevel(30);
-                        pet.setSpeed(30);
-                        break;
-            case ADVANCE: pet.setPower(40);
-                          pet.setDefense(40);
-                          pet.setLifeForLevel(40);
-                          pet.setSpeed(40);
-                          break;
-            case PERFECT: pet.setPower(50);
-                          pet.setDefense(50);
-                          pet.setLifeForLevel(50);
-                          pet.setSpeed(50);
-                          break;
+    private void assignPointForLevel(Person trainer){
+        for(Pet pet : trainer.getPetList().values()) {
+            switch (pet.getLevels()) {
+                case BASE:
+                    pet.setPower(5);
+                    pet.setDefense(5);
+                    pet.setLifeForLevel(10);
+                    pet.setSpeed(5);
+                    break;
+                case START:
+                    pet.setPower(10);
+                    pet.setDefense(10);
+                    pet.setLifeForLevel(30);
+                    pet.setSpeed(10);
+                    break;
+                case MEDIUM:
+                    pet.setPower(20);
+                    pet.setDefense(20);
+                    pet.setLifeForLevel(50);
+                    pet.setSpeed(20);
+                    break;
+                case GREAT:
+                    pet.setPower(40);
+                    pet.setDefense(40);
+                    pet.setLifeForLevel(70);
+                    pet.setSpeed(40);
+                    break;
+                case ADVANCE:
+                    pet.setPower(60);
+                    pet.setDefense(60);
+                    pet.setLifeForLevel(90);
+                    pet.setSpeed(60);
+                    break;
+                case PERFECT:
+                    pet.setPower(80);
+                    pet.setDefense(80);
+                    pet.setLifeForLevel(100);
+                    pet.setSpeed(80);
+                    break;
             }
+        }
     }
-    private void AttackForBattle(Pet pet,Pet pet_,int n) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+
+    private void removePointForLevel(Person trainer){
+        for(Pet pet : trainer.getPetList().values()) {
+            switch (pet.getLevels()) {
+                case BASE:
+                    pet.setPower(-5);
+                    pet.setDefense(-5);
+                    pet.setLifeForLevel(-10);
+                    pet.setSpeed(-5);
+                    break;
+                case START:
+                    pet.setPower(-10);
+                    pet.setDefense(-10);
+                    pet.setLifeForLevel(-30);
+                    pet.setSpeed(-10);
+                    break;
+                case MEDIUM:
+                    pet.setPower(-20);
+                    pet.setDefense(-20);
+                    pet.setLifeForLevel(-50);
+                    pet.setSpeed(-20);
+                    break;
+                case GREAT:
+                    pet.setPower(-40);
+                    pet.setDefense(-40);
+                    pet.setLifeForLevel(-70);
+                    pet.setSpeed(-40);
+                    break;
+                case ADVANCE:
+                    pet.setPower(-60);
+                    pet.setDefense(-60);
+                    pet.setLifeForLevel(-90);
+                    pet.setSpeed(-60);
+                    break;
+                case PERFECT:
+                    pet.setPower(-80);
+                    pet.setDefense(-80);
+                    pet.setLifeForLevel(-100);
+                    pet.setSpeed(-80);
+                    break;
+            }
+        }
+    }
+    private void attackForBattle(Pet pet, Pet pet_, int n) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         Pet petMostSpeed = battle.whoAttackFirst(pet,pet_);
         numberOfChoose = n;
         if(petMostSpeed.equals(pet)) {
+                setimagefight(Constant.allenatoreMyLotta2);
                 battle.viewCommentAttack(pet, battle.isDamageOrShelter(battle.seeDamage(pet, n),
                         battle.seeShelter(pet, n), pet, pet_), battle.seeShelter(pet, n), pet.getAttackSet().get(n).getName().toString());
                 battle.setLifeForFrame(pet_, "Enemy");
@@ -213,8 +272,8 @@ public class ServiceForBattle implements ActionListener {
                 battle.getBattle().getOpzioni()[3].setEnabled(true);
                 battle.getBattle().getOpzioni()[3].setText("TURN ENEMY");
         }else{
-
             battle.turnEnemy(pet_,pet);
+            setimagefight(Constant.allenatoreMyLotta1);
             battle.setLifeForFrame(pet,"My");
             battle.getBattle().getOpzioni()[0].setEnabled(false);
             battle.getBattle().getOpzioni()[1].setEnabled(false);
@@ -225,21 +284,33 @@ public class ServiceForBattle implements ActionListener {
         }
 
     }
+
+    private void setimagefight(String filePath){
+        trainer1.setFilePathImage(filePath);
+        battle.getBattle().getMyTrainer().setIcon(new ImageIcon(trainer1.getFilePathImage()));
+    }
+
     private void nextPet(Pet pet,Pet pet_){
         if(pet.isDead()){
             battle.getBattle().getLife().setText("K.O.");
             battle.getBattle().getMyPet().setIcon(new ImageIcon(Constant.ko));
             battle.getBattle().setNextPet(1);
+            setimagefight(Constant.allenatoreMyLotta1);
+
             if(trainer1.getPetList().get(battle.getBattle().getNextPet()) == null){
                 JOptionPane.showMessageDialog(null, "HAI PERSO LO SCONTRO!");
+                removePointForLevel(trainer1);
                 battle.getBattle().getFrame().dispose();
                 battle.getBattle().getMusic().stop();
+
             }else{
                 pet = trainer1.getPetList().get(battle.getBattle().getNextPet());
-                assignPointForLevel(pet);
                 setAttacktoChoose(pet);
                 JOptionPane.showMessageDialog(null, "IL TUO PET è STATO SCONFITTO!");
                 JOptionPane.showMessageDialog(null, "MANDI IN CAMPO UN'ALTRO PET!");
+                battle.getBattle().getMyPet().setIcon(new ImageIcon(trainer1.getPetList()
+                        .get(battle.getBattle().getNextPet()).getFilePathImage()));
+                battle.getBattle().getMyTrainer().setIcon(new ImageIcon(trainer1.getFilePathImage()));
                 battle.setLifeForFrame(pet,"My");
                 battle.getBattle().getOpzioni()[3].setText("START FIGHT");
                 battle.getBattle().getOpzioni()[0].setEnabled(false);
@@ -259,15 +330,19 @@ public class ServiceForBattle implements ActionListener {
                     battle.getBattle().getOpzioni()[0].setEnabled(true);
                     battle.getBattle().getOpzioni()[1].setEnabled(true);
                     battle.getBattle().getOpzioni()[2].setEnabled(true);
+                    pet.setLevels(trainer1.getLevels());
                     battle.addNewAttack(pet,battle.newAttackByType(pet));
+                }else{
+                    battle.getBattle().getFrame().dispose();
+                    battle.getBattle().getMusic().stop();
                 }
-                battle.getBattle().getFrame().dispose();
-                battle.getBattle().getMusic().stop();
             }else{
                 pet_ = trainer2.getPetList().get(battle.getBattle().getNextPetEnemy());
-                assignPointForLevel(pet_);
                 JOptionPane.showMessageDialog(null, "IL PET NEMICO è STATO SCONFITTO!");
                 JOptionPane.showMessageDialog(null, "MANDA IN CAMPO UN ALTRO PET!");
+                battle.getBattle().getEnemyPet().setIcon(new ImageIcon(trainer2.getPetList()
+                        .get(battle.getBattle().getNextPetEnemy()).getFilePathImage()));
+                battle.getBattle().getEnemyTrainer().setIcon(new ImageIcon(trainer2.getFilePathImage()));
                 battle.setLifeForFrame(pet_,"Enemy");
                 battle.getBattle().getOpzioni()[3].setText("START FIGHT");
                 battle.getBattle().getOpzioni()[0].setEnabled(false);
@@ -294,40 +369,5 @@ public class ServiceForBattle implements ActionListener {
         return battle.getBattle();
     }
 
-    public void setBattle(BattleWindow battle) {
-        this.battle.setBattle(battle);
-    }
-
-    public BattleJFrame getRepositoryBattle() {
-        return battle;
-    }
-
-    public void setRepositoryBattle(BattleJFrame repositoryBattle) {
-        this.battle = repositoryBattle;
-    }
-
-    public Random getRandom() {
-        return random;
-    }
-
-    public void setRandom(Random random) {
-        this.random = random;
-    }
-
-    public Person getTrainer1() {
-        return trainer1;
-    }
-
-    public void setTrainer1(Person trainer1) {
-        this.trainer1 = trainer1;
-    }
-
-    public Person getTrainer2() {
-        return trainer2;
-    }
-
-    public void setTrainer2(Person trainer2) {
-        this.trainer2 = trainer2;
-    }
 
 }

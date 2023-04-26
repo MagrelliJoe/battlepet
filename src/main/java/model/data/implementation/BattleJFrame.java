@@ -1,6 +1,9 @@
 package model.data.implementation;
 import model.data.abstracted.Battle;
-import model.entities.*;
+import model.data.entities.Attack;
+import model.data.entities.BattleWindow;
+import model.data.entities.Levels;
+import model.data.entities.Pet;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
@@ -12,7 +15,7 @@ public class BattleJFrame implements Battle {
         this.battle = battle;
     }
     @Override
-    public void viewCommentAttack(Pet pet,int damage,int shelter,String attackName) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    public void viewCommentAttack(Pet pet, int damage, int shelter, String attackName) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         gif(pet,attackName);
         pet.getAttackSet().stream().filter(d-> d.getName().equalsIgnoreCase(attackName))
                 .findAny().get().setNumOfAvailability(1);
@@ -300,80 +303,54 @@ public class BattleJFrame implements Battle {
 
     @Override
     public Attack newAttackByType(Pet pet) {
-        Attack attack = null;
         Levels levels = pet.getLevels();
         switch(pet.getType()){
             case CAT:
                 switch (levels){
-                    case START:attack = Attack.zampata;
-                    break;
-                    case MEDIUM:attack = Attack.lacerazione;
-                    break;
-                    case ADVANCE:attack = Attack.arruffarsiGraffiando;
-                    break;
-                    case GREAT:attack = Attack.pallaDiPelo;
-                    break;
-                    case PERFECT:attack = Attack.rogodenti;
-                    break;
+                    case START:return Attack.zampata;
+                    case MEDIUM:return Attack.lacerazione;
+                    case ADVANCE:return Attack.arruffarsiGraffiando;
+                    case GREAT:return Attack.pallaDiPelo;
+                    case PERFECT:return Attack.rogodenti;
                 }
                 break;
                 case BIRD: switch (levels){
-                    case START:attack = Attack.alata;
-                    break;
-                    case MEDIUM:attack = Attack.raffica;
-                    break;
-                    case ADVANCE:attack = Attack.alataProtettrice;
-                    break;
-                    case GREAT:attack = Attack.perforbecco;
-                    break;
-                    case PERFECT:attack = Attack.doppiaAlata;
-                    break;
+                    case START:return Attack.alata;
+                    case MEDIUM:return Attack.raffica;
+                    case ADVANCE:return Attack.alataProtettrice;
+                    case GREAT:return Attack.perforbecco;
+                    case PERFECT:return Attack.doppiaAlata;
                 }
                 break;
                 case DOG:
                     switch (levels){
-                        case START:attack = Attack.supermorso;
-                        break;
-                        case MEDIUM:attack = Attack.elettrodenti;
-                        break;
-                        case ADVANCE:attack = Attack.colpoCodaVigoroso;
-                        break;
-                        case GREAT:attack = Attack.ipermorso;
-                        break;
-                        case PERFECT:attack = Attack.elettroGeloDenti;
-                        break;
+                        case START: return Attack.supermorso;
+                        case MEDIUM:return Attack.elettrodenti;
+                        case ADVANCE:return Attack.colpoCodaVigoroso;
+                        case GREAT:return Attack.ipermorso;
+                        case PERFECT:return Attack.elettroGeloDenti;
                     }
                     break;
                 case RABBIT:
                     switch (levels){
-                        case START:attack = Attack.doppioGraffio;
-                        break;
-                        case MEDIUM:attack = Attack.sgranocchio;
-                        break;
-                        case ADVANCE:attack = Attack.corsaSpietata;
-                        break;
-                        case GREAT:attack = Attack.triploGraffio;
-                        break;
-                        case PERFECT:attack = Attack.iperSgranocchio;
-                        break;
+                        case START:return Attack.doppioGraffio;
+                        case MEDIUM:return Attack.sgranocchio;
+                        case ADVANCE:return Attack.corsaSpietata;
+                        case GREAT:return Attack.triploGraffio;
+                        case PERFECT:return Attack.iperSgranocchio;
                     }
                     break;
                 case TURTLE:
                     switch (levels){
-                        case START:attack = Attack.rotolamento;
-                        break;
-                        case MEDIUM:attack = Attack.doppioRotolamento;
-                        break;
-                        case ADVANCE:attack = Attack.sgusciataReparo;
-                        break;
-                        case GREAT:attack = Attack.doppioColpoDiGuscio;
-                        break;
-                        case PERFECT:attack = Attack.triploRotolamento;
-                        break;
+                        case START:return Attack.rotolamento;
+                        case MEDIUM:return Attack.doppioRotolamento;
+                        case ADVANCE:return Attack.sgusciataReparo;
+                        case GREAT:return Attack.doppioColpoDiGuscio;
+                        case PERFECT:return Attack.triploRotolamento;
                     }
                     break;
             }
-            return attack;
+          return null;
         }
 
     public void setLifeForFrame(Pet pet,String trainer){

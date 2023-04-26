@@ -1,6 +1,6 @@
 package model.data.abstracted;
-import model.entities.Person;
-import model.entities.Pet;
+import model.data.entities.Person;
+import model.data.entities.Pet;
 
 public interface Repository {
     Person createTrainer(Person person);

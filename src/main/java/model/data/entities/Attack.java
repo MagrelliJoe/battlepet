@@ -1,4 +1,4 @@
-package model.entities;
+package model.data.entities;
 
 public class Attack {
     private String name;

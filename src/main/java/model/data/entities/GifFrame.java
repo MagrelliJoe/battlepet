@@ -1,4 +1,4 @@
-package model.entities;
+package model.data.entities;
 
 import javax.sound.sampled.*;
 import javax.swing.*;

@@ -1,4 +1,4 @@
-package model.entities;
+package model.data.entities;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
@@ -17,13 +17,13 @@ public class BattleWindow {
     private ButtonGroup bg = new ButtonGroup();
     protected JFrame frame;
     private int nextPet, nextPetEnemy = 0;
-    private String filePathImage, fileMusicPath, fileMusicPathMessage;
+    private String filePathImage, fileMusicPath;
     private File audioMusic, audioMusicMessage;
     private AudioInputStream audioInputStreamMusic, audioInputStreamMusicMessage;
     private Clip music, musicMessage = null;
     private GifFrame gifFrame;
 
-    public BattleWindow(String filePathImage, String fileMusicPath, String fileMusicPathMessage)
+    public BattleWindow(String filePathImage, String fileMusicPath)
             throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 
         this.gifFrame = new GifFrame();
@@ -35,13 +35,7 @@ public class BattleWindow {
         this.music.open(this.audioInputStreamMusic);
         this.music.loop(1);
 
-        this.fileMusicPathMessage = fileMusicPathMessage;
-        this.audioMusicMessage = new File(this.fileMusicPathMessage);
-        this.audioInputStreamMusicMessage = AudioSystem.getAudioInputStream(this.audioMusicMessage);
-        this.musicMessage = AudioSystem.getClip();
-        this.musicMessage.open(this.audioInputStreamMusicMessage);
-
-        frame = new JFrame("its time to fight!");
+        frame = new JFrame("ITS TIME TO FIGHT!");
         Dimension dimension = new Dimension(width, eight);
         this.getSfondo().setIcon(new ImageIcon(filePathImage));
         frame.setVisible(true);
@@ -331,14 +325,6 @@ public class BattleWindow {
 
     public void setFileMusicPath(String fileMusicPath) {
         this.fileMusicPath = fileMusicPath;
-    }
-
-    public String getFileMusicPathMessage() {
-        return fileMusicPathMessage;
-    }
-
-    public void setFileMusicPathMessage(String fileMusicPathMessage) {
-        this.fileMusicPathMessage = fileMusicPathMessage;
     }
 
     public File getAudioMusic() {

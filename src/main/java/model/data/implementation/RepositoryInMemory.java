@@ -1,7 +1,7 @@
 package model.data.implementation;
 import model.data.abstracted.Repository;
-import model.entities.Person;
-import model.entities.Pet;
+import model.data.entities.Person;
+import model.data.entities.Pet;
 import java.util.HashMap;
 import java.util.Map;
 

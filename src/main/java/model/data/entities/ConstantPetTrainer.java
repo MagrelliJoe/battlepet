@@ -1,6 +1,6 @@
-package model.entities;
+package model.data.entities;
 
-public class ConstantPet {
+public class ConstantPetTrainer {
 
     //BIRD
     public static Pet crissy = new Pet(Constant.crissy,"Crissy", Type.BIRD,23,14,4,9, Levels.START);
@@ -28,5 +28,7 @@ public class ConstantPet {
     public static Pet rapha = new Pet(null,"Rapha",Type.TURTLE,24,9,15,4,Levels.START);
     public static Pet mikey = new Pet(null,"Mikey",Type.TURTLE,23,10,15,4,Levels.START);
     public static Pet donny = new Pet(null,"Donny",Type.TURTLE,25,8,15,4,Levels.START);
-
+    //TRAINER
+    public  static  Person trainer0 = new Person(Constant.allenatore0Lotta,"Floriana",Levels.BASE);
+    public  static Person trainer1 = new Person(Constant.allenatore1Lotta,"Saro",Levels.BASE);
 }
