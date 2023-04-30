@@ -1,9 +1,8 @@
-import model.data.abstracted.LevelWindow;
 import model.data.entities.Constant;
-import model.data.entities.ConstantPetTrainer;
+import model.data.entities.ConstantPet;
 import model.data.entities.Levels;
 import model.data.entities.Person;
-import model.data.implementation.LevelWindowOne;
+
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
@@ -18,14 +17,14 @@ public class StartJFrame {
         Person per1 = new Person(Constant.allenatore6Lotta,"pippo",Levels.BASE);
         Person per2 = new Person(Constant.allenatore7Lotta,"ciccio",Levels.BASE);
 
-        per.addPet(0, ConstantPetTrainer.pepita);
-        per.addPet(1, ConstantPetTrainer.pettyRed);
-        per.addPet(2, ConstantPetTrainer.pulce);
+        per.addPet(0, ConstantPet.pepita);
+        per.addPet(1, ConstantPet.pettyRed);
+        per.addPet(2, ConstantPet.pulce);
 
-        per1.addPet(0, ConstantPetTrainer.mewcat);
+        per1.addPet(0, ConstantPet.mewcat);
 
-        per2.addPet(0, ConstantPetTrainer.pulce);
-        per2.addPet(2, ConstantPetTrainer.donny);
+        per2.addPet(0, ConstantPet.pulce);
+        per2.addPet(2, ConstantPet.donny);
 
         Random r = new Random();
            int n = r.nextInt(2);

@@ -36,7 +36,14 @@ public class ServiceForBattle implements ActionListener {
             if(battle.getBattle().getOpzioni()[3].getText().
                     equalsIgnoreCase("START FIGHT")){
                 pet = trainer1.getPetList().get(battle.getBattle().getNextPet());
-                setimagefight(Constant.allenatoreMyLotta1);
+                switch (trainer1.getName()){
+                    case"David":
+                        setimagefight(Constant.allenatoreMyLotta1);
+                        break;
+                    case"Alycia":
+                        setimagefight("images/MyTrainer/pg_f_lotta_1.jpg");
+                        break;
+                }
                 pet_ = trainer2.getPetList().get(battle.getBattle().getNextPetEnemy());
                 battle.setLifeForFrame(pet,"My");
                 battle.getBattle().getOpzioni()[0].setEnabled(true);
@@ -55,9 +62,15 @@ public class ServiceForBattle implements ActionListener {
 
             }else if(battle.getBattle().getOpzioni()[3].getText().
                     equalsIgnoreCase("YOUR TURN")){
-
                 try {
-                    setimagefight(Constant.allenatoreMyLotta2);
+                    switch (trainer1.getName()){
+                        case"David":
+                            setimagefight(Constant.allenatoreMyLotta2);
+                            break;
+                        case"Alycia":
+                            setimagefight("images/MyTrainer/pg_f_lotta_2.jpg");
+                            break;
+                    }
                     battle.viewCommentAttack(pet, battle.isDamageOrShelter(battle.seeDamage(pet, numberOfChoose),
                             battle.seeShelter(pet, numberOfChoose), pet, pet_), battle.seeShelter(pet, numberOfChoose), pet.getAttackSet().get(numberOfChoose).getName().toString());
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
@@ -75,7 +88,14 @@ public class ServiceForBattle implements ActionListener {
 
             }else{
                 try {
-                    setimagefight(Constant.allenatoreMyLotta1);
+                    switch (trainer1.getName()){
+                        case"David":
+                            setimagefight(Constant.allenatoreMyLotta1);
+                            break;
+                        case"Alycia":
+                            setimagefight("images/MyTrainer/pg_f_lotta_1.jpg");
+                            break;
+                    }
                     battle.turnEnemy(pet_,pet);
                     battle.setLifeForFrame(pet,"My");
                     battle.getBattle().getOpzioni()[3].setEnabled(false);
@@ -324,6 +344,7 @@ public class ServiceForBattle implements ActionListener {
             battle.getBattle().getEnemyPet().setIcon(new ImageIcon(Constant.ko));
             if(trainer2.getPetList().get(battle.getBattle().getNextPetEnemy()) == null){
                 JOptionPane.showMessageDialog(null, "HAI VINTO LO SCONTRO!");
+                removePointForLevel(trainer1);
                 Levels actuallyLevel = trainer1.getLevels();
                 trainer1.setVictory(1);
                 if(actuallyLevel != trainer1.getLevels()){

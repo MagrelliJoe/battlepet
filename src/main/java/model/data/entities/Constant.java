@@ -48,6 +48,19 @@ public class Constant {
 
     //PET
     public final static String bianca = "images/Pet/bianca.jpg";
+    public final static String bianchina = "images/Pet/bianchina.jpg";
+    public final static String black = "images/Pet/black.jpg";
+    public final static String corvy = "images/Pet/corvy.jpg";
+    public final static String donny = "images/Pet/donny.jpg";
+    public final static String jerry = "images/Pet/jerry.jpg";
+    public final static String king = "images/Pet/king.jpg";
+    public final static String leonard = "images/Pet/leonard.jpg";
+    public final static String micky = "images/Pet/micky.jpg";
+    public final static String pik = "images/Pet/pik.jpg";
+    public final static String povero = "images/Pet/povero.jpg";
+    public final static String raphy = "images/Pet/raphy.jpg";
+    public final static String rughetta = "images/Pet/rughetta.jpg";
+    public final static String tom = "images/Pet/tom.jpg";
     public final static String crissy = "images/Pet/crissy.jpg";
     public final static String axel = "images/Pet/axel.jpg";
     public final static String leo = "images/Pet/leo.jpg";
@@ -74,5 +87,7 @@ public class Constant {
     public final static String musicalotta="images/audio/musicalotta.wav";
     public final static String musicalotta2="images/audio/musicalotta2.wav";
     public final static String musicalotta1="images/audio/musicalotta1.wav";
+    public final static String musicaInit="images/audio/musicabarca.wav";
+
 
 }

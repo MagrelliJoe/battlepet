@@ -4,18 +4,17 @@ import javax.sound.sampled.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
-public abstract class LevelWindow {
-    protected static final int width = 1000;
-    protected static final int eight = 333;
+public abstract class LevelWindow implements KeyListener {
+    protected int width;
+    protected int eight;
     protected Icon icon,myTrainerMove;
     protected JLabel sfondo = new JLabel(icon);
     private File audioMusic, audioMusicMessage;
-    protected JButton myTrainer;
+    protected JLabel myTrainer;
     private AudioInputStream audioInputStreamMusic, audioInputStreamMusicMessage;
     protected Clip music, musicMessage = null;
     private String filePathImage, fileMusicPath, fileMusicPathMessage;
@@ -26,12 +25,15 @@ public abstract class LevelWindow {
     protected ServiceForBattle battle;
     protected JLabel[] neons;
 
-    public LevelWindow(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int numOfNeon)
+    public LevelWindow(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int numOfNeon,int width,int eight)
             throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         teamFrame = new TeamFrame();
         this.filePathImage = filePathImage;
         this.neons = new JLabel[numOfNeon];
+
+        this.width = width;
+        this.eight = eight;
 
         this.fileMusicPath = fileMusicPath;
         this.fileMusicPathMessage = fileMusicPathMessage;
@@ -70,7 +72,7 @@ public abstract class LevelWindow {
 
         myTrainerMove = new ImageIcon("images/MyTrainer/pg_right_1.jpg");
 
-        myTrainer = new JButton(myTrainerMove);
+        myTrainer = new JLabel(myTrainerMove);
         myTrainer.setBackground(new Color(0,0,0,0));
         myTrainer.setBorder(new EmptyBorder(0,0,0,0));
         myTrainer.setLocation(position_x,position_y);
@@ -82,7 +84,7 @@ public abstract class LevelWindow {
 
     public abstract void SetFightPosition(int posX, int posY, Person trainer,String comment) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException;
 
-    protected void addPetatTeam(Person trainer,Pet pet){
+    protected void addPetAtTeam(Person trainer, Pet pet){
         if(trainer.getPetList().size()>1) {
             trainer.addPet(trainer.getPetList().size() + 1, pet);
         }else if(trainer.getPetList().size()==1){
@@ -150,11 +152,11 @@ public abstract class LevelWindow {
         this.myTrainerMove = myTrainerMove;
     }
 
-    public JButton getMyTrainer() {
+    public JLabel getMyTrainer() {
         return myTrainer;
     }
 
-    public void setMyTrainer(JButton myTrainer) {
+    public void setMyTrainer(JLabel myTrainer) {
         this.myTrainer = myTrainer;
     }
 
