@@ -14,7 +14,7 @@ public abstract class LevelWindow implements KeyListener {
     protected Icon icon,myTrainerMove;
     protected JLabel sfondo = new JLabel(icon);
     private File audioMusic, audioMusicMessage;
-    protected JLabel myTrainer;
+    protected JLabel myTrainer,endGame;
     private AudioInputStream audioInputStreamMusic, audioInputStreamMusicMessage;
     protected Clip music, musicMessage = null;
     private String filePathImage, fileMusicPath, fileMusicPathMessage;
@@ -23,15 +23,12 @@ public abstract class LevelWindow implements KeyListener {
     protected JFrame frame;
     protected TeamFrame teamFrame;
     protected ServiceForBattle battle;
-    protected JLabel[] neons;
 
-    public LevelWindow(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int numOfNeon,int width,int eight)
+    public LevelWindow(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int width,int eight)
             throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         teamFrame = new TeamFrame();
         this.filePathImage = filePathImage;
-        this.neons = new JLabel[numOfNeon];
-
         this.width = width;
         this.eight = eight;
 
@@ -48,11 +45,6 @@ public abstract class LevelWindow implements KeyListener {
         this.audioInputStreamMusicMessage = AudioSystem.getAudioInputStream(this.audioMusicMessage);
         this.musicMessage = AudioSystem.getClip();
         this.musicMessage.open(this.audioInputStreamMusicMessage);
-
-        for(int i=0;i<numOfNeon;i++){
-            neons[i] = new JLabel(new ImageIcon("images/cerchio.jpg"));
-            neons[i].setSize(80,80);
-        }
 
         this.fileMusicPathMessage = fileMusicPathMessage;
         this.audioMusicMessage = new File(this.fileMusicPathMessage);
@@ -78,11 +70,19 @@ public abstract class LevelWindow implements KeyListener {
         myTrainer.setLocation(position_x,position_y);
         myTrainer.setSize(40,57);
 
+        endGame = new JLabel(new ImageIcon("images/here.png"));
+        endGame.setBackground(new Color(0,0,0,0));
+        endGame.setBorder(new EmptyBorder(0,0,0,0));
+        endGame.setSize(40,57);
+        endGame.setVisible(false);
+
         frame.add(myTrainer);
+        frame.add(endGame);
         frame.add(sfondo);
     }
 
-    public abstract void SetFightPosition(int posX, int posY, Person trainer,String comment) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException;
+    public abstract void SetFightPosition(int posX, int posY, Person trainer,String comment,String comment2,int numMax,int numMin) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException;
+
 
     protected void addPetAtTeam(Person trainer, Pet pet){
         if(trainer.getPetList().size()>1) {
@@ -94,6 +94,7 @@ public abstract class LevelWindow implements KeyListener {
         }
     }
     public void updateTeamShow(Person trainer){
+        teamFrame.getFrame().setTitle("Victory's Trainer->"+trainer.getVictory());
         int i=0;
         for(Pet pet:trainer.getPetList().values()){
             teamFrame.getLabels()[i].setText(pet.getName() + " " +
@@ -117,14 +118,6 @@ public abstract class LevelWindow implements KeyListener {
             }
             i++;
         }
-    }
-
-    public JLabel[] getNeons() {
-        return neons;
-    }
-
-    public void setNeons(JLabel[] neons) {
-        this.neons = neons;
     }
 
     public JFrame getFrame() {
@@ -272,6 +265,28 @@ public abstract class LevelWindow implements KeyListener {
         this.fileMusicPathMessage = fileMusicPathMessage;
     }
 
+    public int getWidth() {
+        return width;
+    }
 
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getEight() {
+        return eight;
+    }
+
+    public void setEight(int eight) {
+        this.eight = eight;
+    }
+
+    public JLabel getEndGame() {
+        return endGame;
+    }
+
+    public void setEndGame(JLabel endGame) {
+        this.endGame = endGame;
+    }
 }
 

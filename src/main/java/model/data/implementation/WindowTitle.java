@@ -15,11 +15,11 @@ import java.io.IOException;
 public class WindowTitle extends LevelWindow implements ActionListener {
     private JButton start,istruzioni;
 
-    public WindowTitle(String filePathImage, String fileMusicPath, String fileMusicPathMessage, int numOfNeon, int width, int eight) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        super(filePathImage, fileMusicPath, fileMusicPathMessage, numOfNeon, width, eight);
+    public WindowTitle(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int width, int eight) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        super(filePathImage, fileMusicPath, fileMusicPathMessage,width, eight);
 
         super.myTrainer.setVisible(false);
-
+        frame.setTitle("BATTLE PET");
         start = new JButton("START");
         start.setBorder(BorderFactory.createMatteBorder(3,3,3,3, Color.red));
         start.setBackground(Color.black);
@@ -45,7 +45,7 @@ public class WindowTitle extends LevelWindow implements ActionListener {
         frame.add(sfondo);
     }
     @Override
-    public void SetFightPosition(int posX, int posY, Person trainer, String comment) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    public void SetFightPosition(int posX, int posY, Person trainer, String comment,String comment2,int numOfVictory,int numMin) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
         //DO NOTHING
     }
     @Override
@@ -56,33 +56,15 @@ public class WindowTitle extends LevelWindow implements ActionListener {
             frame.dispose();
             music.stop();
             try {
-                LevelWindow levelWindow = new WindowPrologue("images/sfondoInitGame.jpg", Constant.musicaInit,Constant.messaggio,0,500,300);
+                LevelWindow levelWindow = new WindowPrologue("images/sfondoInitGame.jpg", Constant.musicaInit,Constant.messaggio,500,300);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                 throw new RuntimeException(ex);
             }
         }
-
         else if("istruzioni".equals(e.getActionCommand())){
             frame.dispose();
             music.stop();
         }
-
-    }
-
-    public JButton getStart() {
-        return start;
-    }
-
-    public void setStart(JButton start) {
-        this.start = start;
-    }
-
-    public JButton getIstruzioni() {
-        return istruzioni;
-    }
-
-    public void setIstruzioni(JButton istruzioni) {
-        this.istruzioni = istruzioni;
     }
 
     @Override

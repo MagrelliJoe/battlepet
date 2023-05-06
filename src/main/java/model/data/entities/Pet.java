@@ -36,13 +36,10 @@ public class Pet {
         this.filePathImage = filePathImage;
 
         }
-
-    public void setAttack(Attack attack){
-        attackSet.add(attack);
-    }
-
-    public void removeAttack(Attack attack){
-        attackSet.remove(attack);
+    public void restoreNumOfAvb(int[] array){
+        for(int i=0; i < getAttackSet().size(); i ++){
+            getAttackSet().get(i).setNumOfAvailabilityRestore(array[i]);
+        }
     }
 
     public String getName() {
@@ -56,14 +53,13 @@ public class Pet {
         return isDead;
     }
 
-    public void setAttackSet(List<Attack> attackSet) {
-        this.attackSet = attackSet;
-    }
-
     public void setPower(int power) {
         this.power += power;
     }
 
+    public void removeDefense(int defense){
+        this.defense -= defense;
+    }
     public void setDefense(int defense) {
         this.defense += defense;
     }
@@ -80,20 +76,8 @@ public class Pet {
         this.filePathImage = filePathImage;
     }
 
-    public void setDead(boolean dead) {
-        isDead = dead;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Type getType() {
         return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
     }
 
     public List<Attack> getAttackSet() {
@@ -110,7 +94,9 @@ public class Pet {
     public void setLifeForLevel(int life) {
         this.life += life;
     }
-
+    public void removePower(int power){
+        this.power -= power;
+    }
     public int getPower() {
         return power;
     }
@@ -126,10 +112,6 @@ public class Pet {
         return levels;
     }
 
-    public String viewLevels(){
-        return "Level:" + " " + this.getLevels().toString();
-    }
-
     public void setLevels(Levels levels) {
         this.levels = levels;
     }
@@ -139,5 +121,20 @@ public class Pet {
         return name;
     }
 
+    public String toStringMy() {
+        return "Pet{" +
+                "name='" + name + '\'' +
+                ", type=" + type +
+                ", attackSet=" + attackSet +
+                ", life=" + life +
+                ", power=" + power +
+                ", defense=" + defense +
+                ", speed=" + speed +
+                ", levels=" + levels +
+                ", isDead=" + isDead +
+                ", filePathImage='" + filePathImage + '\'' +
+                '}';
+
+    }
 
 }

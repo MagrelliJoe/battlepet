@@ -17,17 +17,24 @@ public class LevelWindowOne extends LevelWindow{
     private static Person trn1 = new Person(Constant.allenatore1Lotta,"Joseph",Levels.BASE);
     private static Person trn2 = new Person(Constant.allenatore2Lotta,"Michael",Levels.BASE);
 
-    public LevelWindowOne(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int numOfNeon,int width,int eight,String sex,Person mineTrainer)
+    public LevelWindowOne(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int width,int eight,String sex,Person mineTrainer)
             throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
-        super(filePathImage, fileMusicPath, fileMusicPathMessage , numOfNeon,width,eight);
+        super(filePathImage, fileMusicPath, fileMusicPathMessage ,width,eight);
         this.mineTrainer = mineTrainer;
         this.sex = sex;
         setPosition_x(920);
         setPosition_y(105);
-        frame.setTitle("ON THE ROAD 1");
+        frame.setTitle("ON THE FIRST ROAD");
         frame.addKeyListener(this);
         getMyTrainer().setLocation(getPosition_x(),getPosition_y());
+
+        if(this.sex.equalsIgnoreCase("F")) {
+            getTeamFrame().getButtons()[6].setIcon(new ImageIcon("images/AlyciaChoose.jpg"));
+            myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_up_left.jpg"));
+        }else{
+            myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_up_left.jpg"));
+        }
 
         addPetAtTeam(trn0,new Pet(ConstantPet.axel));
         addPetAtTeam(trn1,new Pet(ConstantPet.axel));
@@ -41,7 +48,7 @@ public class LevelWindowOne extends LevelWindow{
 
         trainer2 = new JLabel(new ImageIcon(Constant.allenatore2));
         trainer2.setSize(40,57);
-        trainer2.setLocation(270,105);
+        trainer2.setLocation(270,115);
 
         trainer3 = new JLabel(new ImageIcon(Constant.allenatore1));
         trainer3.setSize(40,57);
@@ -50,17 +57,6 @@ public class LevelWindowOne extends LevelWindow{
         frame.add(trainer1);
         frame.add(trainer2);
         frame.add(trainer3);
-
-        for(int i = 0;i < numOfNeon; i++){
-            frame.add(neons[i]);
-            if(i==0){
-                neons[i].setLocation(830,100);
-            }else if(i==1){
-                neons[i].setLocation(300,100);
-            }else{
-                neons[i].setLocation(168,38);
-            }
-        }
         frame.add(sfondo);
     }
     @Override
@@ -72,9 +68,9 @@ public class LevelWindowOne extends LevelWindow{
     @Override
     public void keyPressed(KeyEvent e) {
         try {
-            SetFightPosition(845,90,trn0,"Anche io ho appena preso il mio primissimo Pet!Lottiamo!!!");
-            SetFightPosition(315,95,trn1,"Michael mi ha battuto per tre volte,perchè non riesco a batterlo?!?");
-            SetFightPosition(185,30,trn2,"Qui sono il leader indiscusso.Ora è il tuo turno poi andrò verso WoofyCity per sfidare il T.L. della città!!!");
+            SetFightPosition(845,105,trn0,"Anche io ho appena preso il mio primissimo Pet!Lottiamo!!!","Basta lottare!Sei troppo forte per i miei gusti!",1,0);
+            SetFightPosition(315,115,trn1,"Michael mi ha battuto per tre volte,perchè non riesco a batterlo?!?","Non batterò mai nemmeno te!Meglio fare un pò di teoria sulle lotte.",3,0);
+            SetFightPosition(185,30,trn2,"Qui sono il leader indiscusso.Ora è il tuo turno poi andrò verso WoofyCity per sfidare il TrainerLeader della città!!!","Wow!Non pensavo tu fossi cosi forte!Complimenti!",5,0);
             updateTeamShow(mineTrainer);
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
             throw new RuntimeException(ex);
@@ -165,6 +161,15 @@ public class LevelWindowOne extends LevelWindow{
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             super.getTeamFrame().getFrame().setVisible(true);
         }
+        if(endGame.isVisible() && position_x==120 && position_y==100){
+            frame.dispose();
+            music.stop();
+            try {
+                LevelWindow levelWindow =  new LevelWindowsTwo(Constant.sfondoBronze,Constant.musica2,Constant.messaggio,1000,700,"M",mineTrainer);
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
     }
     @Override
     public void keyReleased(KeyEvent e) {
@@ -174,23 +179,27 @@ public class LevelWindowOne extends LevelWindow{
     }
 
     @Override
-    public void SetFightPosition(int posX, int posY,Person trainer,String comment)
+    public void SetFightPosition(int posX, int posY,Person trainer,String comment1,String comment2,int numMax,int numMin)
             throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
 
-           if (getMyTrainer().getX()==posX && getMyTrainer().getY()==posY) {
-               super.musicMessage.loop(0);
-               JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment);
+           if(mineTrainer.getVictory() >= 3){
+               getEndGame().setVisible(true);
+               getEndGame().setLocation(120,120);
+           }
+
+           if (getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && mineTrainer.getVictory() <= numMax) {
+               super.musicMessage.start();
+               JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment1);
                battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta1));
                updateTeamShow(trainer);
+
                battle.getBattle().getFrame().addWindowListener(new WindowListener() {
                    @Override
                    public void windowOpened(WindowEvent e) {
                        music.stop();
                    }
                    @Override
-                   public void windowClosing(WindowEvent e) {
-                       music.start();
-                   }
+                   public void windowClosing(WindowEvent e) {}
                    @Override
                    public void windowClosed(WindowEvent e) {
                        music.start();
@@ -213,6 +222,8 @@ public class LevelWindowOne extends LevelWindow{
                        //DO NOTHING
                    }
                });
+           }else if(getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && mineTrainer.getVictory() > numMax){
+               JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment2);
            }
     }
 

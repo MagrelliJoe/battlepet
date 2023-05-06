@@ -22,9 +22,10 @@ public class GifFrame {
         this.frame = new JFrame();
         frame.setSize(width, eight);
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setUndecorated(true);
         frame.setResizable(false);
         frame.setVisible(false);
+        frame.setLocation(550,175);
         frame.add(sfondo);
     }
 

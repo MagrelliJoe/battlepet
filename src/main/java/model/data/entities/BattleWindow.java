@@ -13,7 +13,7 @@ public class BattleWindow {
     protected JTextArea tx = new JTextArea();
     private JButton myTrainer, enemyTrainer, myPet, enemyPet;
     private JButton namePet,life,level,namePetEnemy,lifeEnemy,levelEnemy;
-    private JCheckBoxMenuItem[] opzioni = new JCheckBoxMenuItem[4];
+    private JCheckBoxMenuItem[] opzioni = new JCheckBoxMenuItem[5];
     private ButtonGroup bg = new ButtonGroup();
     protected JFrame frame;
     private int nextPet, nextPetEnemy = 0;
@@ -35,14 +35,14 @@ public class BattleWindow {
         this.music.open(this.audioInputStreamMusic);
         this.music.loop(1);
 
-        frame = new JFrame("ITS TIME TO FIGHT!");
+        frame = new JFrame("IT'S TIME TO FIGHT!");
         Dimension dimension = new Dimension(width, eight);
         this.getSfondo().setIcon(new ImageIcon(filePathImage));
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setSize(width, eight);
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         sfondo.setSize(dimension);
 
         tx.setLocation(92, 300);
@@ -119,12 +119,12 @@ public class BattleWindow {
             opzioni[i].setFont(new Font("Serif", Font.ITALIC, 15));
             opzioni[i].setBackground(Color.gray);
             opzioni[i].setForeground(Color.BLACK);
-            if (i < 2) {
-                opzioni[i].setLocation(30 + (i * 170), 220);
+            if (i < 3) {
+                opzioni[i].setLocation(85 + (i * 170), 220);
             } else {
-                opzioni[i].setLocation(-190 + (i * 170), 250);
+                opzioni[i].setLocation(-345 + (i * 170), 250);
             }
-            if (i == 3) {
+            if (i == 4) {
                 opzioni[i].setEnabled(true);
                 opzioni[i].setText("START FIGHT");
             }

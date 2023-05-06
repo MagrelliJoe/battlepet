@@ -6,8 +6,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
-import java.util.Set;
 
 public class LevelWindowZero extends LevelWindow {
     private  String sex;
@@ -15,11 +16,12 @@ public class LevelWindowZero extends LevelWindow {
     private Person mineTrainer;
     private JLabel pet;
 
-    public LevelWindowZero(String filePathImage, String fileMusicPath, String fileMusicPathMessage, int numOfNeon, int width, int eight,String sex,Person mineTrainer) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        super(filePathImage, fileMusicPath, fileMusicPathMessage, numOfNeon, width, eight);
+    public LevelWindowZero(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int width, int eight,String sex,Person mineTrainer) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        super(filePathImage, fileMusicPath, fileMusicPathMessage,width, eight);
         this.sex = sex;
         this.mineTrainer = mineTrainer;
         if(this.sex.equalsIgnoreCase("F")) {
+            getTeamFrame().getButtons()[6].setIcon(new ImageIcon("images/AlyciaChoose.jpg"));
             myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_up_left.jpg"));
         }else{
             myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_up_left.jpg"));
@@ -39,12 +41,7 @@ public class LevelWindowZero extends LevelWindow {
         pet.setLocation(80,160);
         pet.setVisible(false);
 
-        neons[0].setLocation(355,310);
-        frame.add(neons[0]);
-        neons[1].setLocation(40,215);
-        neons[1].setVisible(false);
-        frame.add(neons[1]);
-
+        frame.setTitle("HOME SWEET HOME");
         frame.add(pet);
         frame.add(parent);
         frame.add(sfondo);
@@ -62,10 +59,10 @@ public class LevelWindowZero extends LevelWindow {
     }
 
     @Override
-    public void SetFightPosition(int posX, int posY, Person trainer, String comment) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    public void SetFightPosition(int posX, int posY, Person trainer, String comment1,String comment2,int numOfVictory,int numMin) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
            int pos_neg[] = {320,325,330,335,340,345,350,355};
            for(int i=0;i<pos_neg.length;i++){
-               if(getPosition_x() == pos_neg[i] && getPosition_y() == 345){
+               if(getPosition_x() == pos_neg[i] && getPosition_y() == 345 && mineTrainer.getPetList().size()==0){
                    setPosition_y(300);
                    getMyTrainer().setLocation(getPosition_x(),getPosition_y());
                    JOptionPane.showMessageDialog(null,mineTrainer.getName() + ":" + "\n" +
@@ -74,7 +71,7 @@ public class LevelWindowZero extends LevelWindow {
            }
            if(getPosition_x() == posX && getPosition_y() == posY){
                JOptionPane.showMessageDialog(null,
-                       comment);
+                       comment1);
            }
 
     }
@@ -88,31 +85,76 @@ public class LevelWindowZero extends LevelWindow {
     @Override
     public void keyPressed(KeyEvent e) {
         try {
-            SetFightPosition(0,0,null,null);
+            SetFightPosition(0,0,null,null,null,0,0);
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
             throw new RuntimeException(ex);
         }
 
-        if (getPosition_x() == 370 && getPosition_y() == 305 && neons[1].isVisible()==false) {
+        if (getPosition_x() == 370 && getPosition_y() == 305) {
             JOptionPane.showMessageDialog(null, "Joe:" + "\n" +
                     mineTrainer.getName() + "!!!" + "Finalmente hai smesso di giocare a WARNING INFECTION THE GAME!" + "\n" +
                     "Quel gioco ti sta piacendo molto vero?!? Parlando di cose più importanti,è venuto il momento" + "\n" +
-                    "per te di ricevere il primo Pet!Sul tavolo ci sono tre Pet,scegli il tuo preferito!");
-            neons[0].setVisible(false);
-            neons[1].setVisible(true);
+                    "per te di ricevere il primo Pet!Siediti comodamente di fronte a me al tavolo e scegli il tuo preferito!");
             parent.setLocation(140, 205);
             pet.setVisible(true);
         }
-        if(getPosition_x() == 55 && getPosition_y() == 210 && neons[1].isVisible()){
+        if(getPosition_x() == 55 && getPosition_y() == 210){
             JOptionPane.showMessageDialog(null, mineTrainer.getName() + ":" + "\n" +
                     "Ecco i Pet di papa!!!");
+            try {
+                LevelWindow levelWindow = new WindowChoosePet(Constant.sfondoLotta1,Constant.fineLivello,Constant.musica1,500,300,getSex(),mineTrainer);
+                levelWindow.getFrame().addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowOpened(WindowEvent e) {
+                        music.stop();
+                    }
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        //DO NOTHING
+                    }
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        music.start();
+                        JOptionPane.showMessageDialog(null, "Joe:" + ":" + "\n" +
+                                "Bene!vedo che ha deciso di optare per " + " " + mineTrainer.getPetList().get(0).getName().toUpperCase() + "\n" +
+                                "Ottima scelta!Vedrai che diventerete ottimi amici!Ora non ti trattengo oltre,se hai dubbi e" + "\n" +
+                                "non hai ancora visto le istruzioni,ti consiglio di SALVARE e di dargli un'occhiata prima di" + "\n" +
+                                "riprendere il cammino!Sono sicuro che ti divertirai un mondo nel tuo viaggio!!!Ora vai!!!!!");
+                        pet.setVisible(false);
+                        frame.dispose();
+                        music.stop();
+                        try {
+                            LevelWindow levelWindow1 = new LevelWindowOne(Constant.sfondoInit, Constant.musica1, Constant.messaggio, 1000, 333,getSex(), mineTrainer);
+                        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                    @Override
+                    public void windowIconified(WindowEvent e) {
+                        //DO NOTHING
+                    }
+                    @Override
+                    public void windowDeiconified(WindowEvent e) {
+                        //DO NOTHING
+                    }
+                    @Override
+                    public void windowActivated(WindowEvent e) {
+                        //DO NOTHING
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent e) {
+                        //DO NOTHING
+                    }
+                });
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                throw new RuntimeException(ex);
+            }
         }
         updateTeamShow(mineTrainer);
 
         if(e.getKeyCode() == KeyEvent.VK_LEFT) {
             position_x -= 5;
-            System.out.println("x:"+position_x);
-            System.out.println("y:"+position_y);
             switch (getSex()) {
                 case "M":
                     if (position_x % 2 == 0) {
@@ -132,8 +174,6 @@ public class LevelWindowZero extends LevelWindow {
             super.myTrainer.setLocation(position_x, position_y);
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            System.out.println("x:"+position_x);
-            System.out.println("y:"+position_y);
             position_y -= 5;
             switch (getSex()) {
                 case "M":
@@ -155,8 +195,6 @@ public class LevelWindowZero extends LevelWindow {
         }
 
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            System.out.println("x:"+position_x);
-            System.out.println("y:"+position_y);
             position_y += 5;
             switch (getSex()) {
                 case "M":
@@ -178,8 +216,6 @@ public class LevelWindowZero extends LevelWindow {
         }
 
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            System.out.println("x:"+position_x);
-            System.out.println("y:"+position_y);
             position_x += 5;
             switch (getSex()) {
                 case "M":
@@ -212,9 +248,5 @@ public class LevelWindowZero extends LevelWindow {
     }
     public String getSex() {
         return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
     }
 }

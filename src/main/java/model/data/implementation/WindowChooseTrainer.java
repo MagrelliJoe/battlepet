@@ -18,12 +18,11 @@ public class WindowChooseTrainer extends LevelWindow implements ActionListener {
     private JTextArea girlDescription,boyDescription;
     private Person mineTrainer;
 
-    public WindowChooseTrainer(String filePathImage, String fileMusicPath, String fileMusicPathMessage, int numOfNeon, int width, int eight) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        super(filePathImage, fileMusicPath, fileMusicPathMessage, numOfNeon, width, eight);
+    public WindowChooseTrainer(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int width, int eight) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        super(filePathImage, fileMusicPath, fileMusicPathMessage,width, eight);
 
-        super.music.stop();
         super.myTrainer.setVisible(false);
-
+        frame.setTitle("CHOOSE YOUR CHARACTER!");
         girl = new JButton(new ImageIcon("images/AlyciaChoose.jpg"));
         girl.setSize(70,80);
         girl.setLocation(150,30);
@@ -93,7 +92,7 @@ public class WindowChooseTrainer extends LevelWindow implements ActionListener {
     }
 
     @Override
-    public void SetFightPosition(int posX, int posY, Person trainer, String comment) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    public void SetFightPosition(int posX, int posY, Person trainer, String comment,String comment2,int numOfVictory,int numMin) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
        //DO NOTHING
     }
 
@@ -105,14 +104,14 @@ public class WindowChooseTrainer extends LevelWindow implements ActionListener {
             if("girl".equals(e.getActionCommand())){
                 try {
                     this.mineTrainer =new Person("images/AlyciaChoose.jpg", "Alycia", Levels.BASE);
-                    LevelWindow levelWindow = new LevelWindowZero("images/Sfondi/home.jpg", Constant.musicaInit,Constant.messaggio,0,580,430,"F",mineTrainer);
+                    LevelWindow levelWindow = new LevelWindowZero("images/Sfondi/home.jpg", "images/audio/homeMusic.wav",Constant.messaggio,580,440,"F",mineTrainer);
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                     throw new RuntimeException(ex);
                 }
             }else{
                 try {
                     this.mineTrainer =new Person("images/DavidChoose.jpg", "David", Levels.BASE);
-                    LevelWindow levelWindow = new LevelWindowZero("images/Sfondi/home.jpg", Constant.musicaInit,Constant.messaggio,0,580,440,"M",mineTrainer);
+                    LevelWindow levelWindow = new LevelWindowZero("images/Sfondi/home.jpg", "images/audio/homeMusic.wav",Constant.messaggio,580,440,"M",mineTrainer);
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -134,61 +133,5 @@ public class WindowChooseTrainer extends LevelWindow implements ActionListener {
     @Override
     public void keyReleased(KeyEvent e) {
         //DO NOTHING
-    }
-
-    public JButton getGirl() {
-        return girl;
-    }
-
-    public void setGirl(JButton girl) {
-        this.girl = girl;
-    }
-
-    public JButton getBoy() {
-        return boy;
-    }
-
-    public void setBoy(JButton boy) {
-        this.boy = boy;
-    }
-
-    public JButton getChooseGirl() {
-        return chooseGirl;
-    }
-
-    public void setChooseGirl(JButton chooseGirl) {
-        this.chooseGirl = chooseGirl;
-    }
-
-    public JButton getChooseBoy() {
-        return chooseBoy;
-    }
-
-    public void setChooseBoy(JButton chooseBoy) {
-        this.chooseBoy = chooseBoy;
-    }
-
-    public JTextArea getGirlDescription() {
-        return girlDescription;
-    }
-
-    public void setGirlDescription(JTextArea girlDescription) {
-        this.girlDescription = girlDescription;
-    }
-
-    public JTextArea getBoyDescription() {
-        return boyDescription;
-    }
-
-    public void setBoyDescription(JTextArea boyDescription) {
-        this.boyDescription = boyDescription;
-    }
-
-    public Person getMineTrainer() {
-        return mineTrainer;
-    }
-
-    public void setMineTrainer(Person mineTrainer) {
-        this.mineTrainer = mineTrainer;
     }
 }

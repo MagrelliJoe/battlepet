@@ -1,9 +1,6 @@
 package model.data.entities;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
 
 public class TeamFrame {
     private static final int width = 300;
@@ -17,7 +14,7 @@ public class TeamFrame {
 
     public TeamFrame() {
         Dimension dimension = new Dimension(width, eight);
-        this.frame = new JFrame("MY PET'S TEAM");
+        this.frame = new JFrame("TRAINER PET'S TEAM");
         iconSfondo = new ImageIcon("images/sfondoMyTeam.jpg");
         sfondo = new JLabel(iconSfondo);
         sfondo.setSize(dimension);
@@ -40,17 +37,16 @@ public class TeamFrame {
                 frame.add(labels[i]);
                 buttons[i].setLocation(10, 50 * i);
                 labels[i].setLocation(10 + 50, 50 * i);
-
             }
-        icons[6] = new ImageIcon("images/trainerMyTeam.jpg");
-        buttons[6] = new JButton(icons[6]);
-        buttons[6].setSize(70, 70);
-        buttons[6].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.DARK_GRAY));
-        buttons[6].setLocation(100,290);
-        frame.add(buttons[6]);
-        frame.add(sfondo);
-        }
 
+            icons[6] = new ImageIcon("images/DavidChoose.jpg");
+            buttons[6] = new JButton(icons[6]);
+            buttons[6].setSize(70, 70);
+            buttons[6].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.DARK_GRAY));
+            buttons[6].setLocation(100,290);
+            frame.add(buttons[6]);
+            frame.add(sfondo);
+        }
 
     public JFrame getFrame() {
         return frame;

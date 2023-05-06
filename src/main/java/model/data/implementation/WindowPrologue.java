@@ -15,11 +15,11 @@ public class WindowPrologue extends LevelWindow implements ActionListener {
     private JTextArea textArea;
     private JButton  button,buttonGif;
 
-    public WindowPrologue(String filePathImage, String fileMusicPath, String fileMusicPathMessage, int numOfNeon, int width, int eight) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        super(filePathImage, fileMusicPath, fileMusicPathMessage, numOfNeon, width, eight);
+    public WindowPrologue(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int width, int eight) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        super(filePathImage, fileMusicPath, fileMusicPathMessage, width, eight);
 
         super.myTrainer.setVisible(false);
-
+        frame.setTitle("LET'S GET START YOUR ADVENTURE!");
         buttonGif = new JButton(new ImageIcon("images/gifInit.gif"));
         buttonGif.setSize(200,100);
         buttonGif.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.DARK_GRAY));
@@ -60,7 +60,7 @@ public class WindowPrologue extends LevelWindow implements ActionListener {
     }
 
     @Override
-    public void SetFightPosition(int posX, int posY, Person trainer, String comment) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    public void SetFightPosition(int posX, int posY, Person trainer, String comment,String comment2,int numOfVictory,int numMin) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
       //DO NOTHING
     }
     @Override
@@ -81,39 +81,15 @@ public class WindowPrologue extends LevelWindow implements ActionListener {
         }
         if("continua.".equals(e.getActionCommand())){
             frame.dispose();
+            music.stop();
             try {
-                LevelWindow levelWindow = new WindowChooseTrainer("images/sfondoInitGame.jpg", Constant.musicaInit,Constant.messaggio,0,500,300);
+                LevelWindow levelWindow = new WindowChooseTrainer("images/sfondoInitGame.jpg", Constant.musicaInit,Constant.messaggio,500,300);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                 throw new RuntimeException(ex);
             }
         }
 
     }
-
-    public JTextArea getTextArea() {
-        return textArea;
-    }
-
-    public void setTextArea(JTextArea textArea) {
-        this.textArea = textArea;
-    }
-
-    public JButton getButton() {
-        return button;
-    }
-
-    public void setButton(JButton button) {
-        this.button = button;
-    }
-
-    public JButton getButtonGif() {
-        return buttonGif;
-    }
-
-    public void setButtonGif(JButton buttonGif) {
-        this.buttonGif = buttonGif;
-    }
-
     @Override
     public void keyTyped(KeyEvent e) {
 
