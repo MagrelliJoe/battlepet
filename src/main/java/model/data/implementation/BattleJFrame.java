@@ -323,7 +323,7 @@ public class BattleJFrame implements Battle {
         return view;
     }
     @Override
-    public int turnEnemy(Pet pet, Pet pet_) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    public void turnEnemy(Pet pet, Pet pet_) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         Random random = new Random();
         int n = random.nextInt(4);
         boolean done = true;
@@ -351,7 +351,6 @@ public class BattleJFrame implements Battle {
                 n = random.nextInt(4);
             }
         }
-        return n;
     }
 
     @Override

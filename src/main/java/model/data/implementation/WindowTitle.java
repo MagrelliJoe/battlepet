@@ -45,9 +45,15 @@ public class WindowTitle extends LevelWindow implements ActionListener {
         frame.add(sfondo);
     }
     @Override
-    public void SetFightPosition(int posX, int posY, Person trainer, String comment,String comment2,int numOfVictory,int numMin) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    public void SetFightPosition(int posX, int posY, Person trainer, String comment,String comment2) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
         //DO NOTHING
     }
+
+    @Override
+    public void SetTalkingPosition(int posX, int posY, String comment) {
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 

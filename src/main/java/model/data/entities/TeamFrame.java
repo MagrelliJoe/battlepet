@@ -30,7 +30,7 @@ public class TeamFrame {
                 buttons[i].setSize(40, 40);
                 buttons[i].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.DARK_GRAY));
                 labels[i] = new JLabel();
-                labels[i].setSize(180, 30);
+                labels[i].setSize(180, 35);
                 labels[i].setFont(new Font("Serif", Font.ITALIC, 15));
                 labels[i].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.DARK_GRAY));
                 frame.add(buttons[i]);

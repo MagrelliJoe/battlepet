@@ -22,12 +22,14 @@ public abstract class LevelWindow implements KeyListener {
     protected int position_y=0;
     protected JFrame frame;
     protected TeamFrame teamFrame;
+    protected WindowLeader leader;
     protected ServiceForBattle battle;
 
     public LevelWindow(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int width,int eight)
             throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         teamFrame = new TeamFrame();
+        leader = new WindowLeader();
         this.filePathImage = filePathImage;
         this.width = width;
         this.eight = eight;
@@ -81,17 +83,12 @@ public abstract class LevelWindow implements KeyListener {
         frame.add(sfondo);
     }
 
-    public abstract void SetFightPosition(int posX, int posY, Person trainer,String comment,String comment2,int numMax,int numMin) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException;
-
+    public abstract void SetFightPosition(int posX, int posY, Person trainer,String comment,String comment2) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException;
+    public abstract void SetTalkingPosition(int posX, int posY,String comment);
 
     protected void addPetAtTeam(Person trainer, Pet pet){
-        if(trainer.getPetList().size()>1) {
-            trainer.addPet(trainer.getPetList().size() + 1, pet);
-        }else if(trainer.getPetList().size()==1){
-            trainer.addPet(1, pet);
-        }else{
-            trainer.addPet(0, pet);
-        }
+        int numOfPetActually = trainer.getPetList().size();
+        trainer.addPet(numOfPetActually,pet);
     }
     public void updateTeamShow(Person trainer){
         teamFrame.getFrame().setTitle("Victory's Trainer->"+trainer.getVictory());
@@ -119,6 +116,52 @@ public abstract class LevelWindow implements KeyListener {
             i++;
         }
     }
+    public void updateLeaderShow(Person trainer){
+
+        for(int i = 0; i < leader.getButtons().length ; i ++){
+            switch(i){
+                case 0:
+                    leader.getTextAreas()[i].setText("Name -> Gaetano" + "\n" +
+                            "Leader dei Pet di tipo DOG." + "\n" +
+                            "Location -> Woofy City." + "\n" +
+                            "Favorite Pet -> Woody.");
+                    leader.getButtons()[i].setIcon(new ImageIcon(Constant.allenatore7Lotta));
+                    break;
+                case 1:
+                    leader.getTextAreas()[i].setText("Name -> Renato" + "\n" +
+                            "Leader dei Pet di tipo CAT." + "\n" +
+                            "Location-> MeowMeow City." + "\n" +
+                            "Favorite Pet-> MewCat.");
+                    leader.getButtons()[i].setIcon(new ImageIcon("images/Trainer/renatoC.jpg"));
+                    break;
+                case 2:
+                    leader.getTextAreas()[i].setText("Name -> Joe" + "\n" +
+                            "Leader dei Pet di tipo RABBIT." + "\n" +
+                            "Location-> Hairy City." + "\n" +
+                            "Favorite Pet-> Pulce.");
+                    leader.getButtons()[i].setIcon(new ImageIcon("images/Trainer/joeC.jpg"));
+                    break;
+                case 3:
+                    leader.getTextAreas()[i].setText("Name -> Ginevra" + "\n" +
+                            "Leader dei Pet di tipo BIRD." + "\n" +
+                            "Location-> Fly City." + "\n" +
+                            "Favorite Pet-> PettyRed.");
+                    leader.getButtons()[i].setIcon(new ImageIcon("images/Trainer/ginevraC.jpg"));
+                    break;
+                case 4:
+                    leader.getTextAreas()[i].setText("Name -> Sonia" + "\n" +
+                            "Leader dei Pet di tipo TURTLE." + "\n" +
+                            "Location-> Green City." + "\n" +
+                            "Favorite Pet-> Rughetta.");
+                    leader.getButtons()[i].setIcon(new ImageIcon("images/Trainer/soniaC.jpg"));
+                    break;
+            }
+        }
+    }
+
+    public WindowLeader getLeader() {
+        return leader;
+    }
 
     public JFrame getFrame() {
         return frame;
@@ -128,29 +171,8 @@ public abstract class LevelWindow implements KeyListener {
         this.frame = frame;
     }
 
-    public ServiceForBattle getBattle() {
-        return battle;
-    }
-
-    public void setBattle(ServiceForBattle battle) {
-        this.battle = battle;
-    }
-
-    public Icon getMyTrainerMove() {
-        return myTrainerMove;
-    }
-
-
-    public void setMyTrainerMove(Icon myTrainerMove) {
-        this.myTrainerMove = myTrainerMove;
-    }
-
     public JLabel getMyTrainer() {
         return myTrainer;
-    }
-
-    public void setMyTrainer(JLabel myTrainer) {
-        this.myTrainer = myTrainer;
     }
 
     public int getPosition_x() {
@@ -173,72 +195,12 @@ public abstract class LevelWindow implements KeyListener {
         return teamFrame;
     }
 
-    public void setTeamFrame(TeamFrame teamFrame) {
-        this.teamFrame = teamFrame;
-    }
-
-    public Icon getIcon() {
-        return icon;
-    }
-
-    public void setIcon(Icon icon) {
-        this.icon = icon;
-    }
-
     public JLabel getSfondo() {
         return sfondo;
     }
 
     public void setSfondo(JLabel sfondo) {
         this.sfondo = sfondo;
-    }
-
-    public File getAudioMusic() {
-        return audioMusic;
-    }
-
-    public void setAudioMusic(File audioMusic) {
-        this.audioMusic = audioMusic;
-    }
-
-    public File getAudioMusicMessage() {
-        return audioMusicMessage;
-    }
-
-    public void setAudioMusicMessage(File audioMusicMessage) {
-        this.audioMusicMessage = audioMusicMessage;
-    }
-
-    public AudioInputStream getAudioInputStreamMusic() {
-        return audioInputStreamMusic;
-    }
-
-    public void setAudioInputStreamMusic(AudioInputStream audioInputStreamMusic) {
-        this.audioInputStreamMusic = audioInputStreamMusic;
-    }
-
-    public AudioInputStream getAudioInputStreamMusicMessage() {
-        return audioInputStreamMusicMessage;
-    }
-
-    public void setAudioInputStreamMusicMessage(AudioInputStream audioInputStreamMusicMessage) {
-        this.audioInputStreamMusicMessage = audioInputStreamMusicMessage;
-    }
-
-    public Clip getMusic() {
-        return music;
-    }
-
-    public void setMusic(Clip music) {
-        this.music = music;
-    }
-
-    public Clip getMusicMessage() {
-        return musicMessage;
-    }
-
-    public void setMusicMessage(Clip musicMessage) {
-        this.musicMessage = musicMessage;
     }
 
     public String getFilePathImage() {
@@ -255,14 +217,6 @@ public abstract class LevelWindow implements KeyListener {
 
     public void setFileMusicPath(String fileMusicPath) {
         this.fileMusicPath = fileMusicPath;
-    }
-
-    public String getFileMusicPathMessage() {
-        return fileMusicPathMessage;
-    }
-
-    public void setFileMusicPathMessage(String fileMusicPathMessage) {
-        this.fileMusicPathMessage = fileMusicPathMessage;
     }
 
     public int getWidth() {
@@ -285,8 +239,5 @@ public abstract class LevelWindow implements KeyListener {
         return endGame;
     }
 
-    public void setEndGame(JLabel endGame) {
-        this.endGame = endGame;
-    }
 }
 

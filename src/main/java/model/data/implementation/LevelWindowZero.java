@@ -59,7 +59,7 @@ public class LevelWindowZero extends LevelWindow {
     }
 
     @Override
-    public void SetFightPosition(int posX, int posY, Person trainer, String comment1,String comment2,int numOfVictory,int numMin) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    public void SetFightPosition(int posX, int posY, Person trainer, String comment1,String comment2) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
            int pos_neg[] = {320,325,330,335,340,345,350,355};
            for(int i=0;i<pos_neg.length;i++){
                if(getPosition_x() == pos_neg[i] && getPosition_y() == 345 && mineTrainer.getPetList().size()==0){
@@ -77,6 +77,11 @@ public class LevelWindowZero extends LevelWindow {
     }
 
     @Override
+    public void SetTalkingPosition(int posX, int posY, String comment) {
+
+    }
+
+    @Override
     public void keyTyped(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             //DO NOTHING
@@ -85,7 +90,7 @@ public class LevelWindowZero extends LevelWindow {
     @Override
     public void keyPressed(KeyEvent e) {
         try {
-            SetFightPosition(0,0,null,null,null,0,0);
+            SetFightPosition(0,0,null,null,null);
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
             throw new RuntimeException(ex);
         }

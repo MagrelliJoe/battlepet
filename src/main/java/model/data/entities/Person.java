@@ -8,6 +8,7 @@ public class Person {
     private int victory;
     private Levels levels;
     private String filePathImage;
+    private int numberOfLosses = 0;
 
     public Person(String filePathImage,String name,Levels levels) {
         this.name = name;
@@ -105,9 +106,9 @@ public class Person {
                     }
                     break;
                 case DOG:
-                    pet.getAttackSet().add(Attack.gelodenti);
-                    pet.getAttackSet().add(Attack.morso);
-                    pet.getAttackSet().add(Attack.colpoCoda);
+                    pet.getAttackSet().add(new Attack(Attack.gelodenti));
+                    pet.getAttackSet().add(new Attack(Attack.morso));
+                    pet.getAttackSet().add(new Attack(Attack.colpoCoda));
                     pet.getAttackSet().add(new Attack(Attack.gridoDiLottaDog));
 
                     switch (pet.getLevels()) {
@@ -201,6 +202,14 @@ public class Person {
     public void setVictory(int victory) {
 
         this.victory += victory;
+    }
+
+    public int getNumberOfLosses() {
+        return numberOfLosses;
+    }
+
+    public void setNumberOfLosses(int numberOfLosses) {
+        this.numberOfLosses += numberOfLosses;
     }
 
     public Levels getLevels() {

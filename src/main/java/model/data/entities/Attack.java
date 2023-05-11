@@ -47,7 +47,7 @@ public class Attack {
     }
 
     public void setNumOfAvailabilityRestore(int numOfAvailability){
-        this.numOfAvailability += numOfAvailability;
+        this.numOfAvailability = numOfAvailability;
     }
 
     public String getName() {

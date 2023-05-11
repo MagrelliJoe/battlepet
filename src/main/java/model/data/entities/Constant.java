@@ -14,6 +14,7 @@ public class Constant {
 
 
     //ALLENATORI
+    public final static String prof = "images/Trainer/prof.ssa.jpg";
     public final static String allenatoreMy = "images/Trainer/personaggioG.jpg";
     public final static String allenatoreMyLotta1 = "images/MyTrainer/pg_lotta1.jpg";
     public final static String allenatoreMyLotta2= "images/MyTrainer/pg_lotta2.jpg";

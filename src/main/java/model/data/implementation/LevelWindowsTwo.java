@@ -10,17 +10,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
+import java.util.Random;
 
 public class LevelWindowsTwo extends LevelWindow {
 
    private Person mineTrainer;
    private String sex;
-   private JLabel trainer0,trainer1,trainer2,trainer3,trainer4;
-    private static  Person trn0 = new Person(Constant.allenatore1Lotta,"Joseph", Levels.BASE);
-    private static Person trn1 = new Person(Constant.allenatore4Lotta,"Saro",Levels.BASE);
-    private static Person trn2 = new Person(Constant.allenatore5Lotta,"Greta",Levels.START);
+   private JLabel trainer0,trainer1,trainer2,trainer3,trainer4,prof;
+    private static  Person trn0 = new Person(Constant.allenatore1Lotta,"Giuseppe", Levels.BASE);
+    private static Person trn1 = new Person(Constant.allenatore4Lotta,"Alessandro",Levels.BASE);
+    private static Person trn2 = new Person(Constant.allenatore5Lotta,"Anna",Levels.START);
     private static Person trn3 = new Person(Constant.allenatore6Lotta,"Gina",Levels.START);
-    private static Person trn4 = new Person(Constant.allenatore7Lotta,"Giuseppe",Levels.START);
+    private static Person trn4 = new Person(Constant.allenatore7Lotta,"Gaetano",Levels.START);
 
 
     public LevelWindowsTwo(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int width, int eight,String sex,Person mineTrainer) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
@@ -43,15 +44,16 @@ public class LevelWindowsTwo extends LevelWindow {
 
         addPetAtTeam(trn0,new Pet(ConstantPet.axel));
         addPetAtTeam(trn0,new Pet(ConstantPet.tex));
+        addPetAtTeam(trn0,new Pet(ConstantPet.woody));
         addPetAtTeam(trn1,new Pet(ConstantPet.tex));
+        addPetAtTeam(trn1,new Pet(ConstantPet.vito));
         addPetAtTeam(trn2,new Pet(ConstantPet.vito));
         addPetAtTeam(trn2,new Pet(ConstantPet.iron));
-        addPetAtTeam(trn2,new Pet(ConstantPet.pepita));
         addPetAtTeam(trn3,new Pet(ConstantPet.pepita));
-        addPetAtTeam(trn3,new Pet(ConstantPet.axel));
-        addPetAtTeam(trn4,new Pet(ConstantPet.iron));
+        addPetAtTeam(trn3,new Pet(ConstantPet.iron));
+        addPetAtTeam(trn4,new Pet(ConstantPet.vito));
         addPetAtTeam(trn4,new Pet(ConstantPet.pepita));
-        addPetAtTeam(trn4,new Pet(ConstantPet.iron));
+        addPetAtTeam(trn4,new Pet(ConstantPet.woody));
 
         trainer0 = new JLabel(new ImageIcon(Constant.allenatore1));
         trainer0.setSize(40,57);
@@ -73,12 +75,18 @@ public class LevelWindowsTwo extends LevelWindow {
         trainer4.setSize(40,57);
         trainer4.setLocation(430,490);
 
+        prof = new JLabel(new ImageIcon(Constant.prof));
+        prof.setSize(40,57);
+        prof.setLocation(400,175);
+
+        frame.add(prof);
         frame.add(trainer0);
         frame.add(trainer1);
         frame.add(trainer2);
         frame.add(trainer3);
         frame.add(trainer4);
         frame.add(sfondo);
+
     }
     @Override
     public void keyTyped(KeyEvent e) {
@@ -89,17 +97,37 @@ public class LevelWindowsTwo extends LevelWindow {
     @Override
     public void keyPressed(KeyEvent e) {
         try {
-            SetFightPosition(580,185,trn2,"Sono qui per battere il Leader,tu?","Se incroci lo sguardo di un altro trainer,parte la lotta!",9,5);
-            SetFightPosition(565,85,trn1,"Lo sai che puoi sfidare un altro trainer più di una volta?Almeno finchè non si stanca!","Devo far riposare i miei Pet,scusami.",7,4);
-            SetFightPosition(750,315,trn0,"Ci siamo già incontrati nella first road!Ora ho allenato i miei Pet,vedrai!","No,vabbè.Lasciami in pace,devo meditare su come diventare forte.",5,3);
-            SetFightPosition(875,550,trn3,"Sono un talento naturale nelle lotte!Sei ancora in tempo per tornare suu tuoi passi.","Il talento qua è solo il tuo,mi sà!",11,6);
-            SetFightPosition(430,530,trn4,"Eccomi,sono il Leader di Woofy City!I miei Pet di tipo Dog faranno a pezzi i tupi.Preparati alla sconfitta!!!","Prosegui verso la Second Road,te lo meriti!.",12,7);
+            SetTalkinWithProf(405,210);
+
+            SetTalkingPosition(840,110,"Marco:" + "\n" +
+                    "Vincendo potrai salire di livello ed i tuoi Pet impareranno cosi' attacchi sempre" + "\n" +
+                    " più potenti!Inoltre le loro caratteristiche(vita,potenza,difesa,velocità)miglioreranno!");
+
+            SetTalkingPosition(530,280,"Franco:" + "\n" +
+                    "Ehilà!Lo sai che puoi vedere la tua squadra premendo la barra spaziatrice,vero?" + "\n" +
+                    "Puoi anche vedere quali Leader hai battuto e quali ti mancano ancora premendo invece il tasto 'L'!");
+
+            SetTalkingPosition(305,465,"Giulia:" + "\n" +
+                    "Io non sono un'allenatrice!Ho provato ma non sono affatto brava nelle lotte!" + "\n" +
+                    "Però posso darti un consiglio!Sai come salvare i tuoi progressi?" + "\n" +
+                    "Semplice!Basta premere il tasto 'S'!!");
+
+            SetFightPosition(580,185,trn2,"Sono qui per battere il Leader,tu?","Se incroci lo sguardo di un altro trainer,parte la lotta!");
+            SetFightPosition(565,85,trn1,"Lo sai che puoi sfidare un altro trainer più di una volta?Almeno finchè non si stanca!","Devo far riposare i miei Pet,scusami.");
+            SetFightPosition(750,315,trn0,"Ci siamo già incontrati nella First Road!Ora ho allenato i miei Pet,vedrai!","No,vabbè.Lasciami in pace,devo meditare su come diventare forte.");
+            SetFightPosition(875,550,trn3,"Sono un talento naturale nelle lotte!Sei ancora in tempo per tornare sui tuoi passi.","Il talento qua è solo il tuo,mi sà!");
+            SetFightPosition(430,530,trn4,"Eccomi,sono il Leader di Woofy City!I miei Pet di tipo Dog faranno a pezzi i tupi.Preparati alla sconfitta!!!","Prosegui verso la Second Road,te lo meriti!." + "\n" +
+                    "Hai già parlato con la prof.ssa Alice!Avrà una sorpresa per te!La trovi nei pressi del vortice di cambio zona!");
             updateTeamShow(mineTrainer);
+            updateLeaderShow(mineTrainer);
+
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
             throw new RuntimeException(ex);
         }
         if(e.getKeyCode() == KeyEvent.VK_LEFT) {
             position_x -= 5;
+            System.out.println(getPosition_x());
+            System.out.println(getPosition_y());
             switch (getSex()) {
                 case "M":
                     if (position_x % 2 == 0) {
@@ -120,6 +148,8 @@ public class LevelWindowsTwo extends LevelWindow {
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             position_y -= 5;
+            System.out.println(getPosition_x());
+            System.out.println(getPosition_y());
             switch (getSex()) {
                 case "M":
                     if (position_y % 2 == 0) {
@@ -141,6 +171,8 @@ public class LevelWindowsTwo extends LevelWindow {
 
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             position_y += 5;
+            System.out.println(getPosition_x());
+            System.out.println(getPosition_y());
             switch (getSex()) {
                 case "M":
                     if (position_y % 2 == 0) {
@@ -162,6 +194,8 @@ public class LevelWindowsTwo extends LevelWindow {
 
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             position_x += 5;
+            System.out.println(getPosition_x());
+            System.out.println(getPosition_y());
             switch (getSex()) {
                 case "M":
                     if (position_x % 2 == 0) {
@@ -184,6 +218,11 @@ public class LevelWindowsTwo extends LevelWindow {
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             super.getTeamFrame().getFrame().setVisible(true);
         }
+
+        if (e.getKeyCode() == KeyEvent.VK_L) {
+            super.getLeader().getFrame().setVisible(true);
+        }
+
         if(endGame.isVisible() && position_x==120 && position_y==100){
             frame.dispose();
             music.stop();
@@ -200,15 +239,14 @@ public class LevelWindowsTwo extends LevelWindow {
 
     }
     @Override
-    public void SetFightPosition(int posX, int posY, Person trainer, String comment1, String comment2, int numMax,int numMIn) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    public void SetFightPosition(int posX, int posY, Person trainer, String comment1, String comment2) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
 
-        if(mineTrainer.getVictory() >= 10){
+        if(trainer.getName().equalsIgnoreCase("gaetano") && trainer.getNumberOfLosses()==2){
             getEndGame().setVisible(true);
             getEndGame().setLocation(400,20);
         }
 
-        if (getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && mineTrainer.getVictory() <= numMax
-                && mineTrainer.getVictory() >= numMIn) {
+        if (getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && trainer.getNumberOfLosses() < 2) {
             super.musicMessage.start();
             JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment1);
             battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta1));
@@ -244,17 +282,56 @@ public class LevelWindowsTwo extends LevelWindow {
                     //DO NOTHING
                 }
             });
-        }else if(getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && mineTrainer.getVictory() > numMax){
+        }else if(getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && trainer.getNumberOfLosses() >= 2){
             JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment2);
-        }else if(getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && mineTrainer.getVictory() < numMIn){
-            JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + "Non sei alla mia altezza,allenati e ritorna da me!");
         }
     }
+    private void SetTalkinWithProf(int posX,int posY){
 
-    public Person getMineTrainer() {
-        return mineTrainer;
+        if(getPosition_x() == posX && getPosition_y() == posY && mineTrainer.getVictory() >= 8
+                && mineTrainer.getPetList().size() == 1){
+            JOptionPane.showMessageDialog(null,"Complimenti!Hai raggiunto già tante vittorie.Tuttavia la strada si" +
+                    "farà sempre più ardua man mano che avanzerai!Ecco perchè sono qui!Ogni volta che raggiungerai un tot numero di vittorie vieni da me,ti consegnerò" +
+                    "personalmente un Pet che verrà aggiunto al tuo Team!Intanto eccoti il primo.Trattalo con cura e vedrai che ti sarà di grande aiuto!" +
+                    "See you!");
+            Random random = new Random();
+            int nRandom = random.nextInt(3);
+            if(getSex().equalsIgnoreCase("M")){
+                switch (nRandom){
+                    case 0:
+                        mineTrainer.addPet(1,new Pet(ConstantPet.mia));
+                        break;
+                    case 1:
+                        mineTrainer.addPet(1,new Pet(ConstantPet.pepita));
+                        break;
+                    case 2:
+                        mineTrainer.addPet(1,new Pet(ConstantPet.tom));
+                        break;
+                }
+            }
+            switch (nRandom){
+                case 0:
+                    mineTrainer.addPet(1,new Pet(ConstantPet.pulce));
+                    break;
+                case 1:
+                    mineTrainer.addPet(1,new Pet(ConstantPet.bianca));
+                    break;
+                case 2:
+                    mineTrainer.addPet(1,new Pet(ConstantPet.jerry));
+                    break;
+            }
+            JOptionPane.showMessageDialog(null, mineTrainer.getPetList().get(1).getName() + " è stato aggiunto al tuo Team!");
+        }
+
     }
+    @Override
+    public void SetTalkingPosition(int posX, int posY, String comment) {
 
+        if(getPosition_x() == posX && getPosition_y() == posY ){
+            JOptionPane.showMessageDialog(null,comment);
+        }
+
+    }
     public String getSex() {
         return sex;
     }

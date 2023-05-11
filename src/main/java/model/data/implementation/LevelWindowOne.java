@@ -13,9 +13,9 @@ public class LevelWindowOne extends LevelWindow{
     private String sex;
     private JLabel trainer1,trainer2,trainer3;
     private Person mineTrainer;
-    private static  Person trn0 = new Person(Constant.allenatore0Lotta,"Floriana", Levels.BASE);
-    private static Person trn1 = new Person(Constant.allenatore1Lotta,"Joseph",Levels.BASE);
-    private static Person trn2 = new Person(Constant.allenatore2Lotta,"Michael",Levels.BASE);
+    private static  Person trn0 = new Person(Constant.allenatore0Lotta,"Vali", Levels.BASE);
+    private static Person trn1 = new Person(Constant.allenatore1Lotta,"Giuseppe",Levels.BASE);
+    private static Person trn2 = new Person(Constant.allenatore2Lotta,"Giacomo",Levels.BASE);
 
     public LevelWindowOne(String filePathImage, String fileMusicPath, String fileMusicPathMessage,int width,int eight,String sex,Person mineTrainer)
             throws UnsupportedAudioFileException, IOException, LineUnavailableException {
@@ -68,10 +68,11 @@ public class LevelWindowOne extends LevelWindow{
     @Override
     public void keyPressed(KeyEvent e) {
         try {
-            SetFightPosition(845,105,trn0,"Anche io ho appena preso il mio primissimo Pet!Lottiamo!!!","Basta lottare!Sei troppo forte per i miei gusti!",1,0);
-            SetFightPosition(315,115,trn1,"Michael mi ha battuto per tre volte,perchè non riesco a batterlo?!?","Non batterò mai nemmeno te!Meglio fare un pò di teoria sulle lotte.",3,0);
-            SetFightPosition(185,30,trn2,"Qui sono il leader indiscusso.Ora è il tuo turno poi andrò verso WoofyCity per sfidare il TrainerLeader della città!!!","Wow!Non pensavo tu fossi cosi forte!Complimenti!",5,0);
+            SetFightPosition(845,105,trn0,"Anche io ho appena preso il mio primissimo Pet!Lottiamo!!!","Basta lottare!Sei troppo forte per i miei gusti!");
+            SetFightPosition(315,115,trn1,"Michael mi ha battuto per tre volte,perchè non riesco a batterlo?!?","Non batterò mai nemmeno te!Meglio fare un pò di teoria sulle lotte.");
+            SetFightPosition(185,30,trn2,"Qui sono il più forte.Ora è il tuo turno poi andrò verso WoofyCity per sfidare il Leader della città!!!","Wow!Non pensavo tu fossi cosi forte!Complimenti!");
             updateTeamShow(mineTrainer);
+            updateLeaderShow(mineTrainer);
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
             throw new RuntimeException(ex);
         }
@@ -144,7 +145,7 @@ public class LevelWindowOne extends LevelWindow{
                     if (position_x % 2 == 0) {
                         super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_left_2.jpg"));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_left_1.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_left_1.png"));
                     }
                     break;
                 case "F":
@@ -161,11 +162,16 @@ public class LevelWindowOne extends LevelWindow{
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             super.getTeamFrame().getFrame().setVisible(true);
         }
+
+        if (e.getKeyCode() == KeyEvent.VK_L) {
+            super.getLeader().getFrame().setVisible(true);
+        }
+
         if(endGame.isVisible() && position_x==120 && position_y==100){
             frame.dispose();
             music.stop();
             try {
-                LevelWindow levelWindow =  new LevelWindowsTwo(Constant.sfondoBronze,Constant.musica2,Constant.messaggio,1000,700,"M",mineTrainer);
+                LevelWindow levelWindow =  new LevelWindowsTwo(Constant.sfondoBronze,Constant.musica2,Constant.messaggio,1000,700,getSex(),mineTrainer);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                 throw new RuntimeException(ex);
             }
@@ -179,15 +185,15 @@ public class LevelWindowOne extends LevelWindow{
     }
 
     @Override
-    public void SetFightPosition(int posX, int posY,Person trainer,String comment1,String comment2,int numMax,int numMin)
+    public void SetFightPosition(int posX, int posY,Person trainer,String comment1,String comment2)
             throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
 
-           if(mineTrainer.getVictory() >= 3){
+           if(trainer.getName().equalsIgnoreCase("giacomo") && trainer.getNumberOfLosses() == 2){
                getEndGame().setVisible(true);
                getEndGame().setLocation(120,120);
            }
 
-           if (getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && mineTrainer.getVictory() <= numMax) {
+           if (getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && trainer.getNumberOfLosses() < 2) {
                super.musicMessage.start();
                JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment1);
                battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta1));
@@ -222,9 +228,14 @@ public class LevelWindowOne extends LevelWindow{
                        //DO NOTHING
                    }
                });
-           }else if(getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && mineTrainer.getVictory() > numMax){
+           }else if(getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && trainer.getNumberOfLosses() >= 2){
                JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment2);
            }
+    }
+
+    @Override
+    public void SetTalkingPosition(int posX, int posY, String comment) {
+
     }
 
     public String getSex() {

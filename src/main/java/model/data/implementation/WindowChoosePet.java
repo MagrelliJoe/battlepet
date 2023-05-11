@@ -29,21 +29,21 @@ public class WindowChoosePet extends LevelWindow implements ActionListener {
         frame.setTitle("CHOOSE YOUR PET!");
 
         pet1 = new JButton(new ImageIcon());
-        pet1.setBorder(BorderFactory.createMatteBorder(15,15,15,15, Color.black));
+        pet1.setBorder(BorderFactory.createMatteBorder(20,22,20,22, Color.black));
         pet1.setSize(100, 100);
         pet1.setLocation(50,50);
         pet1.addActionListener(this);
         pet1.setActionCommand("pet1");
 
         pet2 = new JButton(new ImageIcon());
-        pet2.setBorder(BorderFactory.createMatteBorder(15,15,15,15, Color.blue));
+        pet2.setBorder(BorderFactory.createMatteBorder(20,22,20,22, Color.blue));
         pet2.setSize(100, 100);
         pet2.setLocation(200,50);
         pet2.addActionListener(this);
         pet2.setActionCommand("pet2");
 
         pet3 = new JButton(new ImageIcon());
-        pet3.setBorder(BorderFactory.createMatteBorder(15,15,15,15, Color.red));
+        pet3.setBorder(BorderFactory.createMatteBorder(20,22,20,22, Color.red));
         pet3.setSize(100, 100);
         pet3.setLocation(350,50);
         pet3.addActionListener(this);
@@ -51,18 +51,27 @@ public class WindowChoosePet extends LevelWindow implements ActionListener {
 
         pet1Name = new JLabel();
         pet1Name.setBorder(BorderFactory.createMatteBorder(4,4,4,4, Color.black));
+        pet1Name.setBackground(Color.black);
+        pet1Name.setForeground(Color.white);
+        pet1Name.setOpaque(true);
         pet1Name.setSize(100, 30);
         pet1Name.setLocation(50,180);
         pet1Name.setFont(new Font("Serif", Font.BOLD, 18));
 
         pet2Name = new JLabel();
         pet2Name.setBorder(BorderFactory.createMatteBorder(4,4,4,4, Color.blue));
+        pet2Name.setBackground(Color.blue);
+        pet2Name.setForeground(Color.white);
+        pet2Name.setOpaque(true);
         pet2Name.setSize(100, 30);
         pet2Name.setLocation(200,180);
         pet2Name.setFont(new Font("Serif", Font.BOLD, 18));
 
         pet3Name = new JLabel();
         pet3Name.setBorder(BorderFactory.createMatteBorder(4,4,4,4, Color.red));
+        pet3Name.setBackground(Color.red);
+        pet3Name.setForeground(Color.white);
+        pet3Name.setOpaque(true);
         pet3Name.setSize(100, 30);
         pet3Name.setLocation(350,180);
         pet3Name.setFont(new Font("Serif", Font.BOLD, 18));
@@ -94,8 +103,13 @@ public class WindowChoosePet extends LevelWindow implements ActionListener {
     }
 
     @Override
-    public void SetFightPosition(int posX, int posY, Person trainer, String comment1,String comment2,int numOfVictory,int numMin) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    public void SetFightPosition(int posX, int posY, Person trainer, String comment1,String comment2) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
         //DO NOTHING
+    }
+
+    @Override
+    public void SetTalkingPosition(int posX, int posY, String comment) {
+
     }
 
     @Override

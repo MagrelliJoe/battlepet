@@ -53,6 +53,10 @@ public class Pet {
         return isDead;
     }
 
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
     public void setPower(int power) {
         this.power += power;
     }
