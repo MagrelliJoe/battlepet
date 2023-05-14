@@ -38,7 +38,46 @@ public class WindowLeader {
             frame.add(textAreas[i]);
             buttons[i].setLocation(10, 75 * i + 20);
             textAreas[i].setLocation(10 + 70, 75 * i + 20);
+
+            switch(i){
+                case 0:
+                    getTextAreas()[i].setText("Name -> Gaetano" + "\n" +
+                            "Leader dei Pet di tipo DOG." + "\n" +
+                            "Location -> Woofy City." + "\n" +
+                            "Favorite Pet -> Woody.");
+                    getButtons()[i].setIcon(new ImageIcon(Constant.allenatore7Lotta));
+                    break;
+                case 1:
+                    getTextAreas()[i].setText("Name -> Renato" + "\n" +
+                            "Leader dei Pet di tipo CAT." + "\n" +
+                            "Location-> MeowMeow City." + "\n" +
+                            "Favorite Pet-> MewCat.");
+                    getButtons()[i].setIcon(new ImageIcon("images/Trainer/renatoC.jpg"));
+                    break;
+                case 2:
+                    getTextAreas()[i].setText("Name -> Joe" + "\n" +
+                            "Leader dei Pet di tipo RABBIT." + "\n" +
+                            "Location-> Hairy City." + "\n" +
+                            "Favorite Pet-> Pulce.");
+                    getButtons()[i].setIcon(new ImageIcon("images/Trainer/joeC.jpg"));
+                    break;
+                case 3:
+                    getTextAreas()[i].setText("Name -> Ginevra" + "\n" +
+                            "Leader dei Pet di tipo BIRD." + "\n" +
+                            "Location-> Fly City." + "\n" +
+                            "Favorite Pet-> PettyRed.");
+                    getButtons()[i].setIcon(new ImageIcon("images/Trainer/ginevraC.jpg"));
+                    break;
+                case 4:
+                    getTextAreas()[i].setText("Name -> Sonia" + "\n" +
+                            "Leader dei Pet di tipo TURTLE." + "\n" +
+                            "Location-> Green City." + "\n" +
+                            "Favorite Pet-> Rughetta.");
+                    getButtons()[i].setIcon(new ImageIcon("images/Trainer/soniaC.jpg"));
+                    break;
+            }
         }
+
         frame.add(sfondo);
     }
 

@@ -72,7 +72,6 @@ public class LevelWindowOne extends LevelWindow{
             SetFightPosition(315,115,trn1,"Michael mi ha battuto per tre volte,perchè non riesco a batterlo?!?","Non batterò mai nemmeno te!Meglio fare un pò di teoria sulle lotte.");
             SetFightPosition(185,30,trn2,"Qui sono il più forte.Ora è il tuo turno poi andrò verso WoofyCity per sfidare il Leader della città!!!","Wow!Non pensavo tu fossi cosi forte!Complimenti!");
             updateTeamShow(mineTrainer);
-            updateLeaderShow(mineTrainer);
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
             throw new RuntimeException(ex);
         }
@@ -188,7 +187,7 @@ public class LevelWindowOne extends LevelWindow{
     public void SetFightPosition(int posX, int posY,Person trainer,String comment1,String comment2)
             throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
 
-           if(trainer.getName().equalsIgnoreCase("giacomo") && trainer.getNumberOfLosses() == 2){
+           if(trainer.getName().equalsIgnoreCase("giacomo") && trainer.getNumberOfLosses() == 1){
                getEndGame().setVisible(true);
                getEndGame().setLocation(120,120);
            }
@@ -196,7 +195,7 @@ public class LevelWindowOne extends LevelWindow{
            if (getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && trainer.getNumberOfLosses() < 2) {
                super.musicMessage.start();
                JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment1);
-               battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta1));
+               battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta2));
                updateTeamShow(trainer);
 
                battle.getBattle().getFrame().addWindowListener(new WindowListener() {

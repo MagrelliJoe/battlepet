@@ -7,8 +7,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class GifFrame {
-    private static final int width = 185;
-    private static final int eight = 185;
+    private static final int width = 180;
+    private static final int eight = 180;
     private JFrame frame;
     private ImageIcon icon;
     private JLabel sfondo = new JLabel(icon);
@@ -20,12 +20,12 @@ public class GifFrame {
     public GifFrame() {
         Dimension dimension = new Dimension(width, eight);
         this.frame = new JFrame();
-        frame.setSize(width, eight);
+        frame.setSize(dimension);
         frame.setLocationRelativeTo(null);
         frame.setUndecorated(true);
         frame.setResizable(false);
         frame.setVisible(false);
-        frame.setLocation(550,175);
+        frame.setLocation(580,185);
         frame.add(sfondo);
     }
 
@@ -35,7 +35,7 @@ public class GifFrame {
         this.audioInputStreamMusic = AudioSystem.getAudioInputStream(this.audioMusic);
         this.music = AudioSystem.getClip();
         this.music.open(this.audioInputStreamMusic);
-        this.music.loop(1);
+        this.music.start();
     }
 
     public JFrame getFrame() {

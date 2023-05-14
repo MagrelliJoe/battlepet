@@ -5,8 +5,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 public class ServiceForBattle implements ActionListener {
@@ -17,10 +18,9 @@ public class ServiceForBattle implements ActionListener {
     private int numberOfChoose;
     private int[] attackAvaiabiltyCopy = new int[4];
     private int[] attackAvaiabilityCopyEnemy = new int[4];
-    private List<Attack> listCopy = new ArrayList<>();
-    private List<Attack> listCopyEnemy = new ArrayList<>();
 
     public ServiceForBattle(Person trainer1, Person trainer2, BattleWindow battleWindow) {
+
         this.battle = new BattleJFrame(battleWindow);
         this.random = new Random();
         this.trainer1 = trainer1;
@@ -35,17 +35,20 @@ public class ServiceForBattle implements ActionListener {
         battle.getBattle().getEnemyTrainer().setIcon(new ImageIcon(trainer2.getFilePathImage()));
         battle.getBattle().getMyTrainer().setIcon(new ImageIcon("images/logoBattlePet.png"));
         reloadMnemonic();
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if ("option4".equals(e.getActionCommand())) {
+
             if (battle.getBattle().getOpzioni()[4].getText().
                     equalsIgnoreCase("START FIGHT")) {
+
                 pet = trainer1.getPetList().get(battle.getBattle().getNextPet());
                 copyArrayBefore(pet.getAttackSet(), "my");
-                show2(pet,"my");
+                show(pet);
 
                 switch (trainer1.getName()) {
                     case "David":
@@ -57,7 +60,6 @@ public class ServiceForBattle implements ActionListener {
                 }
                 pet_ = trainer2.getPetList().get(battle.getBattle().getNextPetEnemy());
                 copyArrayBefore(pet_.getAttackSet(), "enemy");
-                show2(pet_,"enemy");
                 battle.setLifeForFrame(pet, "My");
                 battle.getBattle().getOpzioni()[0].setEnabled(true);
                 battle.getBattle().getOpzioni()[1].setEnabled(true);
@@ -74,9 +76,12 @@ public class ServiceForBattle implements ActionListener {
                 pet.getAttackSet().remove(4);
                 battle.getBattle().getFrame().dispose();
                 battle.getBattle().getMusic().stop();
+                JOptionPane.showMessageDialog(null, trainer2.getName() + ":" + "\n" +
+                        ConstantMessageShow.getMessaggioCasuale().toString());
 
-            } else if (battle.getBattle().getOpzioni()[4].getText().
+            }else if (battle.getBattle().getOpzioni()[4].getText().
                     equalsIgnoreCase("YOUR TURN")) {
+
                 try {
                     switch (trainer1.getName()) {
                         case "David":
@@ -93,6 +98,7 @@ public class ServiceForBattle implements ActionListener {
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
                     throw new RuntimeException(ex);
                 }
+
                 battle.setLifeForFrame(pet_, "Enemy");
                 battle.getBattle().getOpzioni()[0].setEnabled(true);
                 battle.getBattle().getOpzioni()[1].setEnabled(true);
@@ -115,7 +121,6 @@ public class ServiceForBattle implements ActionListener {
                             break;
                     }
                     battle.turnEnemy(pet_, pet);
-                    show(pet_);
                     battle.setLifeForFrame(pet, "My");
                     battle.getBattle().getOpzioni()[4].setEnabled(false);
                     battle.getBattle().getOpzioni()[0].setEnabled(true);
@@ -131,6 +136,7 @@ public class ServiceForBattle implements ActionListener {
                 }
             }
         } else if ("option0".equals(e.getActionCommand())) {
+
             if (battle.getBattle().getOpzioni()[4].getText().
                     equalsIgnoreCase("NO")) {
 
@@ -138,19 +144,19 @@ public class ServiceForBattle implements ActionListener {
                 JOptionPane.showMessageDialog(null, "IL TUO PET HA IMPARATO IL NUOVO ATTACCO");
                 battle.getBattle().getFrame().dispose();
                 battle.getBattle().getMusic().stop();
+                showMessage();
 
-            } else {
+            }else {
                 try {
                     if (!battle.numOfAvailabilityIsFinish(pet.getAttackSet().get(0))) {
                         attackForBattle(pet, pet_, 0);
                     } else {
-                        JOptionPane.showInternalConfirmDialog(null, "Non puoi più usare questa mossa!!!");
+                        JOptionPane.showMessageDialog(null, "NON PUOI PIù USARE QUESTA MOSTA,IL TUO PET USA UN ALTRO ATTACCO!");
                         attackForBattle(pet, pet_, 1);
                     }
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                show(pet);
                 if (pet.isDead() || pet_.isDead()) {
                     nextPet(pet, pet_);
                 }
@@ -164,6 +170,7 @@ public class ServiceForBattle implements ActionListener {
                 JOptionPane.showMessageDialog(null, "IL TUO PET HA IMPARATO IL NUOVO ATTACCO");
                 battle.getBattle().getFrame().dispose();
                 battle.getBattle().getMusic().stop();
+                showMessage();
 
             } else {
 
@@ -171,13 +178,12 @@ public class ServiceForBattle implements ActionListener {
                     if (!battle.numOfAvailabilityIsFinish(pet.getAttackSet().get(1))) {
                         attackForBattle(pet, pet_, 1);
                     } else {
-                        JOptionPane.showInternalConfirmDialog(null, "Non puoi più usare questa mossa!!!");
+                        JOptionPane.showMessageDialog(null, "NON PUOI PIù USARE QUESTA MOSTA,IL TUO PET USA UN ALTRO ATTACCO!");
                         attackForBattle(pet, pet_, 2);
                     }
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                show(pet);
                 if (pet.isDead() || pet_.isDead()) {
                     nextPet(pet, pet_);
                 }
@@ -191,18 +197,18 @@ public class ServiceForBattle implements ActionListener {
                 JOptionPane.showMessageDialog(null, "IL TUO PET HA IMPARATO IL NUOVO ATTACCO");
                 battle.getBattle().getFrame().dispose();
                 battle.getBattle().getMusic().stop();
+                showMessage();
 
             } else {
                 try {
                     if (!battle.numOfAvailabilityIsFinish(pet.getAttackSet().get(2))) {
                         attackForBattle(pet, pet_, 2);
                     } else {
-                        JOptionPane.showInternalConfirmDialog(null, "Non puoi più usare questa mossa!!!");
+                        JOptionPane.showMessageDialog(null, "NON PUOI PIù USARE QUESTA MOSTA,IL TUO PET USA UN ALTRO ATTACCO!");
                     }
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                show(pet);
                 if (pet.isDead() || pet_.isDead()) {
                     nextPet(pet, pet_);
                 }
@@ -216,19 +222,19 @@ public class ServiceForBattle implements ActionListener {
                 JOptionPane.showMessageDialog(null, "IL TUO PET HA IMPARATO IL NUOVO ATTACCO");
                 battle.getBattle().getFrame().dispose();
                 battle.getBattle().getMusic().stop();
+                showMessage();
 
             } else {
                 try {
                     if (!battle.numOfAvailabilityIsFinish(pet.getAttackSet().get(3))) {
                         attackForBattle(pet, pet_, 3);
                     } else {
-                        JOptionPane.showInternalConfirmDialog(null, "Non puoi più usare questa mossa!!!");
+                        JOptionPane.showMessageDialog(null, "NON PUOI PIù USARE QUESTA MOSTA,IL TUO PET USA UN ALTRO ATTACCO!");
                         attackForBattle(pet, pet_, 0);
                     }
                 } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                show(pet);
                 if (pet.isDead() || pet_.isDead()) {
                     nextPet(pet, pet_);
                 }
@@ -341,10 +347,64 @@ public class ServiceForBattle implements ActionListener {
             battle.getBattle().getOpzioni()[1].setEnabled(false);
             battle.getBattle().getOpzioni()[2].setEnabled(false);
             battle.getBattle().getOpzioni()[3].setEnabled(false);
-            battle.getBattle().getOpzioni()[4].setEnabled(true);
             reloadMnemonic();
             battle.getBattle().getOpzioni()[4].setText("TURN ENEMY");
-        } else {
+            battle.getBattle().getGifFrame().getFrame().addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                    //DO NOTHING
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    //DO NOTHING
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    //DO NOTHING
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                    //DO NOTHING
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                    //DO NOTHING
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                    if(battle.getBattle().getOpzioni()[4].isSelected()) {
+                        battle.getBattle().getOpzioni()[0].setEnabled(false);
+                        battle.getBattle().getOpzioni()[1].setEnabled(false);
+                        battle.getBattle().getOpzioni()[2].setEnabled(false);
+                        battle.getBattle().getOpzioni()[3].setEnabled(false);
+                    }
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                    if(battle.getBattle().getOpzioni()[4].isSelected()){
+                        battle.getBattle().getOpzioni()[4].setEnabled(false);
+                        battle.getBattle().getOpzioni()[0].setEnabled(true);
+                        battle.getBattle().getOpzioni()[1].setEnabled(true);
+                        battle.getBattle().getOpzioni()[2].setEnabled(true);
+                        battle.getBattle().getOpzioni()[3].setEnabled(true);
+
+                    }else {
+                        battle.getBattle().getOpzioni()[4].setEnabled(true);
+
+
+
+                    }
+
+                }
+            });
+
+        }else {
 
             switch (trainer1.getName().toLowerCase()) {
                 case "alycia":
@@ -355,7 +415,6 @@ public class ServiceForBattle implements ActionListener {
                     break;
             }
             battle.turnEnemy(pet_,pet);
-            show(pet_);
             battle.setLifeForFrame(pet, "My");
             battle.getBattle().getOpzioni()[0].setEnabled(false);
             battle.getBattle().getOpzioni()[1].setEnabled(false);
@@ -392,10 +451,9 @@ public class ServiceForBattle implements ActionListener {
                 pet_.removeDefense(battle.getDefeseUpEnemy());
                 copyArrayAfter(attackAvaiabiltyCopy, "my");
                 copyArrayAfter(attackAvaiabilityCopyEnemy, "enemy");
-                show(pet);
-                show(pet_);
                 battle.getBattle().getFrame().dispose();
                 battle.getBattle().getMusic().stop();
+                showMessage();
 
             }else {
 
@@ -403,12 +461,14 @@ public class ServiceForBattle implements ActionListener {
                 pet.removePower(battle.getPowerUp());
                 pet.removeDefense(battle.getDefeseUp());
                 copyArrayAfter(attackAvaiabiltyCopy, "my");
+                System.out.println(pet.getName() +"life" + pet.getLife() +"power" + pet.getPower()
+                +"defense" + pet.getDefense());
                 show(pet);
-
                 battle.setPowerUp(0);
                 battle.setLifeRemoved(0);
                 battle.setDefeseUp(0);
                 pet = trainer1.getPetList().get(battle.getBattle().getNextPet());
+                copyArrayBefore(pet.getAttackSet(), "my");
                 setAttacktoChoose(pet);
                 JOptionPane.showMessageDialog(null, "IL TUO PET è STATO SCONFITTO!");
                 JOptionPane.showMessageDialog(null, "MANDI IN CAMPO UN'ALTRO PET!");
@@ -444,8 +504,6 @@ public class ServiceForBattle implements ActionListener {
                 pet_.removeDefense(battle.getDefeseUpEnemy());
                 copyArrayAfter(attackAvaiabiltyCopy, "my");
                 copyArrayAfter(attackAvaiabilityCopyEnemy, "enemy");
-                show(pet);
-                show(pet_);
                 Levels actuallyLevel = pet.getLevels();
                 trainer1.setVictory(1);
                 trainer1.setLevels();
@@ -465,6 +523,8 @@ public class ServiceForBattle implements ActionListener {
 
                     battle.getBattle().getFrame().dispose();
                     battle.getBattle().getMusic().stop();
+                    showMessage();
+
                 }
             }else{
 
@@ -472,7 +532,6 @@ public class ServiceForBattle implements ActionListener {
                 pet_.removePower(battle.getPowerUpEnemy());
                 pet_.removeDefense(battle.getDefeseUpEnemy());
                 copyArrayAfter(attackAvaiabilityCopyEnemy, "enemy");
-                show(pet_);
                 battle.setLifeRemovedEnemy(0);
                 battle.setPowerUpEnemy(0);
                 battle.setDefeseUpEnemy(0);
@@ -543,6 +602,7 @@ public class ServiceForBattle implements ActionListener {
 
     private void reloadMnemonic(){
         for(int i = 0; i < battle.getBattle().getOpzioni().length-1;i++){
+
             battle.getBattle().getOpzioni()[i].setToolTipText("DESCRIPTION-->"+trainer1.getPetList().get(getBattle().getNextPet()).getAttackSet().get(i).getDescription() +
                     "--DAMAGE-->"+trainer1.getPetList().get(getBattle().getNextPet()).getAttackSet().get(i).getDamage() +
                     "--SHELTER-->"+trainer1.getPetList().get(getBattle().getNextPet()).getAttackSet().get(i).getShelter() +

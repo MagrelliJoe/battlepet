@@ -73,7 +73,7 @@ public class BattleJFrame implements Battle {
                         setGifFrame("images/Gif/beccata.gif", "images/AudioAttack/beccata.wav");
                         break;
                     case "volo":
-                        setGifFrame("images/Gif/volo.gif", "images/AudioAttack/volo.wav");
+                        setGifFrame("images/Gif/volo.gif", "images/AudioAttack/beccata.wav");
                         break;
                     case "alaprotettrice":
                         setGifFrame("images/Gif/alaprotettrice.gif", "images/AudioAttack/alaprotettrice.wav");
@@ -85,7 +85,7 @@ public class BattleJFrame implements Battle {
                         setGifFrame("images/Gif/raffica.gif", "images/AudioAttack/raffica.wav");
                         break;
                     case "alataprotettrice":
-                        setGifFrame("images/Gif/alataprotettrice.gif", "images/AudioAttack/alataprotettrice.wav");
+                        setGifFrame("images/Gif/alataprotettrice.gif", "images/AudioAttack/alaprotettrice.wav");
                         break;
                     case "perforbecco":
                         setGifFrame("images/Gif/perforbecco.gif", "images/AudioAttack/perforbecco.wav");
@@ -94,10 +94,10 @@ public class BattleJFrame implements Battle {
                         setGifFrame("images/Gif/doppiaalata.gif", "images/AudioAttack/doppiaalata.wav");
                         break;
                     case "grido di lotta":
-                        setGifFrame("images/Gif/gridodilotta.gif", "images/AudioAttack/perforbecco.wav");
+                        setGifFrame("images/Gif/raffica.gif", "images/AudioAttack/perforbecco.wav");
                         break;
-                    case "Nessuna Pietà":
-                        setGifFrame("images/Gif/nomerci.gif", "images/AudioAttack/doppiaalata.wav");
+                    case "nessunapietà":
+                        setGifFrame("images/Gif/alata.gif", "images/AudioAttack/doppiaalata.wav");
                         break;
                 }
                 break;
@@ -109,29 +109,29 @@ public class BattleJFrame implements Battle {
                     case "colpocoda":
                         setGifFrame("images/Gif/colpocoda.gif", "images/AudioAttack/colpocoda.wav");
                         break;
-                    case "gelodenti":
-                        setGifFrame("images/Gif/gelodenti.gif", "images/AudioAttack/gelodenti.wav");
+                    case "morsoaffamato":
+                        setGifFrame("images/Gif/gelodenti.gif", "images/AudioAttack/morso.wav");
                         break;
                     case "supermorso":
                         setGifFrame("images/Gif/supermorso.gif", "images/AudioAttack/supermorso.wav");
                         break;
                     case "ipermorso":
-                        setGifFrame("images/Gif/ipermorso.gif", "images/AudioAttack/ipermorso.wav");
+                        setGifFrame("images/Gif/ipermorso.gif", "images/AudioAttack/supermorso.wav");
                         break;
-                    case "elettrodenti":
+                    case "slanciofurente":
                         setGifFrame("images/Gif/elettrodenti.gif", "images/AudioAttack/elettrodenti.wav");
                         break;
                     case "colpo coda vigoroso":
-                        setGifFrame("images/Gif/colpocodavigoroso.gif", "images/AudioAttack/colpocodavigoroso.wav");
+                        setGifFrame("images/Gif/colpocodavigoroso.gif", "images/AudioAttack/colpocoda.wav");
                         break;
-                    case "elettrogelodenti":
-                        setGifFrame("images/Gif/elettrogelodenti.gif", "images/AudioAttack/elettrogelodenti.wav");
+                    case "artigliaffilati":
+                        setGifFrame("images/Gif/elettrogelodenti.gif", "images/AudioAttack/elettrodenti.wav");
                         break;
                     case "grido di lotta":
-                        setGifFrame("images/Gif/gridodilotta.gif", "images/AudioAttack/colpocodavigoroso.wav");
+                        setGifFrame("images/Gif/gridodilottadog.gif", "images/AudioAttack/colpocoda.wav");
                         break;
-                    case "Nessuna Pietà":
-                        setGifFrame("images/Gif/nomerci.gif", "images/AudioAttack/ipermorso.wav");
+                    case "nessunapietà":
+                        setGifFrame("images/Gif/nomercidog.gif", "images/AudioAttack/morso.wav");
                         break;
                 }
                 break;
@@ -140,39 +140,39 @@ public class BattleJFrame implements Battle {
                     case "graffio":
                         setGifFrame("images/Gif/graffio.gif", "images/AudioAttack/graffio.wav");
                         break;
-                    case "arruffarsi":
+                    case "mantoprotettivo":
                         setGifFrame("images/Gif/arruffarsi.gif", "images/AudioAttack/arruffarsi.wav");
                         break;
                     case "sfuriate":
-                        setGifFrame("images/Gif/sfuriate.gif", "images/AudioAttack/sfuriate.wav");
+                        setGifFrame("images/Gif/sfuriate.gif", "images/AudioAttack/graffio.wav");
                         break;
                     case "zampata":
-                        setGifFrame("images/Gif/zampata.gif", "images/AudioAttack/zampata.wav");
+                        setGifFrame("images/Gif/zampata.gif", "images/AudioAttack/arruffarsi.wav");
                         break;
                     case "lacerazione":
                         setGifFrame("images/Gif/lacerazione.gif", "images/AudioAttack/lacerazione.wav");
                         break;
-                    case "arruffarsigraffiando":
-                        setGifFrame("images/Gif/arruffarsigraffiando.gif", "images/AudioAttack/arruffarsigraffiando.wav");
+                    case "artiglioguardiano":
+                        setGifFrame("images/Gif/arruffarsigraffiando.gif", "images/AudioAttack/lacerazione.wav");
                         break;
                     case "palla di pelo":
                         setGifFrame("images/Gif/palladipelo.gif", "images/AudioAttack/palladipelo.wav");
                         break;
-                    case "rogodenti":
+                    case "graffiofelino":
                         setGifFrame("images/Gif/rogodenti.gif", "images/AudioAttack/rogodenti.wav");
                         break;
                     case "grido di lotta":
-                        setGifFrame("images/Gif/gridodilotta.gif", "images/AudioAttack/lacerazione.wav");
+                        setGifFrame("images/Gif/sfuriate.gif", "images/AudioAttack/lacerazione.wav");
                         break;
-                    case "Nessuna Pietà":
-                        setGifFrame("images/Gif/nomerci.gif", "images/AudioAttack/zampata.wav");
+                    case "nessunapietà":
+                        setGifFrame("images/Gif/zampata.gif", "images/AudioAttack/graffio.wav");
                         break;
                 }
                 break;
             case RABBIT:
                 switch (name.toLowerCase()) {
                     case "rosicchiamento":
-                        setGifFrame("images/Gif/rosicchiamento.gif", "images/AudioAttack/rosicchiamento.wav");
+                        setGifFrame("images/Gif/rosicchiamento.gif", "images/AudioAttack/morso.wav");
                         break;
                     case "posizione di difesa":
                         setGifFrame("images/Gif/posizionedidifesa.gif", "images/AudioAttack/posizionedidifesa.wav");
@@ -180,26 +180,26 @@ public class BattleJFrame implements Battle {
                     case "fossa":
                         setGifFrame("images/Gif/fossa.gif", "images/AudioAttack/fossa.wav");
                         break;
-                    case "doppio graffio":
-                        setGifFrame("images/Gif/doppiograffio.gif", "images/AudioAttack/doppiograffio.wav");
+                    case "doppiograffio":
+                        setGifFrame("images/Gif/doppiograffio.gif", "images/AudioAttack/graffio.wav");
                         break;
                     case "sgranocchio":
-                        setGifFrame("images/Gif/sgranocchio.gif", "images/AudioAttack/sgranocchio.wav");
+                        setGifFrame("images/Gif/sgranocchio.gif", "images/AudioAttack/ipersgranocchio.wav");
                         break;
-                    case "corsa spietata":
-                        setGifFrame("images/Gif/corsaspietata.gif", "images/AudioAttack/corsaspietata.wav");
+                    case "corsaspietata":
+                        setGifFrame("images/Gif/corsaspietata.gif", "images/AudioAttack/posizionedidifesa.wav");
                         break;
-                    case "triplo graffio":
-                        setGifFrame("images/Gif/triplograffio.gif", "images/AudioAttack/triplograffio.wav");
+                    case "carotaesplosiva":
+                        setGifFrame("images/Gif/triplograffio.gif", "images/AudioAttack/graffio.wav");
                         break;
-                    case "ipersgranocchio":
+                    case "morsosaltellante":
                         setGifFrame("images/Gif/ipersgranocchio.gif", "images/AudioAttack/ipersgranocchio.wav");
                         break;
                     case "grido di lotta":
-                        setGifFrame("images/Gif/gridodilotta.gif", "images/AudioAttack/triplograffio.wav");
+                        setGifFrame("images/Gif/corsaspietata.gif", "images/AudioAttack/posizionedidifesa.wav");
                         break;
-                    case "Nessuna Pietà":
-                        setGifFrame("images/Gif/nomerci.gif", "images/AudioAttack/sgranocchio.wav");
+                    case "nessunapietà":
+                        setGifFrame("images/Gif/doppiograffio.gif", "images/AudioAttack/ipersgranocchio.wav");
                         break;
                 }
                 break;
@@ -209,31 +209,31 @@ public class BattleJFrame implements Battle {
                         setGifFrame("images/Gif/sgusciata.gif", "images/AudioAttack/sgusciata.wav");
                         break;
                     case "reparo":
-                        setGifFrame("images/Gif/reparo.gif", "images/AudioAttack/reparo.wav");
+                        setGifFrame("images/Gif/reparo.gif", "images/AudioAttack/posizionedidifesa.wav");
                         break;
                     case "colpo di guscio":
-                        setGifFrame("images/Gif/colpodiguscio.gif", "images/AudioAttack/colpodiguscio.wav");
+                        setGifFrame("images/Gif/colpodiguscio.gif", "images/AudioAttack/corsaspietata.wav");
                         break;
                     case "rotolamento":
-                        setGifFrame("images/Gif/rotolamento.gif", "images/AudioAttack/rotolamento.wav");
+                        setGifFrame("images/Gif/rotolamento.gif", "images/AudioAttack/sgusciata.wav");
                         break;
-                    case "doppio rotolamento":
-                        setGifFrame("images/Gif/doppiorotolamento.gif", "images/AudioAttack/doppiorotolamento.wav");
+                    case "morsolentissimo":
+                        setGifFrame("images/Gif/doppiorotolamento.gif", "images/AudioAttack/palladipelo.wav");
                         break;
-                    case "sgusciatareparo":
-                        setGifFrame("images/Gif/sgusciatareparo.gif", "images/AudioAttack/sgusciatareparo.wav");
+                    case "protezionesolida":
+                        setGifFrame("images/Gif/sgusciatareparo.gif", "images/AudioAttack/sgusciata.wav");
                         break;
-                    case "doppio colpo di guscio":
-                        setGifFrame("images/Gif/doppiocolpodiguscio.gif", "images/AudioAttack/doppiocolpodiguscio.wav");
+                    case "testataresistente":
+                        setGifFrame("images/Gif/doppiocolpodiguscio.gif", "images/AudioAttack/corsaspietata.wav");
                         break;
-                    case "triplo rotolamento":
-                        setGifFrame("images/Gif/triplorotolamento.gif", "images/AudioAttack/triplorotolamento.wav");
+                    case "carica da fortino":
+                        setGifFrame("images/Gif/triplorotolamento.gif", "images/AudioAttack/posizionedidifesa.wav");
                         break;
                     case "grido di lotta":
-                        setGifFrame("images/Gif/gridodilotta.gif", "images/AudioAttack/rotolamento.wav");
+                        setGifFrame("images/Gif/rotolamento.gif", "images/AudioAttack/palladipelo.wav");
                         break;
-                    case "Nessuna Pietà":
-                        setGifFrame("images/Gif/nomerci.gif", "images/AudioAttack/reparo.wav");
+                    case "nessunapietà":
+                        setGifFrame("images/Gif/doppiocolpodiguscio.gif", "images/AudioAttack/sgusciata.wav");
                         break;
                 }
                 break;
@@ -245,7 +245,7 @@ public class BattleJFrame implements Battle {
                         battle.getGifFrame().getFrame().setVisible(false);
                     }
                 },
-                2000
+                3000
         );
     }
 
@@ -392,9 +392,9 @@ public class BattleJFrame implements Battle {
                 switch (levels){
                     case START:return Attack.zampata;
                     case MEDIUM:return Attack.lacerazione;
-                    case ADVANCE:return Attack.arruffarsiGraffiando;
+                    case ADVANCE:return Attack.artiglioGuardiano;
                     case GREAT:return Attack.pallaDiPelo;
-                    case PERFECT:return Attack.rogodenti;
+                    case PERFECT:return Attack.graffioFelino;
                 }
                 break;
                 case BIRD: switch (levels){
@@ -408,16 +408,10 @@ public class BattleJFrame implements Battle {
                 case DOG:
                     switch (levels){
                         case START: return Attack.supermorso;
-                        case MEDIUM:return Attack.elettrodenti;
+                        case MEDIUM:return Attack.slancioFurente;
                         case ADVANCE:return Attack.colpoCodaVigoroso;
-                        case GREAT:
-                            for(Attack attack : pet.getAttackSet()){
-                                if(attack.getName().equalsIgnoreCase("ipermorso")){
-                                    return Attack.noMerciDog;
-                                }
-                            }
-                            return Attack.ipermorso;
-                        case PERFECT:return Attack.elettroGeloDenti;
+                        case GREAT: return Attack.ipermorso;
+                        case PERFECT:return Attack.artigliAffilati;
                     }
                     break;
                 case RABBIT:
@@ -425,17 +419,17 @@ public class BattleJFrame implements Battle {
                         case START:return Attack.doppioGraffio;
                         case MEDIUM:return Attack.sgranocchio;
                         case ADVANCE:return Attack.corsaSpietata;
-                        case GREAT:return Attack.triploGraffio;
-                        case PERFECT:return Attack.iperSgranocchio;
+                        case GREAT:return Attack.carotaEsplosiva;
+                        case PERFECT:return Attack.morsoSaltellante;
                     }
                     break;
                 case TURTLE:
                     switch (levels){
                         case START:return Attack.rotolamento;
-                        case MEDIUM:return Attack.doppioRotolamento;
-                        case ADVANCE:return Attack.sgusciataReparo;
-                        case GREAT:return Attack.doppioColpoDiGuscio;
-                        case PERFECT:return Attack.triploRotolamento;
+                        case MEDIUM:return Attack.morsoLentissimo;
+                        case ADVANCE:return Attack.protezioneSolida;
+                        case GREAT:return Attack.testataResistente;
+                        case PERFECT:return Attack.caricaDaFortino;
                     }
                     break;
             }

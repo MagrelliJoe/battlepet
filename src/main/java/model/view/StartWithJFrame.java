@@ -1,7 +1,6 @@
 package model.view;
 import model.data.abstracted.LevelWindow;
 import model.data.entities.*;
-import model.data.implementation.LevelWindowOne;
 import model.data.implementation.LevelWindowsTwo;
 import model.data.implementation.WindowTitle;
 
@@ -11,9 +10,11 @@ import java.io.IOException;
 public class StartWithJFrame {
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
 
-        Person myTrainer = new Person(Constant.allenatoreMy, "Alycia",Levels.BASE);
-        myTrainer.addPet(1, ConstantPet.bianchina);
-        myTrainer.addPet(0, ConstantPet.mia);
+        Person myTrainer = new Person(Constant.allenatoreMy, "Alycia", Levels.BASE);
+        //myTrainer.setVictory(6);
+        //myTrainer.setLevels();
+        myTrainer.addPet(1, ConstantPet.leonard);
+        myTrainer.addPet(0, ConstantPet.micky);
         //ConstantPet.mia.getAttackSet().remove(0);
         //ConstantPet.mia.getAttackSet().add(Attack.colpoCodaVigoroso);
 
@@ -26,10 +27,10 @@ public class StartWithJFrame {
         //LevelWindow levelWindow1 = new LevelWindowZero("images/Sfondi/home.jpg", "images/audio/homeMusic.wav", Constant.messaggio,580 , 440,"M",myTrainer);
         //LevelWindow levelWindow2 = new WindowChoosePet(Constant.sfondoLotta1,Constant.fineLivello,Constant.musica1,500,300,"M",myTrainer);
         //LevelWindow levelWindow = new WindowTitle("images/logoInit.jpg",Constant.fineLivello,Constant.messaggio,500,300);
-        LevelWindow levelWindow3 = new LevelWindowsTwo(Constant.sfondoBronze,Constant.musica2,Constant.messaggio,1000,700,"M",myTrainer);
+        //LevelWindow levelWindow3 = new LevelWindowsTwo(Constant.sfondoBronze,Constant.musica2,Constant.messaggio,1000,700,"M",myTrainer);
         //BattleWindow battleWindow = new BattleWindow(Constant.sfondoBronze,Constant.musica2);
 
-        //ServiceForBattle battle = new ServiceForBattle(myTrainer,myTrainer1,new BattleWindow(Constant.sfondoBronze,Constant.musica2));
+        ServiceForBattle battle = new ServiceForBattle(myTrainer,myTrainer1,new BattleWindow(Constant.sfondoBronze,Constant.musicalotta2));
         //WindowLeader leader = new WindowLeader();
     }
 }

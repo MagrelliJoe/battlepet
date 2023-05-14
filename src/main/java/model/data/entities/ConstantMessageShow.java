@@ -40,10 +40,15 @@ public enum ConstantMessageShow {
         return messaggio;
     }
 
-    public static ConstantMessageShow getMessaggioCasuale() {
+    public static String getMessaggioCasuale() {
         Random random = new Random();
         int indiceCasuale = random.nextInt(values().length);
-        return values()[indiceCasuale];
+        return values()[indiceCasuale].toString();
+    }
+
+    @Override
+    public String toString() {
+        return messaggio;
     }
 }
 

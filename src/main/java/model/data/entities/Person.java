@@ -80,7 +80,7 @@ public class Person {
                 case CAT:
                     pet.getAttackSet().add(Attack.graffio);
                     pet.getAttackSet().add(Attack.sfuriate);
-                    pet.getAttackSet().add(Attack.Arruffarsi);
+                    pet.getAttackSet().add(Attack.mantoProtettivo);
                     pet.getAttackSet().add(new Attack(Attack.gridoDiLotta));
                     switch (pet.getLevels()) {
                         case START:
@@ -93,7 +93,7 @@ public class Person {
                             break;
                         case ADVANCE:
                             pet.getAttackSet().remove(2);
-                            pet.getAttackSet().add(Attack.arruffarsiGraffiando);
+                            pet.getAttackSet().add(Attack.artiglioGuardiano);
                             break;
                         case GREAT:
                             pet.getAttackSet().remove(3);
@@ -101,12 +101,12 @@ public class Person {
                             break;
                         case PERFECT:
                             pet.getAttackSet().remove(0);
-                            pet.getAttackSet().add(Attack.rogodenti);
+                            pet.getAttackSet().add(Attack.graffioFelino);
                             break;
                     }
                     break;
                 case DOG:
-                    pet.getAttackSet().add(new Attack(Attack.gelodenti));
+                    pet.getAttackSet().add(new Attack(Attack.morsoAffamato));
                     pet.getAttackSet().add(new Attack(Attack.morso));
                     pet.getAttackSet().add(new Attack(Attack.colpoCoda));
                     pet.getAttackSet().add(new Attack(Attack.gridoDiLottaDog));
@@ -118,7 +118,7 @@ public class Person {
                             break;
                         case MEDIUM:
                             pet.getAttackSet().remove(1);
-                            pet.getAttackSet().add(Attack.elettrodenti);
+                            pet.getAttackSet().add(Attack.slancioFurente);
                             break;
                         case ADVANCE:
                             pet.getAttackSet().remove(2);
@@ -130,7 +130,7 @@ public class Person {
                             break;
                         case PERFECT:
                             pet.getAttackSet().remove(0);
-                            pet.getAttackSet().add(Attack.elettroGeloDenti);
+                            pet.getAttackSet().add(Attack.artigliAffilati);
                             break;
                     }
                     break;
@@ -154,11 +154,11 @@ public class Person {
                             break;
                         case GREAT:
                             pet.getAttackSet().remove(3);
-                            pet.getAttackSet().add(new Attack(Attack.noMerci));
+                            pet.getAttackSet().add(new Attack(Attack.carotaEsplosiva));
                             break;
                         case PERFECT:
                             pet.getAttackSet().remove(0);
-                            pet.getAttackSet().add(Attack.iperSgranocchio);
+                            pet.getAttackSet().add(Attack.morsoSaltellante);
                             break;
                     }
                     break;
@@ -174,19 +174,19 @@ public class Person {
                             break;
                         case MEDIUM:
                             pet.getAttackSet().remove(1);
-                            pet.getAttackSet().add(Attack.doppioRotolamento);
+                            pet.getAttackSet().add(Attack.morsoLentissimo);
                             break;
                         case ADVANCE:
                             pet.getAttackSet().remove(2);
-                            pet.getAttackSet().add(Attack.sgusciataReparo);
+                            pet.getAttackSet().add(Attack.protezioneSolida);
                             break;
                         case GREAT:
                             pet.getAttackSet().remove(3);
-                            pet.getAttackSet().add(new Attack(Attack.noMerci));
+                            pet.getAttackSet().add(new Attack(Attack.testataResistente));
                             break;
                         case PERFECT:
                             pet.getAttackSet().remove(0);
-                            pet.getAttackSet().add(Attack.triploRotolamento);
+                            pet.getAttackSet().add(Attack.caricaDaFortino);
                             break;
                     }
                     break;

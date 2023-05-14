@@ -116,47 +116,8 @@ public abstract class LevelWindow implements KeyListener {
             i++;
         }
     }
-    public void updateLeaderShow(Person trainer){
+    public void updateLeaderShow(){
 
-        for(int i = 0; i < leader.getButtons().length ; i ++){
-            switch(i){
-                case 0:
-                    leader.getTextAreas()[i].setText("Name -> Gaetano" + "\n" +
-                            "Leader dei Pet di tipo DOG." + "\n" +
-                            "Location -> Woofy City." + "\n" +
-                            "Favorite Pet -> Woody.");
-                    leader.getButtons()[i].setIcon(new ImageIcon(Constant.allenatore7Lotta));
-                    break;
-                case 1:
-                    leader.getTextAreas()[i].setText("Name -> Renato" + "\n" +
-                            "Leader dei Pet di tipo CAT." + "\n" +
-                            "Location-> MeowMeow City." + "\n" +
-                            "Favorite Pet-> MewCat.");
-                    leader.getButtons()[i].setIcon(new ImageIcon("images/Trainer/renatoC.jpg"));
-                    break;
-                case 2:
-                    leader.getTextAreas()[i].setText("Name -> Joe" + "\n" +
-                            "Leader dei Pet di tipo RABBIT." + "\n" +
-                            "Location-> Hairy City." + "\n" +
-                            "Favorite Pet-> Pulce.");
-                    leader.getButtons()[i].setIcon(new ImageIcon("images/Trainer/joeC.jpg"));
-                    break;
-                case 3:
-                    leader.getTextAreas()[i].setText("Name -> Ginevra" + "\n" +
-                            "Leader dei Pet di tipo BIRD." + "\n" +
-                            "Location-> Fly City." + "\n" +
-                            "Favorite Pet-> PettyRed.");
-                    leader.getButtons()[i].setIcon(new ImageIcon("images/Trainer/ginevraC.jpg"));
-                    break;
-                case 4:
-                    leader.getTextAreas()[i].setText("Name -> Sonia" + "\n" +
-                            "Leader dei Pet di tipo TURTLE." + "\n" +
-                            "Location-> Green City." + "\n" +
-                            "Favorite Pet-> Rughetta.");
-                    leader.getButtons()[i].setIcon(new ImageIcon("images/Trainer/soniaC.jpg"));
-                    break;
-            }
-        }
     }
 
     public WindowLeader getLeader() {

@@ -1,11 +1,10 @@
 package model.data.implementation;
-
 import model.data.abstracted.LevelWindow;
 import model.data.entities.*;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -99,7 +98,7 @@ public class LevelWindowsTwo extends LevelWindow {
         try {
             SetTalkinWithProf(405,210);
 
-            SetTalkingPosition(840,110,"Marco:" + "\n" +
+            SetTalkingPosition(840,110,"Mara:" + "\n" +
                     "Vincendo potrai salire di livello ed i tuoi Pet impareranno cosi' attacchi sempre" + "\n" +
                     " più potenti!Inoltre le loro caratteristiche(vita,potenza,difesa,velocità)miglioreranno!");
 
@@ -119,15 +118,12 @@ public class LevelWindowsTwo extends LevelWindow {
             SetFightPosition(430,530,trn4,"Eccomi,sono il Leader di Woofy City!I miei Pet di tipo Dog faranno a pezzi i tupi.Preparati alla sconfitta!!!","Prosegui verso la Second Road,te lo meriti!." + "\n" +
                     "Hai già parlato con la prof.ssa Alice!Avrà una sorpresa per te!La trovi nei pressi del vortice di cambio zona!");
             updateTeamShow(mineTrainer);
-            updateLeaderShow(mineTrainer);
 
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
             throw new RuntimeException(ex);
         }
         if(e.getKeyCode() == KeyEvent.VK_LEFT) {
             position_x -= 5;
-            System.out.println(getPosition_x());
-            System.out.println(getPosition_y());
             switch (getSex()) {
                 case "M":
                     if (position_x % 2 == 0) {
@@ -148,8 +144,6 @@ public class LevelWindowsTwo extends LevelWindow {
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             position_y -= 5;
-            System.out.println(getPosition_x());
-            System.out.println(getPosition_y());
             switch (getSex()) {
                 case "M":
                     if (position_y % 2 == 0) {
@@ -171,8 +165,6 @@ public class LevelWindowsTwo extends LevelWindow {
 
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             position_y += 5;
-            System.out.println(getPosition_x());
-            System.out.println(getPosition_y());
             switch (getSex()) {
                 case "M":
                     if (position_y % 2 == 0) {
@@ -194,8 +186,6 @@ public class LevelWindowsTwo extends LevelWindow {
 
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             position_x += 5;
-            System.out.println(getPosition_x());
-            System.out.println(getPosition_y());
             switch (getSex()) {
                 case "M":
                     if (position_x % 2 == 0) {
@@ -227,7 +217,7 @@ public class LevelWindowsTwo extends LevelWindow {
             frame.dispose();
             music.stop();
             try {
-                LevelWindow levelWindow =  new LevelWindowsTwo(Constant.sfondoInit, Constant.musica1, Constant.messaggio,1000, 333,getSex(), mineTrainer);
+                new LevelWindowsTwo(Constant.sfondoInit, Constant.musica1, Constant.messaggio,1000, 333,getSex(), mineTrainer);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                 throw new RuntimeException(ex);
             }
@@ -241,37 +231,54 @@ public class LevelWindowsTwo extends LevelWindow {
     @Override
     public void SetFightPosition(int posX, int posY, Person trainer, String comment1, String comment2) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
 
-        if(trainer.getName().equalsIgnoreCase("gaetano") && trainer.getNumberOfLosses()==2){
-            getEndGame().setVisible(true);
-            getEndGame().setLocation(400,20);
-        }
+        if (getMyTrainer().getX() == posX && getMyTrainer().getY() == posY) {
 
-        if (getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && trainer.getNumberOfLosses() < 2) {
-            super.musicMessage.start();
-            JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment1);
-            battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta1));
+            if (!trainer.getName().equalsIgnoreCase("gaetano") && getMyTrainer().getX() == posX && getMyTrainer().getY() == posY && trainer.getNumberOfLosses() < 2) {
+                super.musicMessage.start();
+                JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment1);
+                battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta));
+                updateTeamShow(trainer);
 
-            updateTeamShow(trainer);
+            }else if(trainer.getName().equalsIgnoreCase("gaetano") && getMyTrainer().getX() == posX && getMyTrainer().getY() == posY && trainer.getNumberOfLosses() < 1) {
+                super.musicMessage.start();
+                JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment1);
+                battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta1));
+                updateTeamShow(trainer);
+
+            }
 
             battle.getBattle().getFrame().addWindowListener(new WindowListener() {
                 @Override
                 public void windowOpened(WindowEvent e) {
                     music.stop();
                 }
+
                 @Override
-                public void windowClosing(WindowEvent e) {}
+                public void windowClosing(WindowEvent e) {
+
+                }
+
                 @Override
                 public void windowClosed(WindowEvent e) {
                     music.start();
+                    if (trainer.getName().equalsIgnoreCase("gaetano") && trainer.getNumberOfLosses() == 1) {
+                        getEndGame().setVisible(true);
+                        getEndGame().setLocation(400, 20);
+                        getLeader().getTextAreas()[0].setFont(new Font("Serif", Font.BOLD, 20));
+                        getLeader().getTextAreas()[0].setText("SCONFITTO");
+                    }
                 }
+
                 @Override
                 public void windowIconified(WindowEvent e) {
                     //DO NOTHING
                 }
+
                 @Override
                 public void windowDeiconified(WindowEvent e) {
                     //DO NOTHING
                 }
+
                 @Override
                 public void windowActivated(WindowEvent e) {
                     //DO NOTHING
@@ -282,10 +289,13 @@ public class LevelWindowsTwo extends LevelWindow {
                     //DO NOTHING
                 }
             });
-        }else if(getMyTrainer().getX()==posX && getMyTrainer().getY()==posY && trainer.getNumberOfLosses() >= 2){
+
+        } else if (getMyTrainer().getX() == posX && getMyTrainer().getY() == posY && trainer.getNumberOfLosses() >= 2) {
+
             JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment2);
         }
     }
+
     private void SetTalkinWithProf(int posX,int posY){
 
         if(getPosition_x() == posX && getPosition_y() == posY && mineTrainer.getVictory() >= 8
@@ -320,7 +330,7 @@ public class LevelWindowsTwo extends LevelWindow {
                     mineTrainer.addPet(1,new Pet(ConstantPet.jerry));
                     break;
             }
-            JOptionPane.showMessageDialog(null, mineTrainer.getPetList().get(1).getName() + " è stato aggiunto al tuo Team!");
+            JOptionPane.showMessageDialog(null, mineTrainer.getPetList().get(1).getName() + " E' STATO AGGIUNTO AL TUO TEAM!");
         }
 
     }
