@@ -43,15 +43,13 @@ public class LevelWindowsTwo extends LevelWindow {
 
         addPetAtTeam(trn0,new Pet(ConstantPet.axel));
         addPetAtTeam(trn0,new Pet(ConstantPet.tex));
-        addPetAtTeam(trn0,new Pet(ConstantPet.woody));
-        addPetAtTeam(trn1,new Pet(ConstantPet.tex));
-        addPetAtTeam(trn1,new Pet(ConstantPet.vito));
+        addPetAtTeam(trn1,new Pet(ConstantPet.iron));
         addPetAtTeam(trn2,new Pet(ConstantPet.vito));
-        addPetAtTeam(trn2,new Pet(ConstantPet.iron));
+        addPetAtTeamWithoutLevel(trn2,new Pet(ConstantPet.mia),Levels.BASE);
         addPetAtTeam(trn3,new Pet(ConstantPet.pepita));
-        addPetAtTeam(trn3,new Pet(ConstantPet.iron));
-        addPetAtTeam(trn4,new Pet(ConstantPet.vito));
-        addPetAtTeam(trn4,new Pet(ConstantPet.pepita));
+        addPetAtTeam(trn3,new Pet(ConstantPet.vito));
+        addPetAtTeamWithoutLevel(trn4,new Pet(ConstantPet.tex),Levels.BASE);
+        addPetAtTeam(trn4,new Pet(ConstantPet.mia));
         addPetAtTeam(trn4,new Pet(ConstantPet.woody));
 
         trainer0 = new JLabel(new ImageIcon(Constant.allenatore1));
@@ -96,7 +94,7 @@ public class LevelWindowsTwo extends LevelWindow {
     @Override
     public void keyPressed(KeyEvent e) {
         try {
-            SetTalkinWithProf(405,210);
+            SetTalkinWithProf(400,210);
 
             SetTalkingPosition(840,110,"Mara:" + "\n" +
                     "Vincendo potrai salire di livello ed i tuoi Pet impareranno cosi' attacchi sempre" + "\n" +
@@ -116,7 +114,7 @@ public class LevelWindowsTwo extends LevelWindow {
             SetFightPosition(750,315,trn0,"Ci siamo già incontrati nella First Road!Ora ho allenato i miei Pet,vedrai!","No,vabbè.Lasciami in pace,devo meditare su come diventare forte.");
             SetFightPosition(875,550,trn3,"Sono un talento naturale nelle lotte!Sei ancora in tempo per tornare sui tuoi passi.","Il talento qua è solo il tuo,mi sà!");
             SetFightPosition(430,530,trn4,"Eccomi,sono il Leader di Woofy City!I miei Pet di tipo Dog faranno a pezzi i tupi.Preparati alla sconfitta!!!","Prosegui verso la Second Road,te lo meriti!." + "\n" +
-                    "Hai già parlato con la prof.ssa Alice!Avrà una sorpresa per te!La trovi nei pressi del vortice di cambio zona!");
+                    "Hai già parlato con la prof.ssa Alice?Avrà una sorpresa per te!La trovi nei pressi del vortice di cambio zona!");
             updateTeamShow(mineTrainer);
 
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
@@ -213,11 +211,11 @@ public class LevelWindowsTwo extends LevelWindow {
             super.getLeader().getFrame().setVisible(true);
         }
 
-        if(endGame.isVisible() && position_x==120 && position_y==100){
+        if(endGame.isVisible() && position_x==400 && position_y==20){
             frame.dispose();
             music.stop();
             try {
-                new LevelWindowsTwo(Constant.sfondoInit, Constant.musica1, Constant.messaggio,1000, 333,getSex(), mineTrainer);
+                new LevelWindowThree(Constant.sfondoInit2, Constant.musicaRoute2, Constant.messaggio,1000, 333,getSex(), mineTrainer);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                 throw new RuntimeException(ex);
             }
@@ -233,13 +231,17 @@ public class LevelWindowsTwo extends LevelWindow {
 
         if (getMyTrainer().getX() == posX && getMyTrainer().getY() == posY) {
 
-            if (!trainer.getName().equalsIgnoreCase("gaetano") && getMyTrainer().getX() == posX && getMyTrainer().getY() == posY && trainer.getNumberOfLosses() < 2) {
+            if (!trainer.getName().equalsIgnoreCase("gaetano") && getMyTrainer().getX()
+                    == posX && getMyTrainer().getY() == posY && trainer.getNumberOfLosses() < 2) {
+
                 super.musicMessage.start();
                 JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment1);
                 battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta));
                 updateTeamShow(trainer);
 
-            }else if(trainer.getName().equalsIgnoreCase("gaetano") && getMyTrainer().getX() == posX && getMyTrainer().getY() == posY && trainer.getNumberOfLosses() < 1) {
+            }else if(trainer.getName().equalsIgnoreCase("gaetano") && getMyTrainer().getX()
+                    == posX && getMyTrainer().getY() == posY && trainer.getNumberOfLosses() < 1) {
+
                 super.musicMessage.start();
                 JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment1);
                 battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta1));
@@ -260,7 +262,7 @@ public class LevelWindowsTwo extends LevelWindow {
 
                 @Override
                 public void windowClosed(WindowEvent e) {
-                    music.start();
+                    music.loop(3);
                     if (trainer.getName().equalsIgnoreCase("gaetano") && trainer.getNumberOfLosses() == 1) {
                         getEndGame().setVisible(true);
                         getEndGame().setLocation(400, 20);
@@ -300,10 +302,11 @@ public class LevelWindowsTwo extends LevelWindow {
 
         if(getPosition_x() == posX && getPosition_y() == posY && mineTrainer.getVictory() >= 8
                 && mineTrainer.getPetList().size() == 1){
-            JOptionPane.showMessageDialog(null,"Complimenti!Hai raggiunto già tante vittorie.Tuttavia la strada si" +
-                    "farà sempre più ardua man mano che avanzerai!Ecco perchè sono qui!Ogni volta che raggiungerai un tot numero di vittorie vieni da me,ti consegnerò" +
-                    "personalmente un Pet che verrà aggiunto al tuo Team!Intanto eccoti il primo.Trattalo con cura e vedrai che ti sarà di grande aiuto!" +
-                    "See you!");
+            JOptionPane.showMessageDialog(null,
+            "Complimenti!Hai raggiunto tante vittorie.Tuttavia la strada si farà sempre più ardua man mano che" + "\n" +
+            "avanzerai!Ecco perchè sono qui!Ogni volta che raggiungerai un tot numero di vittorie vieni da me " + "\n" +
+            "ti consegnerò personalmente un Pet che verrà aggiunto al tuo Team!Ecco tieni!.Trattalo con cura "  + "\n" +
+            "vedrai che ti sarà di grande aiuto!See you soon!");
             Random random = new Random();
             int nRandom = random.nextInt(3);
             if(getSex().equalsIgnoreCase("M")){
@@ -332,7 +335,17 @@ public class LevelWindowsTwo extends LevelWindow {
             }
             JOptionPane.showMessageDialog(null, mineTrainer.getPetList().get(1).getName() + " E' STATO AGGIUNTO AL TUO TEAM!");
         }
+        else if(getPosition_x() == posX && getPosition_y() == posY && mineTrainer.getVictory() < 8){
 
+            JOptionPane.showMessageDialog(null,
+            "Sono la prof.ssa Alice!Torna da me quando avrai raggiunto OTTO vittorie!");
+
+        }
+        else if(getPosition_x() == posX && getPosition_y() == posY && mineTrainer.getVictory() >= 8
+                && mineTrainer.getPetList().size() > 1){
+            JOptionPane.showMessageDialog(null,
+                    "Divertiti con il tuo nuovo Pet!Ci vediamo in giro nelle prossime città!");
+        }
     }
     @Override
     public void SetTalkingPosition(int posX, int posY, String comment) {

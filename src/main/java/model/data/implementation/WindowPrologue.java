@@ -89,7 +89,7 @@ public class WindowPrologue extends LevelWindow implements ActionListener {
             frame.dispose();
             music.stop();
             try {
-                LevelWindow levelWindow = new WindowChooseTrainer("images/sfondoInitGame.jpg", Constant.musicaInit,Constant.messaggio,500,300);
+                new WindowChooseTrainer("images/sfondoInitGame.jpg", Constant.musicaInit,Constant.messaggio,500,300);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                 throw new RuntimeException(ex);
             }

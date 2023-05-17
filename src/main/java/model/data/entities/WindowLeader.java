@@ -97,35 +97,12 @@ public class WindowLeader {
         this.sfondo = sfondo;
     }
 
-    public Icon getIconSfondo() {
-        return iconSfondo;
-    }
-
-    public void setIconSfondo(Icon iconSfondo) {
-        this.iconSfondo = iconSfondo;
-    }
-
     public JButton[] getButtons() {
         return buttons;
-    }
-
-    public void setButtons(JButton[] buttons) {
-        this.buttons = buttons;
-    }
-
-    public ImageIcon[] getIcons() {
-        return icons;
-    }
-
-    public void setIcons(ImageIcon[] icons) {
-        this.icons = icons;
     }
 
     public JTextArea[] getTextAreas() {
         return textAreas;
     }
 
-    public void setTextAreas(JTextArea[] textAreas) {
-        this.textAreas = textAreas;
-    }
 }

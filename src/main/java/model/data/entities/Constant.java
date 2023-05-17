@@ -6,8 +6,10 @@ public class Constant {
 
     //SFONDO FRAME LOTTA E LIVELLO
     public final static String sfondoInit = "images/Sfondi/init.png";
+    public final static String sfondoInit2 = "images/Sfondi/init2.jpg";
     public final static String sfondoBronze = "images/Sfondi/bronze.jpg";
     public final static String sfondoSilver = "images/Sfondi/silver.png";
+    public final static String sfondoMeowCity = "images/Sfondi/meowcity.png";
     public final static String sfondoLotta1 = "images/Sfondi/sfondo_lotta_livello_1.png";
     public final static String sfondoLotta2 = "images/Sfondi/sfondo_lotta_livello_2.png";
     public final static String sfondoLotta3 = "images/Sfondi/sfondo_lotta_livello_3.png";
@@ -45,6 +47,14 @@ public class Constant {
     public final static String allenatore12 = "images/Trainer/allenatore_12.png";
     public final static String allenatore12Lotta = "images/Trainer/allenatore_12C.jpg";
     public final static String allenatoreSaro = "images/Trainer/llenatore_saro.png";
+    public final static String allenatoreRenato = "images/Trainer/renato.jpg";
+    public final static String allenatoreRenatoLotta = "images/Trainer/renatoC.jpg";
+    public final static String allenatoreSonia = "images/Trainer/sonia.jpg";
+    public final static String allenatoreSoniaLotta = "images/Trainer/soniaC.jpg";
+    public final static String allenatoreJoe = "images/Trainer/joe.jpg";
+    public final static String allenatoreJoeLotta = "images/Trainer/joeC.jpg";
+    public final static String allenatoreGinevra = "images/Trainer/ginevra.jpg";
+    public final static String allenatoreGinevraLotta = "images/Trainer/ginevraC.jpg";
 
 
     //PET
@@ -79,10 +89,16 @@ public class Constant {
 
 
     //MUSICA
+    public final static String musicaRoute1="images/audio/route1.wav";
+    public final static String musicaRoute2="images/audio/route2.wav";
+    public final static String musicaRoute3="images/audio/route3.wav";
+    public final static String musicaRoute4="images/audio/route4.wav";
+    public final static String musicaWoofyCity="images/audio/woofycity.wav";
+    public final static String musicaMeowCity="images/audio/meowcity.wav";
+    public final static String musicaHairyCity="images/audio/hairycity.wav";
+    public final static String musicaFlyCity="images/audio/flycity.wav";
+    public final static String musicaGreenCity="images/audio/greencity.wav";
     public final static String musica1="images/audio/musicalivello1.wav";
-    public final static String musica2="images/audio/musicalivello2.wav";
-    public final static String musica3="images/audio/musicalivello3.wav";
-    public final static String musica4="images/audio/musicalivello4.wav";
     public final static String fineLivello="images/audio/fine_livello.wav";
     public final static String messaggio="images/audio/messaggio.wav";
     public final static String musicalotta="images/audio/musicalotta.wav";

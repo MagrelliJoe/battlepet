@@ -40,7 +40,7 @@ public abstract class LevelWindow implements KeyListener {
         this.audioInputStreamMusic = AudioSystem.getAudioInputStream(this.audioMusic);
         this.music = AudioSystem.getClip();
         this.music.open(this.audioInputStreamMusic);
-        this.music.loop(1);
+        this.music.loop(3);
 
         this.fileMusicPathMessage = fileMusicPathMessage;
         this.audioMusicMessage = new File(this.fileMusicPathMessage);
@@ -90,6 +90,11 @@ public abstract class LevelWindow implements KeyListener {
         int numOfPetActually = trainer.getPetList().size();
         trainer.addPet(numOfPetActually,pet);
     }
+    protected void addPetAtTeamWithoutLevel(Person trainer, Pet pet,Levels levels){
+        int numOfPetActually = trainer.getPetList().size();
+        trainer.addPetWithoutTrainerLevel(numOfPetActually,pet,levels);
+    }
+
     public void updateTeamShow(Person trainer){
         teamFrame.getFrame().setTitle("Victory's Trainer->"+trainer.getVictory());
         int i=0;
@@ -116,10 +121,6 @@ public abstract class LevelWindow implements KeyListener {
             i++;
         }
     }
-    public void updateLeaderShow(){
-
-    }
-
     public WindowLeader getLeader() {
         return leader;
     }

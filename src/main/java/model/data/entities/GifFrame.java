@@ -46,10 +46,6 @@ public class GifFrame {
         this.frame = frame;
     }
 
-    public ImageIcon getIcon() {
-        return icon;
-    }
-
     public void setIcon(ImageIcon icon) {
         this.icon = icon;
     }
@@ -62,28 +58,12 @@ public class GifFrame {
         this.sfondo = sfondo;
     }
 
-    public AudioInputStream getAudioInputStreamMusic() {
-        return audioInputStreamMusic;
-    }
-
-    public void setAudioInputStreamMusic(AudioInputStream audioInputStreamMusic) {
-        this.audioInputStreamMusic = audioInputStreamMusic;
-    }
-
     public Clip getMusic() {
         return music;
     }
 
     public void setMusic(Clip music) {
         this.music = music;
-    }
-
-    public File getAudioMusic() {
-        return audioMusic;
-    }
-
-    public void setAudioMusic(File audioMusic) {
-        this.audioMusic = audioMusic;
     }
 
     public String getFilePathImage() {

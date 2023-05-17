@@ -109,14 +109,14 @@ public class WindowChooseTrainer extends LevelWindow implements ActionListener {
             if("girl".equals(e.getActionCommand())){
                 try {
                     this.mineTrainer =new Person("images/AlyciaChoose.jpg", "Alycia", Levels.BASE);
-                    LevelWindow levelWindow = new LevelWindowZero("images/Sfondi/home.jpg", "images/audio/homeMusic.wav",Constant.messaggio,580,440,"F",mineTrainer);
+                    new LevelWindowZero("images/Sfondi/home.jpg", "images/audio/homeMusic.wav",Constant.messaggio,580,440,"F",mineTrainer);
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                     throw new RuntimeException(ex);
                 }
             }else{
                 try {
                     this.mineTrainer =new Person("images/DavidChoose.jpg", "David", Levels.BASE);
-                    LevelWindow levelWindow = new LevelWindowZero("images/Sfondi/home.jpg", "images/audio/homeMusic.wav",Constant.messaggio,580,440,"M",mineTrainer);
+                    new LevelWindowZero("images/Sfondi/home.jpg", "images/audio/homeMusic.wav",Constant.messaggio,580,440,"M",mineTrainer);
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                     throw new RuntimeException(ex);
                 }

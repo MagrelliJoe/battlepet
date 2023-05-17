@@ -394,6 +394,7 @@ public class BattleJFrame implements Battle {
                     case MEDIUM:return Attack.lacerazione;
                     case ADVANCE:return Attack.artiglioGuardiano;
                     case GREAT:return Attack.pallaDiPelo;
+                    case ULTRA:return Attack.noMerci;
                     case PERFECT:return Attack.graffioFelino;
                 }
                 break;
@@ -402,6 +403,7 @@ public class BattleJFrame implements Battle {
                     case MEDIUM:return Attack.raffica;
                     case ADVANCE:return Attack.alataProtettrice;
                     case GREAT:return Attack.perforbecco;
+                    case ULTRA:return Attack.noMerci;
                     case PERFECT:return Attack.doppiaAlata;
                 }
                 break;
@@ -411,6 +413,7 @@ public class BattleJFrame implements Battle {
                         case MEDIUM:return Attack.slancioFurente;
                         case ADVANCE:return Attack.colpoCodaVigoroso;
                         case GREAT: return Attack.ipermorso;
+                        case ULTRA:return Attack.noMerciDog;
                         case PERFECT:return Attack.artigliAffilati;
                     }
                     break;
@@ -420,6 +423,7 @@ public class BattleJFrame implements Battle {
                         case MEDIUM:return Attack.sgranocchio;
                         case ADVANCE:return Attack.corsaSpietata;
                         case GREAT:return Attack.carotaEsplosiva;
+                        case ULTRA:return Attack.noMerci;
                         case PERFECT:return Attack.morsoSaltellante;
                     }
                     break;
@@ -429,6 +433,7 @@ public class BattleJFrame implements Battle {
                         case MEDIUM:return Attack.morsoLentissimo;
                         case ADVANCE:return Attack.protezioneSolida;
                         case GREAT:return Attack.testataResistente;
+                        case ULTRA:return Attack.noMerci;
                         case PERFECT:return Attack.caricaDaFortino;
                     }
                     break;

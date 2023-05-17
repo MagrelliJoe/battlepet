@@ -56,28 +56,12 @@ public class TeamFrame {
         this.frame = frame;
     }
 
-    public ImageIcon[] getIcons() {
-        return icons;
-    }
-
-    public void setIcons(ImageIcon[] icons) {
-        this.icons = icons;
-    }
-
     public JButton[] getButtons() {
         return buttons;
     }
 
-    public void setButtons(JButton[] buttons) {
-        this.buttons = buttons;
-    }
-
     public JLabel[] getLabels() {
         return labels;
-    }
-
-    public void setLabels(JLabel[] labels) {
-        this.labels = labels;
     }
 
     public JLabel getSfondo() {
@@ -87,15 +71,6 @@ public class TeamFrame {
     public void setSfondo(JLabel sfondo) {
         this.sfondo = sfondo;
     }
-
-    public Icon getIconSfondo() {
-        return iconSfondo;
-    }
-
-    public void setIconSfondo(Icon iconSfondo) {
-        this.iconSfondo = iconSfondo;
-    }
-
 
 }
 

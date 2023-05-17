@@ -129,7 +129,7 @@ public class LevelWindowZero extends LevelWindow {
                         frame.dispose();
                         music.stop();
                         try {
-                            LevelWindow levelWindow1 = new LevelWindowOne(Constant.sfondoInit, Constant.musica1, Constant.messaggio, 1000, 333,getSex(), mineTrainer);
+                            new LevelWindowOne(Constant.sfondoInit, Constant.musicaRoute1, Constant.messaggio, 1000, 333,getSex(), mineTrainer);
                         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
                             throw new RuntimeException(ex);
                         }

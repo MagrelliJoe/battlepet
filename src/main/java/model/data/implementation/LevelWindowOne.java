@@ -170,7 +170,7 @@ public class LevelWindowOne extends LevelWindow{
             frame.dispose();
             music.stop();
             try {
-                LevelWindow levelWindow =  new LevelWindowsTwo(Constant.sfondoBronze,Constant.musica2,Constant.messaggio,1000,700,getSex(),mineTrainer);
+               new LevelWindowsTwo(Constant.sfondoBronze,Constant.musicaWoofyCity,Constant.messaggio,1000,700,getSex(),mineTrainer);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                 throw new RuntimeException(ex);
             }
@@ -207,7 +207,7 @@ public class LevelWindowOne extends LevelWindow{
                    public void windowClosing(WindowEvent e) {}
                    @Override
                    public void windowClosed(WindowEvent e) {
-                       music.start();
+                       music.loop(3);
                    }
                    @Override
                    public void windowIconified(WindowEvent e) {
@@ -236,64 +236,11 @@ public class LevelWindowOne extends LevelWindow{
     public void SetTalkingPosition(int posX, int posY, String comment) {
 
     }
-
     public String getSex() {
         return sex;
     }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public JLabel getTrainer1() {
-        return trainer1;
-    }
-
-    public void setTrainer1(JLabel trainer1) {
-        this.trainer1 = trainer1;
-    }
-
-    public JLabel getTrainer2() {
-        return trainer2;
-    }
-
-    public void setTrainer2(JLabel trainer2) {
-        this.trainer2 = trainer2;
-    }
-
-    public JLabel getTrainer3() {
-        return trainer3;
-    }
-
-    public void setTrainer3(JLabel trainer3) {
-        this.trainer3 = trainer3;
-    }
-
     public void setMyTrainer(Person myTrainer) {
         this.mineTrainer = mineTrainer;
     }
 
-    public static Person getTrn0() {
-        return trn0;
-    }
-
-    public static void setTrn0(Person trn0) {
-        LevelWindowOne.trn0 = trn0;
-    }
-
-    public static Person getTrn1() {
-        return trn1;
-    }
-
-    public static void setTrn1(Person trn1) {
-        LevelWindowOne.trn1 = trn1;
-    }
-
-    public static Person getTrn2() {
-        return trn2;
-    }
-
-    public static void setTrn2(Person trn2) {
-        LevelWindowOne.trn2 = trn2;
-    }
 }

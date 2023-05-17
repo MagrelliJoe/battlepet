@@ -147,80 +147,24 @@ public class BattleWindow {
         return gifFrame;
     }
 
-    public void setGifFrame(GifFrame gifFrame) {
-        this.gifFrame = gifFrame;
-    }
-
     public JButton getLife() {
         return life;
-    }
-
-    public void setLife(JButton life) {
-        this.life = life;
     }
 
     public JButton getLevel() {
         return level;
     }
 
-    public void setLevel(JButton level) {
-        this.level = level;
-    }
-
     public JButton getLifeEnemy() {
         return lifeEnemy;
-    }
-
-    public void setLifeEnemy(JButton lifeEnemy) {
-        this.lifeEnemy = lifeEnemy;
     }
 
     public JButton getLevelEnemy() {
         return levelEnemy;
     }
 
-    public void setLevelEnemy(JButton levelEnemy) {
-        this.levelEnemy = levelEnemy;
-    }
-
-    public ImageIcon getIcon() {
-        return icon;
-    }
-
     public void setIcon(ImageIcon icon) {
         this.icon = icon;
-    }
-
-    public ImageIcon getIconMyTrainer() {
-        return iconMyTrainer;
-    }
-
-    public void setIconMyTrainer(ImageIcon iconMyTrainer) {
-        this.iconMyTrainer = iconMyTrainer;
-    }
-
-    public ImageIcon getIconEnemyTrainer() {
-        return iconEnemyTrainer;
-    }
-
-    public void setIconEnemyTrainer(ImageIcon iconEnemyTrainer) {
-        this.iconEnemyTrainer = iconEnemyTrainer;
-    }
-
-    public ImageIcon getIconMyPet() {
-        return iconMyPet;
-    }
-
-    public void setIconMyPet(ImageIcon iconMyPet) {
-        this.iconMyPet = iconMyPet;
-    }
-
-    public ImageIcon getIconEnemyPet() {
-        return iconEnemyPet;
-    }
-
-    public void setIconEnemyPet(ImageIcon iconEnemyPet) {
-        this.iconEnemyPet = iconEnemyPet;
     }
 
     public JLabel getSfondo() {
@@ -235,10 +179,6 @@ public class BattleWindow {
         return tx;
     }
 
-    public void setTx(JTextArea tx) {
-        this.tx = tx;
-    }
-
     public JButton getMyTrainer() {
         return myTrainer;
     }
@@ -251,40 +191,16 @@ public class BattleWindow {
         return enemyTrainer;
     }
 
-    public void setEnemyTrainer(JButton enemyTrainer) {
-        this.enemyTrainer = enemyTrainer;
-    }
-
     public JButton getMyPet() {
         return myPet;
-    }
-
-    public void setMyPet(JButton myPet) {
-        this.myPet = myPet;
     }
 
     public JButton getEnemyPet() {
         return enemyPet;
     }
 
-    public void setEnemyPet(JButton enemyPet) {
-        this.enemyPet = enemyPet;
-    }
-
     public JCheckBoxMenuItem[] getOpzioni() {
         return opzioni;
-    }
-
-    public void setOpzioni(JCheckBoxMenuItem[] opzioni) {
-        this.opzioni = opzioni;
-    }
-
-    public ButtonGroup getBg() {
-        return bg;
-    }
-
-    public void setBg(ButtonGroup bg) {
-        this.bg = bg;
     }
 
     public JFrame getFrame() {
@@ -327,38 +243,6 @@ public class BattleWindow {
         this.fileMusicPath = fileMusicPath;
     }
 
-    public File getAudioMusic() {
-        return audioMusic;
-    }
-
-    public void setAudioMusic(File audioMusic) {
-        this.audioMusic = audioMusic;
-    }
-
-    public File getAudioMusicMessage() {
-        return audioMusicMessage;
-    }
-
-    public void setAudioMusicMessage(File audioMusicMessage) {
-        this.audioMusicMessage = audioMusicMessage;
-    }
-
-    public AudioInputStream getAudioInputStreamMusic() {
-        return audioInputStreamMusic;
-    }
-
-    public void setAudioInputStreamMusic(AudioInputStream audioInputStreamMusic) {
-        this.audioInputStreamMusic = audioInputStreamMusic;
-    }
-
-    public AudioInputStream getAudioInputStreamMusicMessage() {
-        return audioInputStreamMusicMessage;
-    }
-
-    public void setAudioInputStreamMusicMessage(AudioInputStream audioInputStreamMusicMessage) {
-        this.audioInputStreamMusicMessage = audioInputStreamMusicMessage;
-    }
-
     public Clip getMusic() {
         return music;
     }
@@ -367,27 +251,12 @@ public class BattleWindow {
         this.music = music;
     }
 
-    public Clip getMusicMessage() {
-        return musicMessage;
-    }
-
-    public void setMusicMessage(Clip musicMessage) {
-        this.musicMessage = musicMessage;
-    }
-
     public JButton getNamePet() {
         return namePet;
-    }
-
-    public void setNamePet(JButton namePet) {
-        this.namePet = namePet;
     }
 
     public JButton getNamePetEnemy() {
         return namePetEnemy;
     }
 
-    public void setNamePetEnemy(JButton namePetEnemy) {
-        this.namePetEnemy = namePetEnemy;
-    }
 }
