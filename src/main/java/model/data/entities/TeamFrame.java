@@ -15,7 +15,7 @@ public class TeamFrame {
     public TeamFrame() {
         Dimension dimension = new Dimension(width, eight);
         this.frame = new JFrame("TRAINER PET'S TEAM");
-        iconSfondo = new ImageIcon("images/sfondoMyTeam.jpg");
+        iconSfondo = new ImageIcon(Constant.sfondoMyTeam);
         sfondo = new JLabel(iconSfondo);
         sfondo.setSize(dimension);
         frame.setSize(dimension);
@@ -39,7 +39,7 @@ public class TeamFrame {
                 labels[i].setLocation(10 + 50, 50 * i);
             }
 
-            icons[6] = new ImageIcon("images/DavidChoose.jpg");
+            icons[6] = new ImageIcon(Constant.allenatoreMyDavid);
             buttons[6] = new JButton(icons[6]);
             buttons[6].setSize(70, 70);
             buttons[6].setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5, Color.DARK_GRAY));

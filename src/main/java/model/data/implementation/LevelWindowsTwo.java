@@ -35,10 +35,10 @@ public class LevelWindowsTwo extends LevelWindow {
         getMyTrainer().setLocation(getPosition_x(),getPosition_y());
 
         if(this.sex.equalsIgnoreCase("F")) {
-            getTeamFrame().getButtons()[6].setIcon(new ImageIcon("images/AlyciaChoose.jpg"));
-            myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_up_left.jpg"));
+            getTeamFrame().getButtons()[6].setIcon(new ImageIcon(Constant.allenatoreMyAlycia));
+            myTrainer.setIcon(new ImageIcon(Constant.pgFemaleUp2));
         }else{
-            myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_up_left.jpg"));
+            myTrainer.setIcon(new ImageIcon(Constant.pgMaleUp2));
         }
 
         addPetAtTeam(trn0,new Pet(ConstantPet.axel));
@@ -125,16 +125,16 @@ public class LevelWindowsTwo extends LevelWindow {
             switch (getSex()) {
                 case "M":
                     if (position_x % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_right_2.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleSx2));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_right_1.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleSx1));
                     }
                     break;
                 case "F":
                     if (position_x % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_right_2.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleSx1));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_right_1.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleSx2));
                     }
                     break;
             }
@@ -145,16 +145,16 @@ public class LevelWindowsTwo extends LevelWindow {
             switch (getSex()) {
                 case "M":
                     if (position_y % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_up_left.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleUp1));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_up_right.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleUp2));
                     }
                     break;
                 case "F":
                     if (position_y % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_up_left.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleUp1));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_up_right.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleUp2));
                     }
                     break;
             }
@@ -166,16 +166,16 @@ public class LevelWindowsTwo extends LevelWindow {
             switch (getSex()) {
                 case "M":
                     if (position_y % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_down_left.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleDown2));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_down_right.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleDown1));
                     }
                     break;
                 case "F":
                     if (position_y % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_down_left.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleDown1));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_down_right.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleDown2));
                     }
                     break;
             }
@@ -187,16 +187,16 @@ public class LevelWindowsTwo extends LevelWindow {
             switch (getSex()) {
                 case "M":
                     if (position_x % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_left_2.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleDx1));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_left_1.png"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleDx2));
                     }
                     break;
                 case "F":
                     if (position_x % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_left_2.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleDx1));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_left_1.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleDx2));
                     }
                     break;
             }
@@ -215,7 +215,7 @@ public class LevelWindowsTwo extends LevelWindow {
             frame.dispose();
             music.stop();
             try {
-                new LevelWindowThree(Constant.sfondoInit2, Constant.musicaRoute2, Constant.messaggio,1000, 333,getSex(), mineTrainer);
+                new LevelWindowThree(Constant.sfondoRoute2, Constant.musicaRoute2, Constant.messaggio,1000, 333,getSex(), mineTrainer);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                 throw new RuntimeException(ex);
             }
@@ -237,7 +237,7 @@ public class LevelWindowsTwo extends LevelWindow {
                 super.musicMessage.start();
                 JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment1);
                 battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta));
-                updateTeamShow(trainer);
+                updateTeamShow(mineTrainer);
 
             }else if(trainer.getName().equalsIgnoreCase("gaetano") && getMyTrainer().getX()
                     == posX && getMyTrainer().getY() == posY && trainer.getNumberOfLosses() < 1) {
@@ -245,7 +245,7 @@ public class LevelWindowsTwo extends LevelWindow {
                 super.musicMessage.start();
                 JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment1);
                 battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta1));
-                updateTeamShow(trainer);
+                updateTeamShow(mineTrainer);
 
             }
 

@@ -5,21 +5,54 @@ public class Constant {
     public final static String ko = "images/Pet/ko.jpeg";
 
     //SFONDO FRAME LOTTA E LIVELLO
-    public final static String sfondoInit = "images/Sfondi/init.png";
-    public final static String sfondoInit2 = "images/Sfondi/init2.jpg";
-    public final static String sfondoBronze = "images/Sfondi/bronze.jpg";
-    public final static String sfondoSilver = "images/Sfondi/silver.png";
+    public final static String sfondoRoute1 = "images/Sfondi/init.png";
+    public final static String sfondoBlack = "images/Sfondi/sfondoblack.jpg";
+    public final static String sfondoHome = "images/Sfondi/home.jpg";
+    public final static String sfondoLogo = "images/logoBattlePet.png";
+    public final static String sfondoInitGame = "images/Sfondi/logoInit.jpg";
+    public final static String gifInit = "images/Sfondi/gifInit.gif";
+    public final static String here = "images/Sfondi/here.png";
+    public final static String logoBattlePet = "images/Sfondi/logoBattlePet.png";
+    public final static String sfondoMyTeam = "images/Sfondi/sfondoMyTeam.jpg";
+    public final static String sfondoRoute2 = "images/Sfondi/init2.jpg";
+    public final static String sfondoWoofyCity = "images/Sfondi/bronze.jpg";
     public final static String sfondoMeowCity = "images/Sfondi/meowcity.png";
+    public final static String sfondoRoute3 = "images/Sfondi/init3.png";
+    public final static String sfondoHairyCity = "images/Sfondi/sfondoHairy.jpg";
     public final static String sfondoLotta1 = "images/Sfondi/sfondo_lotta_livello_1.png";
     public final static String sfondoLotta2 = "images/Sfondi/sfondo_lotta_livello_2.png";
     public final static String sfondoLotta3 = "images/Sfondi/sfondo_lotta_livello_3.png";
 
+    //MOVIMENTI PERSONAGGIO
+    public final static String pgMaleSx1 = "images/MyTrainer/pg_right_2.jpg";
+    public final static String pgMaleSx2 = "images/MyTrainer/pg_right_1.jpg";
+    public final static String pgMaleDx1 = "images/MyTrainer/pg_left_1.png";
+    public final static String pgMaleDx2 = "images/MyTrainer/pg_left_2.jpg";
+    public final static String pgMaleUp1 = "images/MyTrainer/pg_up_right.jpg";
+    public final static String pgMaleUp2 = "images/MyTrainer/pg_up_left.jpg";
+    public final static String pgMaleDown1 = "images/MyTrainer/pg_down_left.jpg";
+    public final static String pgMaleDown2 = "images/MyTrainer/pg_down_right.jpg";
+    public final static String pgFemaleSx1 = "images/MyTrainer/pg_f_right_2.jpg";
+    public final static String pgFemaleSx2 = "images/MyTrainer/pg_f_right_1.jpg";
+    public final static String pgFemaleDx1 = "images/MyTrainer/pg_f_left_2.jpg";
+    public final static String pgFemaleDx2 = "images/MyTrainer/pg_f_left_1.jpg";
+    public final static String pgFemaleUp1 = "images/MyTrainer/pg_f_up_left.jpg";
+    public final static String pgFemaleUp2 = "images/MyTrainer/pg_f_up_right.jpg";
+    public final static String pgFemaleDown1 = "images/MyTrainer/pg_f_down_left.jpg";
+    public final static String pgFemaleDown2 = "images/MyTrainer/pg_f_down_right.jpg";
+
 
     //ALLENATORI
+    public final static String dad = "images/Trainer/dad.jpg";
+    public final static String dadPet = "images/Trainer/petInit.png";
     public final static String prof = "images/Trainer/prof.ssa.jpg";
-    public final static String allenatoreMy = "images/Trainer/personaggioG.jpg";
-    public final static String allenatoreMyLotta1 = "images/MyTrainer/pg_lotta1.jpg";
-    public final static String allenatoreMyLotta2= "images/MyTrainer/pg_lotta2.jpg";
+    public final static String allenatoreMyLottaMale = "images/Trainer/personaggioG.jpg";
+    public final static String allenatoreMyLotta1Male = "images/MyTrainer/pg_lotta1.jpg";
+    public final static String allenatoreMyLotta2Male = "images/MyTrainer/pg_lotta2.jpg";
+    public final static String allenatoreMyLotta1Female = "images/MyTrainer/pg_f_lotta_1.jpg";
+    public final static String allenatoreMyLotta2Female = "images/MyTrainer/pg_f_lotta_2.jpg";
+    public final static String allenatoreMyDavid = "images/MyTrainer/DavidChoose.jpg";
+    public final static String allenatoreMyAlycia = "images/MyTrainer/AlyciaChoose.jpg";
     public final static String allenatore0 = "images/Trainer/allenatore_0.jpg";
     public final static String allenatore0Lotta = "images/Trainer/allenatore_0C.jpg";
     public final static String allenatore1 = "images/Trainer/allenatore_1.png";
@@ -46,7 +79,24 @@ public class Constant {
     public final static String allenatore11Lotta = "images/Trainer/allenatore_11C.jpg";
     public final static String allenatore12 = "images/Trainer/allenatore_12.png";
     public final static String allenatore12Lotta = "images/Trainer/allenatore_12C.jpg";
-    public final static String allenatoreSaro = "images/Trainer/llenatore_saro.png";
+    public final static String allenatore13 = "images/Trainer/allenatore_13.jpg";
+    public final static String allenatore13Lotta = "images/Trainer/allenatore_13C.jpg";
+    public final static String allenatore14 = "images/Trainer/allenatore14.jpg";
+    public final static String allenatore14Lotta = "images/Trainer/allenatore14C.jpg";
+    public final static String allenatore15 = "images/Trainer/allenatore15.jpg";
+    public final static String allenatore15Lotta = "images/Trainer/allenatore15C.jpg";
+    public final static String allenatore16 = "images/Trainer/allenatore16.jpg";
+    public final static String allenatore16Lotta = "images/Trainer/allenatore16C.jpg";
+    public final static String allenatore17 = "images/Trainer/allenatore17.jpg";
+    public final static String allenatore17Lotta = "images/Trainer/allenatore17C.jpg";
+    public final static String allenatore18 = "images/Trainer/allenatore18.jpg";
+    public final static String allenatore18Lotta = "images/Trainer/allenatore18C.jpg";
+    public final static String allenatore19 = "images/Trainer/allenatore19.jpg";
+    public final static String allenatore19Lotta = "images/Trainer/allenatore19C.jpg";
+    public final static String allenatore20 = "images/Trainer/allenatore20.jpg";
+    public final static String allenatore20Lotta = "images/Trainer/allenatore20C.jpg";
+    public final static String allenatore21 = "images/Trainer/allenatore21.jpg";
+    public final static String allenatore21Lotta = "images/Trainer/allenatore21C.jpg";
     public final static String allenatoreRenato = "images/Trainer/renato.jpg";
     public final static String allenatoreRenatoLotta = "images/Trainer/renatoC.jpg";
     public final static String allenatoreSonia = "images/Trainer/sonia.jpg";
@@ -58,7 +108,10 @@ public class Constant {
 
 
     //PET
-    public final static String bianca = "images/Pet/bianca.jpg";
+    public final static String bianca = "images/Pet/bianca.png";
+    public final static String briciola = "images/Pet/briciola.jpg";
+    public final static String speedy= "images/Pet/speedy.jpg";
+    public final static String cute = "images/Pet/cute.jpg";
     public final static String bianchina = "images/Pet/bianchina.jpg";
     public final static String black = "images/Pet/black.jpg";
     public final static String corvy = "images/Pet/corvy.jpg";
@@ -89,6 +142,7 @@ public class Constant {
 
 
     //MUSICA
+    public final static String musicaHome = "images/audio/homeMusic.wav";
     public final static String musicaRoute1="images/audio/route1.wav";
     public final static String musicaRoute2="images/audio/route2.wav";
     public final static String musicaRoute3="images/audio/route3.wav";

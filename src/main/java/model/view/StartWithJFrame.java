@@ -1,5 +1,4 @@
 package model.view;
-import model.data.abstracted.LevelWindow;
 import model.data.entities.*;
 import model.data.implementation.*;
 import javax.sound.sampled.LineUnavailableException;
@@ -8,9 +7,9 @@ import java.io.IOException;
 public class StartWithJFrame {
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
 
-        Person myTrainer = new Person(Constant.allenatoreMy, "Alycia", Levels.MEDIUM);
-        myTrainer.setVictory(15);
-        myTrainer.setLevels();
+        Person myTrainer = new Person(Constant.allenatoreMyLottaMale, "Alycia", Levels.MEDIUM);
+        //myTrainer.setVictory(15);
+        //myTrainer.setLevels();
         myTrainer.addPet(1, ConstantPet.leonard);
         myTrainer.addPet(0, ConstantPet.micky);
         //ConstantPet.mia.getAttackSet().remove(0);
@@ -24,12 +23,12 @@ public class StartWithJFrame {
         //new LevelWindowOne(Constant.sfondoInit, Constant.musica1, Constant.messaggio,1000, 333,"F", myTrainer);
         //new LevelWindowZero("images/Sfondi/home.jpg", "images/audio/homeMusic.wav", Constant.messaggio,580 , 440,"M",myTrainer);
         //new WindowChoosePet(Constant.sfondoLotta1,Constant.fineLivello,Constant.musica1,500,300,"M",myTrainer);
-        //new WindowTitle("images/logoInit.jpg",Constant.fineLivello,Constant.messaggio,500,300);
-        //new LevelWindowsTwo(Constant.sfondoBronze,Constant.musicaRoute1,Constant.messaggio,1000,700,"M",myTrainer);
+        //new WindowTitle(Constant.sfondoInitGame,Constant.fineLivello,Constant.messaggio,500,300);
+        //new LevelWindowsTwo(Constant.sfondoWoofyCity,Constant.musicaRoute1,Constant.messaggio,1000,700,"F",myTrainer);
         //new BattleWindow(Constant.sfondoBronze,Constant.musica2);
         //new LevelWindowThree(Constant.sfondoInit2, Constant.musicaRoute2, Constant.messaggio,1000, 333,"M", myTrainer);
-        new LevelWindowFour(Constant.sfondoMeowCity,Constant.musicaMeowCity,Constant.messaggio,1000,700,"F",myTrainer);
-
+        //new LevelWindowFour(Constant.sfondoMeowCity,Constant.musicaMeowCity,Constant.messaggio,1000,700,"F",myTrainer);
+        new LevelWindowsFive(Constant.sfondoRoute3,Constant.musicaRoute3,Constant.messaggio,1000,333,"F",myTrainer);
         //new ServiceForBattle(myTrainer,myTrainer1,new BattleWindow(Constant.sfondoBronze,Constant.musicalotta2));
         //WindowLeader leader = new WindowLeader();
     }

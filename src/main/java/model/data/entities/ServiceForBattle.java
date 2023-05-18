@@ -33,7 +33,7 @@ public class ServiceForBattle implements ActionListener {
         battle.getBattle().getMyPet().setIcon(new ImageIcon(trainer1.getPetList()
                 .get(battle.getBattle().getNextPet()).getFilePathImage()));
         battle.getBattle().getEnemyTrainer().setIcon(new ImageIcon(trainer2.getFilePathImage()));
-        battle.getBattle().getMyTrainer().setIcon(new ImageIcon("images/logoBattlePet.png"));
+        battle.getBattle().getMyTrainer().setIcon(new ImageIcon(Constant.sfondoLogo));
         reloadMnemonic();
 
     }
@@ -52,10 +52,10 @@ public class ServiceForBattle implements ActionListener {
 
                 switch (trainer1.getName()) {
                     case "David":
-                        setimagefight(Constant.allenatoreMyLotta1);
+                        setimagefight(Constant.allenatoreMyLotta1Male);
                         break;
                     case "Alycia":
-                        setimagefight("images/MyTrainer/pg_f_lotta_1.jpg");
+                        setimagefight(Constant.allenatoreMyLotta1Female);
                         break;
                 }
                 pet_ = trainer2.getPetList().get(battle.getBattle().getNextPetEnemy());
@@ -72,7 +72,16 @@ public class ServiceForBattle implements ActionListener {
             } else if (battle.getBattle().getOpzioni()[4].getText().
                     equalsIgnoreCase("NO")) {
                 JOptionPane.showMessageDialog(null, "IL TUO PET HA MANTENUTO I SUOI ATTACCHI!");
-                setimagefight(Constant.allenatoreMyLotta1);
+
+                switch (trainer1.getName()) {
+                    case "David":
+                        setimagefight(Constant.allenatoreMyLotta1Male);
+                        break;
+                    case "Alycia":
+                        setimagefight(Constant.allenatoreMyLotta1Female);
+                        break;
+                }
+
                 pet.getAttackSet().remove(4);
                 battle.getBattle().getFrame().dispose();
                 battle.getBattle().getMusic().stop();
@@ -85,10 +94,10 @@ public class ServiceForBattle implements ActionListener {
                 try {
                     switch (trainer1.getName()) {
                         case "David":
-                            setimagefight(Constant.allenatoreMyLotta2);
+                            setimagefight(Constant.allenatoreMyLotta2Male);
                             break;
                         case "Alycia":
-                            setimagefight("images/MyTrainer/pg_f_lotta_2.jpg");
+                            setimagefight(Constant.allenatoreMyLotta2Female);
                             break;
                     }
                     battle.viewCommentAttack(pet, battle.isDamageOrShelter(battle.seeDamage(pet, numberOfChoose),
@@ -114,10 +123,10 @@ public class ServiceForBattle implements ActionListener {
                 try {
                     switch (trainer1.getName()) {
                         case "David":
-                            setimagefight(Constant.allenatoreMyLotta1);
+                            setimagefight(Constant.allenatoreMyLotta1Male);
                             break;
                         case "Alycia":
-                            setimagefight("images/MyTrainer/pg_f_lotta_1.jpg");
+                            setimagefight(Constant.allenatoreMyLotta1Female);
                             break;
                     }
                     battle.turnEnemy(pet_, pet);
@@ -334,10 +343,10 @@ public class ServiceForBattle implements ActionListener {
         if (petMostSpeed.equals(pet)) {
             switch (trainer1.getName().toLowerCase()) {
                 case "alycia":
-                    setimagefight("images/MyTrainer/pg_f_lotta_2.jpg");
+                    setimagefight(Constant.allenatoreMyLotta2Female);
                     break;
                 case "david":
-                    setimagefight(Constant.allenatoreMyLotta2);
+                    setimagefight(Constant.allenatoreMyLotta2Male);
                     break;
             }
             battle.viewCommentAttack(pet, battle.isDamageOrShelter(battle.seeDamage(pet, n),
@@ -408,10 +417,10 @@ public class ServiceForBattle implements ActionListener {
 
             switch (trainer1.getName().toLowerCase()) {
                 case "alycia":
-                    setimagefight("images/MyTrainer/pg_f_lotta_1.jpg");
+                    setimagefight(Constant.allenatoreMyLotta1Female);
                     break;
                 case "david":
-                    setimagefight(Constant.allenatoreMyLotta1);
+                    setimagefight(Constant.allenatoreMyLotta1Male);
                     break;
             }
             battle.turnEnemy(pet_,pet);

@@ -31,6 +31,9 @@ public class ConstantPet {
     public static Pet jerry = new Pet(Constant.jerry,"Jerry",Type.RABBIT,35,5,9,15,Levels.START);
     public static Pet tom = new Pet(Constant.tom,"Tom",Type.RABBIT,35,5,9,14,Levels.START);
     public static Pet bianchina = new Pet(Constant.bianchina,"Bianchina",Type.RABBIT,35,5,10,15,Levels.START);
+    public static Pet briciola = new Pet(Constant.briciola,"Briciola",Type.RABBIT,35,5,9,14,Levels.START);
+    public static Pet speedy = new Pet(Constant.speedy,"Speedy",Type.RABBIT,35,6,8,16,Levels.START);
+    public static Pet cute = new Pet(Constant.cute,"Cute",Type.RABBIT,35,5,10,13,Levels.START);
 
     //TURTLE
     public static Pet raphy = new Pet(Constant.raphy,"Raphy",Type.TURTLE,34,9,15,4,Levels.START);

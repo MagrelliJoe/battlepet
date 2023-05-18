@@ -52,28 +52,28 @@ public class WindowLeader {
                             "Leader dei Pet di tipo CAT." + "\n" +
                             "Location-> MeowMeow City." + "\n" +
                             "Favorite Pet-> MewCat.");
-                    getButtons()[i].setIcon(new ImageIcon("images/Trainer/renatoC.jpg"));
+                    getButtons()[i].setIcon(new ImageIcon(Constant.allenatoreRenatoLotta));
                     break;
                 case 2:
                     getTextAreas()[i].setText("Name -> Joe" + "\n" +
                             "Leader dei Pet di tipo RABBIT." + "\n" +
                             "Location-> Hairy City." + "\n" +
                             "Favorite Pet-> Pulce.");
-                    getButtons()[i].setIcon(new ImageIcon("images/Trainer/joeC.jpg"));
+                    getButtons()[i].setIcon(new ImageIcon(Constant.allenatoreJoeLotta));
                     break;
                 case 3:
                     getTextAreas()[i].setText("Name -> Ginevra" + "\n" +
                             "Leader dei Pet di tipo BIRD." + "\n" +
                             "Location-> Fly City." + "\n" +
                             "Favorite Pet-> PettyRed.");
-                    getButtons()[i].setIcon(new ImageIcon("images/Trainer/ginevraC.jpg"));
+                    getButtons()[i].setIcon(new ImageIcon(Constant.allenatoreGinevraLotta));
                     break;
                 case 4:
                     getTextAreas()[i].setText("Name -> Sonia" + "\n" +
                             "Leader dei Pet di tipo TURTLE." + "\n" +
                             "Location-> Green City." + "\n" +
                             "Favorite Pet-> Rughetta.");
-                    getButtons()[i].setIcon(new ImageIcon("images/Trainer/soniaC.jpg"));
+                    getButtons()[i].setIcon(new ImageIcon(Constant.allenatoreSoniaLotta));
                     break;
             }
         }

@@ -20,7 +20,7 @@ public class WindowPrologue extends LevelWindow implements ActionListener {
 
         super.myTrainer.setVisible(false);
         frame.setTitle("LET'S GET START YOUR ADVENTURE!");
-        buttonGif = new JButton(new ImageIcon("images/gifInit.gif"));
+        buttonGif = new JButton(new ImageIcon(Constant.gifInit));
         buttonGif.setSize(200,100);
         buttonGif.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.DARK_GRAY));
         buttonGif.setBackground(new Color(0,0,0,0));
@@ -89,7 +89,7 @@ public class WindowPrologue extends LevelWindow implements ActionListener {
             frame.dispose();
             music.stop();
             try {
-                new WindowChooseTrainer("images/sfondoInitGame.jpg", Constant.musicaInit,Constant.messaggio,500,300);
+                new WindowChooseTrainer(Constant.sfondoBlack, Constant.musicaInit,Constant.messaggio,500,300);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                 throw new RuntimeException(ex);
             }

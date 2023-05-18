@@ -20,11 +20,12 @@ public class LevelWindowZero extends LevelWindow {
         super(filePathImage, fileMusicPath, fileMusicPathMessage,width, eight);
         this.sex = sex;
         this.mineTrainer = mineTrainer;
+
         if(this.sex.equalsIgnoreCase("F")) {
-            getTeamFrame().getButtons()[6].setIcon(new ImageIcon("images/AlyciaChoose.jpg"));
-            myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_up_left.jpg"));
+            getTeamFrame().getButtons()[6].setIcon(new ImageIcon(Constant.allenatoreMyAlycia));
+            myTrainer.setIcon(new ImageIcon(Constant.pgFemaleUp2));
         }else{
-            myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_up_left.jpg"));
+            myTrainer.setIcon(new ImageIcon(Constant.pgMaleUp2));
         }
 
         setPosition_x(330);
@@ -32,11 +33,11 @@ public class LevelWindowZero extends LevelWindow {
         frame.addKeyListener(this);
         getMyTrainer().setLocation(getPosition_x(),getPosition_y());
 
-        parent = new JLabel(new ImageIcon("images/dad.jpg"));
+        parent = new JLabel(new ImageIcon(Constant.dad));
         parent.setSize(45,62);
         parent.setLocation(400,300);
 
-        pet = new JLabel(new ImageIcon("images/petInit.png"));
+        pet = new JLabel(new ImageIcon(Constant.dadPet));
         pet.setSize(100,50);
         pet.setLocation(80,160);
         pet.setVisible(false);
@@ -96,7 +97,7 @@ public class LevelWindowZero extends LevelWindow {
         }
 
         if (getPosition_x() == 370 && getPosition_y() == 305) {
-            JOptionPane.showMessageDialog(null, "Joe:" + "\n" +
+            JOptionPane.showMessageDialog(null, "Papà:" + "\n" +
                     mineTrainer.getName() + "!!!" + "Finalmente hai smesso di giocare a WARNING INFECTION THE GAME!" + "\n" +
                     "Quel gioco ti sta piacendo molto vero?!? Parlando di cose più importanti,è venuto il momento" + "\n" +
                     "per te di ricevere il primo Pet!Siediti comodamente di fronte a me al tavolo e scegli il tuo preferito!");
@@ -120,7 +121,7 @@ public class LevelWindowZero extends LevelWindow {
                     @Override
                     public void windowClosed(WindowEvent e) {
                         music.start();
-                        JOptionPane.showMessageDialog(null, "Joe:" + ":" + "\n" +
+                        JOptionPane.showMessageDialog(null, "Papà:" + ":" + "\n" +
                                 "Bene!vedo che ha deciso di optare per " + " " + mineTrainer.getPetList().get(0).getName().toUpperCase() + "\n" +
                                 "Ottima scelta!Vedrai che diventerete ottimi amici!Ora non ti trattengo oltre,se hai dubbi e" + "\n" +
                                 "non hai ancora visto le istruzioni,ti consiglio di SALVARE e di dargli un'occhiata prima di" + "\n" +
@@ -129,7 +130,7 @@ public class LevelWindowZero extends LevelWindow {
                         frame.dispose();
                         music.stop();
                         try {
-                            new LevelWindowOne(Constant.sfondoInit, Constant.musicaRoute1, Constant.messaggio, 1000, 333,getSex(), mineTrainer);
+                            new LevelWindowOne(Constant.sfondoRoute1, Constant.musicaRoute1, Constant.messaggio, 1000, 333,getSex(), mineTrainer);
                         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
                             throw new RuntimeException(ex);
                         }
@@ -163,16 +164,16 @@ public class LevelWindowZero extends LevelWindow {
             switch (getSex()) {
                 case "M":
                     if (position_x % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_right_2.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleSx2));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_right_1.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleSx1));
                     }
                     break;
                 case "F":
                     if (position_x % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_right_2.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleSx1));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_right_1.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleSx2));
                     }
                     break;
             }
@@ -183,16 +184,16 @@ public class LevelWindowZero extends LevelWindow {
             switch (getSex()) {
                 case "M":
                     if (position_y % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_up_left.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleUp1));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_up_right.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleUp2));
                     }
                     break;
                 case "F":
                     if (position_y % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_up_left.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleUp1));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_up_right.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleUp2));
                     }
                     break;
             }
@@ -204,16 +205,16 @@ public class LevelWindowZero extends LevelWindow {
             switch (getSex()) {
                 case "M":
                     if (position_y % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_down_left.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleDown2));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_down_right.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleDown1));
                     }
                     break;
                 case "F":
                     if (position_y % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_down_left.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleDown1));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_down_right.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleDown2));
                     }
                     break;
             }
@@ -225,16 +226,16 @@ public class LevelWindowZero extends LevelWindow {
             switch (getSex()) {
                 case "M":
                     if (position_x % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_left_2.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleDx1));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_left_1.png"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleDx2));
                     }
                     break;
                 case "F":
                     if (position_x % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_left_2.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleDx1));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_left_1.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleDx2));
                     }
                     break;
             }

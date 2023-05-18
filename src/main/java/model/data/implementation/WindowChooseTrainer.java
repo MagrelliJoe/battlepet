@@ -23,12 +23,12 @@ public class WindowChooseTrainer extends LevelWindow implements ActionListener {
 
         super.myTrainer.setVisible(false);
         frame.setTitle("CHOOSE YOUR CHARACTER!");
-        girl = new JButton(new ImageIcon("images/AlyciaChoose.jpg"));
+        girl = new JButton(new ImageIcon(Constant.allenatoreMyAlycia));
         girl.setSize(70,80);
         girl.setLocation(150,30);
         girl.setOpaque(false);
 
-        boy = new JButton(new ImageIcon("images/DavidChoose.jpg"));
+        boy = new JButton(new ImageIcon(Constant.allenatoreMyDavid));
         boy.setSize(70,80);
         boy.setLocation(280,30);
         boy.setOpaque(false);
@@ -108,15 +108,15 @@ public class WindowChooseTrainer extends LevelWindow implements ActionListener {
             music.stop();
             if("girl".equals(e.getActionCommand())){
                 try {
-                    this.mineTrainer =new Person("images/AlyciaChoose.jpg", "Alycia", Levels.BASE);
-                    new LevelWindowZero("images/Sfondi/home.jpg", "images/audio/homeMusic.wav",Constant.messaggio,580,440,"F",mineTrainer);
+                    this.mineTrainer =new Person(Constant.allenatoreMyAlycia, "Alycia", Levels.BASE);
+                    new LevelWindowZero(Constant.sfondoHome, Constant.musicaHome,Constant.messaggio,580,440,"F",mineTrainer);
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                     throw new RuntimeException(ex);
                 }
             }else{
                 try {
-                    this.mineTrainer =new Person("images/DavidChoose.jpg", "David", Levels.BASE);
-                    new LevelWindowZero("images/Sfondi/home.jpg", "images/audio/homeMusic.wav",Constant.messaggio,580,440,"M",mineTrainer);
+                    this.mineTrainer =new Person(Constant.allenatoreMyDavid, "David", Levels.BASE);
+                    new LevelWindowZero(Constant.sfondoHome, Constant.musicaHome,Constant.messaggio,580,440,"M",mineTrainer);
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                     throw new RuntimeException(ex);
                 }

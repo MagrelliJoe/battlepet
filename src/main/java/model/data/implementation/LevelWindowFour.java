@@ -34,10 +34,10 @@ public class LevelWindowFour extends LevelWindow {
         getMyTrainer().setLocation(getPosition_x(),getPosition_y());
 
         if(this.sex.equalsIgnoreCase("F")) {
-            getTeamFrame().getButtons()[6].setIcon(new ImageIcon("images/AlyciaChoose.jpg"));
-            myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_up_left.jpg"));
+            getTeamFrame().getButtons()[6].setIcon(new ImageIcon(Constant.allenatoreMyAlycia));
+            myTrainer.setIcon(new ImageIcon(Constant.pgFemaleUp2));
         }else{
-            myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_up_left.jpg"));
+            myTrainer.setIcon(new ImageIcon(Constant.pgMaleUp2));
         }
 
         addPetAtTeam(trn0,new Pet(ConstantPet.leo));
@@ -97,7 +97,7 @@ public class LevelWindowFour extends LevelWindow {
                 super.musicMessage.start();
                 JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment);
                 battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta));
-                updateTeamShow(trainer);
+                updateTeamShow(mineTrainer);
 
             }else if(trainer.getName().equalsIgnoreCase("renato") && getMyTrainer().getX()
                     == posX && getMyTrainer().getY() == posY && trainer.getNumberOfLosses() < 1) {
@@ -105,7 +105,7 @@ public class LevelWindowFour extends LevelWindow {
                 super.musicMessage.start();
                 JOptionPane.showMessageDialog(null, trainer.getName() + ":" + "\n" + comment);
                 battle = new ServiceForBattle(mineTrainer, trainer, new BattleWindow(Constant.sfondoLotta1, Constant.musicalotta1));
-                updateTeamShow(trainer);
+                updateTeamShow(mineTrainer);
 
             }
 
@@ -173,185 +173,182 @@ public class LevelWindowFour extends LevelWindow {
     public void keyPressed(KeyEvent e) {
 
         try {
-            SetTalkinWithProf(340,235);
-            SetFightPosition(725,440,trn2,"Mio papà ama i Pet di tipo Cat,come me!","Mia mamma invece quelli di tipo Rabbit!");
-            SetFightPosition(815,265,trn1,"Ho raggiunto sedici vittorie è la prof.ssa Alice mi ha regalato un Pet di tipo Cat!","Puoi fartelo donare anche tu!Basta raggiungere un tot di vittorie!");
-            SetFightPosition(475,270,trn0,"Finalmente sono qua!Devo assolutamente battere Renato con il mio nuovo Pet!","Perchè con te perdo sempre?!?");
-            SetFightPosition(80,450,trn3,"I Pet di tipo Cat sono cosi' carini,non trovi?","Anche quelli di tipo Rabbit sono cosi' dolci!!!");
-            SetFightPosition(610,540,trn4,"Eccomi,sono il Leader di MeowMeow City!Utilizzo solo Pet di tipo Cat perchè hanno una difesa d'acciaio!Riuscirai a scalfirli?","Bravissimo,hai trovato il modo!" + "\n" +
+            SetTalkinWithProf(340, 235);
+            SetFightPosition(725, 440, trn2, "Mio papà ama i Pet di tipo Cat,come me!", "Mia mamma invece quelli di tipo Rabbit!");
+            SetFightPosition(815, 265, trn1, "Ho raggiunto sedici vittorie è la prof.ssa Alice mi ha regalato un Pet di tipo Cat!", "Puoi fartelo donare anche tu!Basta raggiungere un tot di vittorie!");
+            SetFightPosition(475, 270, trn0, "Finalmente sono qua!Devo assolutamente battere Renato con il mio nuovo Pet!", "Perchè con te perdo sempre?!?");
+            SetFightPosition(80, 450, trn3, "I Pet di tipo Cat sono cosi' carini,non trovi?", "Anche quelli di tipo Rabbit sono cosi' dolci!!!");
+            SetFightPosition(610, 540, trn4, "Eccomi,sono il Leader di MeowMeow City!Utilizzo solo Pet di tipo Cat perchè hanno una difesa d'acciaio!Riuscirai a scalfirli?", "Bravissimo,hai trovato il modo!" + "\n" +
                     "Hai già parlato con la prof.ssa Alice?Avrà una sorpresa per te!La trovi nei pressi del vortice di cambio zona!");
             updateTeamShow(mineTrainer);
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
             throw new RuntimeException(ex);
         }
 
-        if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             position_x -= 5;
-            System.out.println(getPosition_x());
-            System.out.println(getPosition_y());
             switch (getSex()) {
                 case "M":
                     if (position_x % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_right_2.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleSx2));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_right_1.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleSx1));
                     }
                     break;
                 case "F":
                     if (position_x % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_right_2.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleSx1));
                     } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_right_1.jpg"));
+                        super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleSx2));
                     }
                     break;
             }
             super.myTrainer.setLocation(position_x, position_y);
         }
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            position_y -= 5;
-            System.out.println(getPosition_x());
-            System.out.println(getPosition_y());
-            switch (getSex()) {
-                case "M":
-                    if (position_y % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_up_left.jpg"));
-                    } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_up_right.jpg"));
-                    }
-                    break;
-                case "F":
-                    if (position_y % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_up_left.jpg"));
-                    } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_up_right.jpg"));
-                    }
-                    break;
-            }
-            super.myTrainer.setLocation(position_x, position_y);
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            position_y += 5;
-            System.out.println(getPosition_x());
-            System.out.println(getPosition_y());
-            switch (getSex()) {
-                case "M":
-                    if (position_y % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_down_left.jpg"));
-                    } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_down_right.jpg"));
-                    }
-                    break;
-                case "F":
-                    if (position_y % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_down_left.jpg"));
-                    } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_down_right.jpg"));
-                    }
-                    break;
-            }
-            super.myTrainer.setLocation(position_x, position_y);
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            position_x += 5;
-            System.out.println(getPosition_x());
-            System.out.println(getPosition_y());
-            switch (getSex()) {
-                case "M":
-                    if (position_x % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_left_2.jpg"));
-                    } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_left_1.png"));
-                    }
-                    break;
-                case "F":
-                    if (position_x % 2 == 0) {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_left_2.jpg"));
-                    } else {
-                        super.myTrainer.setIcon(new ImageIcon("images/MyTrainer/pg_f_left_1.jpg"));
-                    }
-                    break;
-            }
-            super.myTrainer.setLocation(position_x, position_y);
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            super.getTeamFrame().getFrame().setVisible(true);
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_L) {
-            super.getLeader().getFrame().setVisible(true);
-        }
-
-        if(endGame.isVisible() && position_x==695 && position_y==580){
-            frame.dispose();
-            music.stop();
-            try {
-                new LevelWindowThree(Constant.sfondoInit2, Constant.musicaRoute2, Constant.messaggio,1000, 333,getSex(), mineTrainer);
-            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
-                throw new RuntimeException(ex);
-            }
-        }
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
-
-    private void SetTalkinWithProf(int posX,int posY){
-
-        if(getPosition_x() == posX && getPosition_y() == posY && mineTrainer.getVictory() >= 16
-                && mineTrainer.getPetList().size() <= 2){
-            JOptionPane.showMessageDialog(null,
-            "Complimenti!Hai raggiunto tante vittorie.Tuttavia la strada si farà sempre più ardua man mano che" + "\n" +
-            "avanzerai!Ecco perchè sono qui!Ogni volta che raggiungerai un tot numero di vittorie vieni da me " + "\n" +
-            "ti consegnerò personalmente un Pet che verrà aggiunto al tuo Team!Ecco tieni!.Trattalo con cura "  + "\n" +
-            "vedrai che ti sarà di grande aiuto!See you soon!");
-            Random random = new Random();
-            int nRandom = random.nextInt(3);
-            if(getSex().equalsIgnoreCase("M")){
-                switch (nRandom){
-                    case 0:
-                        mineTrainer.addPet(2,new Pet(ConstantPet.king));
+            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                position_y -= 5;
+                System.out.println(getPosition_x());
+                System.out.println(getPosition_y());
+                switch (getSex()) {
+                    case "M":
+                        if (position_y % 2 == 0) {
+                            super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleUp1));
+                        } else {
+                            super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleUp2));
+                        }
                         break;
-                    case 1:
-                        mineTrainer.addPet(2,new Pet(ConstantPet.gomitolo));
-                        break;
-                    case 2:
-                        mineTrainer.addPet(2,new Pet(ConstantPet.mewcat));
+                    case "F":
+                        if (position_y % 2 == 0) {
+                            super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleUp1));
+                        } else {
+                            super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleUp2));
+                        }
                         break;
                 }
+                super.myTrainer.setLocation(position_x, position_y);
             }
-            switch (nRandom){
-                case 0:
-                    mineTrainer.addPet(2,new Pet(ConstantPet.king));
-                    break;
-                case 1:
-                    mineTrainer.addPet(2,new Pet(ConstantPet.leo));
-                    break;
-                case 2:
-                    mineTrainer.addPet(2,new Pet(ConstantPet.black));
-                    break;
+
+            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                position_y += 5;
+                System.out.println(getPosition_x());
+                System.out.println(getPosition_y());
+                switch (getSex()) {
+                    case "M":
+                        if (position_y % 2 == 0) {
+                            super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleDown2));
+                        } else {
+                            super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleDown1));
+                        }
+                        break;
+                    case "F":
+                        if (position_y % 2 == 0) {
+                            super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleDown1));
+                        } else {
+                            super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleDown2));
+                        }
+                        break;
+                }
+                super.myTrainer.setLocation(position_x, position_y);
             }
-            JOptionPane.showMessageDialog(null, mineTrainer.getPetList().get(2).getName() + " E' STATO AGGIUNTO AL TUO TEAM!");
-        }
-        else if(getPosition_x() == posX && getPosition_y() == posY && mineTrainer.getVictory() < 16){
 
-            JOptionPane.showMessageDialog(null,
-                    "Torna da me quando avrai raggiunto SEDICI vittorie!");
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                position_x += 5;
+                System.out.println(getPosition_x());
+                System.out.println(getPosition_y());
+                switch (getSex()) {
+                    case "M":
+                        if (position_x % 2 == 0) {
+                            super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleDx1));
+                        } else {
+                            super.myTrainer.setIcon(new ImageIcon(Constant.pgMaleDx2));
+                        }
+                        break;
+                    case "F":
+                        if (position_x % 2 == 0) {
+                            super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleDx1));
+                        } else {
+                            super.myTrainer.setIcon(new ImageIcon(Constant.pgFemaleDx2));
+                        }
+                        break;
+                }
+                super.myTrainer.setLocation(position_x, position_y);
+            }
+
+            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                super.getTeamFrame().getFrame().setVisible(true);
+            }
+
+            if (e.getKeyCode() == KeyEvent.VK_L) {
+                super.getLeader().getFrame().setVisible(true);
+            }
+
+            if (endGame.isVisible() && position_x == 695 && position_y == 580) {
+                frame.dispose();
+                music.stop();
+                try {
+                    new LevelWindowThree(Constant.sfondoRoute2, Constant.musicaRoute2, Constant.messaggio, 1000, 333, getSex(), mineTrainer);
+                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
 
         }
-        else if(getPosition_x() == posX && getPosition_y() == posY && mineTrainer.getVictory() >= 16
-                && mineTrainer.getPetList().size() > 2){
-            JOptionPane.showMessageDialog(null,
-                    "Divertiti con il tuo nuovo Pet!Ci vediamo in giro nelle prossime città!");
+
+        @Override
+        public void keyReleased (KeyEvent e){
+
         }
 
-    }
-    public String getSex() {
-        return sex;
-    }
+        private void SetTalkinWithProf ( int posX, int posY){
+
+            if (getPosition_x() == posX && getPosition_y() == posY && mineTrainer.getVictory() >= 16
+                    && mineTrainer.getPetList().size() <= 2) {
+                JOptionPane.showMessageDialog(null,
+                        "Complimenti!Hai raggiunto tante vittorie.Tuttavia la strada si farà sempre più ardua man mano che" + "\n" +
+                                "avanzerai!Ecco perchè sono qui!Ogni volta che raggiungerai un tot numero di vittorie vieni da me " + "\n" +
+                                "ti consegnerò personalmente un Pet che verrà aggiunto al tuo Team!Ecco tieni!.Trattalo con cura " + "\n" +
+                                "vedrai che ti sarà di grande aiuto!See you soon!");
+                Random random = new Random();
+                int nRandom = random.nextInt(3);
+                if (getSex().equalsIgnoreCase("M")) {
+                    switch (nRandom) {
+                        case 0:
+                            mineTrainer.addPet(2, new Pet(ConstantPet.king));
+                            break;
+                        case 1:
+                            mineTrainer.addPet(2, new Pet(ConstantPet.gomitolo));
+                            break;
+                        case 2:
+                            mineTrainer.addPet(2, new Pet(ConstantPet.mewcat));
+                            break;
+                    }
+                }
+                switch (nRandom) {
+                    case 0:
+                        mineTrainer.addPet(2, new Pet(ConstantPet.king));
+                        break;
+                    case 1:
+                        mineTrainer.addPet(2, new Pet(ConstantPet.leo));
+                        break;
+                    case 2:
+                        mineTrainer.addPet(2, new Pet(ConstantPet.black));
+                        break;
+                }
+                JOptionPane.showMessageDialog(null, mineTrainer.getPetList().get(2).getName() + " E' STATO AGGIUNTO AL TUO TEAM!");
+            } else if (getPosition_x() == posX && getPosition_y() == posY && mineTrainer.getVictory() < 16) {
+
+                JOptionPane.showMessageDialog(null,
+                        "Torna da me quando avrai raggiunto SEDICI vittorie!");
+
+            } else if (getPosition_x() == posX && getPosition_y() == posY && mineTrainer.getVictory() >= 16
+                    && mineTrainer.getPetList().size() > 2) {
+                JOptionPane.showMessageDialog(null,
+                        "Divertiti con il tuo nuovo Pet!Ci vediamo in giro nelle prossime città!");
+            }
+
+        }
+        public String getSex () {
+            return sex;
+        }
+
 }

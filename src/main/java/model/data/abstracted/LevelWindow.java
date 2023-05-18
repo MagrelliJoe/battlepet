@@ -64,7 +64,7 @@ public abstract class LevelWindow implements KeyListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         sfondo.setSize(dimension);
 
-        myTrainerMove = new ImageIcon("images/MyTrainer/pg_right_1.jpg");
+        myTrainerMove = new ImageIcon(Constant.pgMaleSx1);
 
         myTrainer = new JLabel(myTrainerMove);
         myTrainer.setBackground(new Color(0,0,0,0));
@@ -72,7 +72,7 @@ public abstract class LevelWindow implements KeyListener {
         myTrainer.setLocation(position_x,position_y);
         myTrainer.setSize(40,57);
 
-        endGame = new JLabel(new ImageIcon("images/here.png"));
+        endGame = new JLabel(new ImageIcon(Constant.here));
         endGame.setBackground(new Color(0,0,0,0));
         endGame.setBorder(new EmptyBorder(0,0,0,0));
         endGame.setSize(40,57);

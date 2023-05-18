@@ -62,7 +62,7 @@ public class WindowTitle extends LevelWindow implements ActionListener {
             frame.dispose();
             music.stop();
             try {
-                new WindowPrologue("images/sfondoInitGame.jpg", Constant.musicaInit,Constant.messaggio,500,300);
+                new WindowPrologue(Constant.sfondoBlack, Constant.musicaInit,Constant.messaggio,500,300);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                 throw new RuntimeException(ex);
             }
